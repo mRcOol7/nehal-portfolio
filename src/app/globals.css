@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-serif: var(--font-serif), Georgia, serif;
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-mono), monospace;
+}
+
+:root {
+  --bg-primary: #FAFAFC;
+  --bg-card: #FFFFFF;
+  --text-main: #1C1C24;
+  --text-muted: #646478;
+  --border-dashed: #DCE0E8;
+  --accent: #E11D48;
+}
+
+.dark {
+  --bg-primary: #0C0C10;
+  --bg-card: #14141B;
+  --text-main: #EDEDF2;
+  --text-muted: #8E8EA2;
+  --border-dashed: #272736;
+  --accent: #FB7185;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-inter), sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Custom dashed container inspired by palakonweb */
+.dashed-container {
+  border: 1px dashed var(--border-dashed);
+}
+
+/* Boop floating particle animation */
+@keyframes boopFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-28px) scale(1.2);
+  }
+}
+
+.animate-boop-float {
+  animation: boopFloat 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(140, 140, 160, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 140, 160, 0.5);
+}
