@@ -1,0 +1,19 @@
+# Ralph Progress Log
+Started: 2026-11-01
+---
+
+## Codebase Patterns
+- Data source: Always import from `@/data/portfolioData` rather than hardcoding personal data.
+- Styling: Use `dashed-container` class and `#E11D48` rose accent token for consistency.
+- Dark mode: Provide explicit `dark:` classes with subtle dark slate `#14141B` surfaces.
+- Accessibility: Interactive buttons must have clear focus rings, legible text, and aria labels where applicable.
+
+## 2026-11-01 - US-001 & US-002: Project Category Filtering
+- What was implemented: Dynamic category extraction from PORTFOLIO_DATA.projects, responsive filter pill tab bar with count indicators, active category filtering state, and empty state handling.
+- Files changed:
+  - `src/components/ProjectsSection.tsx`
+  - `scripts/ralph/prd.json`
+- **Learnings for future iterations:**
+  - `PORTFOLIO_DATA.projects` contains a diverse mix of categories ("Native Android", "Full-Stack Web", "AI / Creative Tech").
+  - Filter pills look best placed alongside the section header to preserve layout balance.
+---

@@ -1,17 +1,77 @@
 "use client";
 
+import React, { useState, useMemo } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { ArrowUpRight } from "lucide-react";
 
 export default function ProjectsSection() {
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+
+  const categories = useMemo(() => {
+    const cats = Array.from(new Set(PORTFOLIO_DATA.projects.map((p) => p.category)));
+    return ["All", ...cats];
+  }, []);
+
+  const filteredProjects = useMemo(() => {
+    if (activeCategory === "All") return PORTFOLIO_DATA.projects;
+    return PORTFOLIO_DATA.projects.filter((p) => p.category === activeCategory);
+  }, [activeCategory]);
+
   return (
     <section id="projects" className="w-full mb-12">
-      <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-5 sm:mb-6">
-        Featured Projects
-      </h2>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-5 sm:mb-6">
+        <div>
+          <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1C24] dark:text-white">
+            Featured Projects
+          </h2>
+          <p className="text-xs sm:text-sm text-[#646478] dark:text-[#8E8EA2] mt-1">
+            Production builds, native mobile architectures, and creative interfaces
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-        {PORTFOLIO_DATA.projects.map((project) => (
+        {/* Category Filter Pills */}
+        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-full bg-neutral-100 dark:bg-[#14141B]/80 border border-neutral-200/80 dark:border-neutral-800 self-start sm:self-auto">
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat;
+            const count =
+              cat === "All"
+                ? PORTFOLIO_DATA.projects.length
+                : PORTFOLIO_DATA.projects.filter((p) => p.category === cat).length;
+
+            return (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-all ${
+                  isActive
+                    ? "bg-[#E11D48] text-white shadow-sm"
+                    : "text-[#646478] dark:text-[#8E8EA2] hover:text-[#1C1C24] dark:hover:text-white"
+                }`}
+                aria-pressed={isActive}
+              >
+                <span>{cat}</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                    isActive
+                      ? "bg-white/20 text-white"
+                      : "bg-neutral-200 dark:bg-neutral-800 text-[#646478] dark:text-[#8E8EA2]"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {filteredProjects.length === 0 ? (
+        <div className="p-8 text-center rounded-2xl dashed-container bg-white/30 dark:bg-[#14141B]/20 text-[#646478] dark:text-[#8E8EA2] text-sm">
+          No projects found in this category.
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+          {filteredProjects.map((project) => (
           <div
             key={project.id}
             className="p-4 sm:p-6 rounded-2xl dashed-container bg-white/50 dark:bg-[#14141B]/40 hover:bg-white dark:hover:bg-[#181822] transition-all duration-200 flex flex-col justify-between group"
@@ -95,7 +155,9 @@ export default function ProjectsSection() {
             </div>
           </div>
         ))}
-      </div>
+        </div>
+      )}
     </section>
   );
 }
+

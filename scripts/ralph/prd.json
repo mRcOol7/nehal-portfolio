@@ -1,0 +1,49 @@
+{
+  "project": "NehalChauhanPortfolio",
+  "branchName": "ralph/project-filtering-and-collaboration",
+  "description": "Interactive Project Category Filtering & Enhanced Collaboration Outreach",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Add category filter pill buttons to ProjectsSection",
+      "description": "As a portfolio visitor, I want to see filter buttons for project categories (All, Web, Mobile, etc.) so I can narrow down relevant work.",
+      "acceptanceCriteria": [
+        "Dynamically extract unique categories from PORTFOLIO_DATA.projects",
+        "Display 'All' plus each category in a responsive pill tab bar above project cards",
+        "Active filter has distinct highlight styling matching the design system (#E11D48 / dark:rose)",
+        "Typecheck passes (npx tsc --noEmit)"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": "Completed and verified with tsc --noEmit"
+    },
+    {
+      "id": "US-002",
+      "title": "Filter project grid based on active category selection",
+      "description": "As a visitor, clicking a category tab should immediately filter the displayed projects.",
+      "acceptanceCriteria": [
+        "Clicking a category updates activeCategory state",
+        "Grid renders only projects matching selected category (or all projects if 'All' is active)",
+        "Empty state message if no projects match",
+        "Typecheck passes (npx tsc --noEmit)"
+      ],
+      "priority": 2,
+      "passes": true,
+      "notes": "Completed and verified with tsc --noEmit"
+    },
+    {
+      "id": "US-003",
+      "title": "Add instant Copy Email feedback button to FreelancingCard",
+      "description": "As a collaborator or recruiter, I want to quickly copy Nehal's email to my clipboard with instant visual feedback.",
+      "acceptanceCriteria": [
+        "Add a 'Copy Email' action button with copy icon alongside 'Get in Touch'",
+        "Clicking copies email to clipboard using navigator.clipboard",
+        "Shows 'Copied!' checkmark badge for 2 seconds",
+        "Typecheck passes (npx tsc --noEmit)"
+      ],
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}
