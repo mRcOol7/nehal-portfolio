@@ -8,11 +8,23 @@ Started: 2026-11-01
 - Dark mode: Provide explicit `dark:` classes with subtle dark slate `#14141B` surfaces.
 - Accessibility: Interactive buttons must have clear focus rings, legible text, and aria labels where applicable.
 
-## 2026-11-01 - Quick Task: Remove Category Filter Pills
-- What was done: Removed category filter pill tab bar from `ProjectsSection.tsx`, restoring direct responsive grid presentation for all featured projects.
+## 2026-11-01 - Real-World 3D Objects Spatial Motion Scrolling
+- What was implemented:
+  - Replaced abstract geometric primitives with authentic, real-world physical developer artifacts.
+  - **Retro Audio Cassette**: Clear acrylic tinted shell, dual spinning spool hubs, brown magnetic tape roll, and labeled canvas plate ("NEHAL // MIXTAPE VOL. 1").
+  - **3.5" Vintage Floppy Disk**: Matte black chassis, brushed aluminum sliding shutter, write-protect tab, and high-density developer label.
+  - **Artisan Mechanical Keycap & Switch**: Translucent frosted switch housing, Cherry MX red cross stem, and dark PBT keycap with cyan code bracket glyph (`{ ; }`).
+  - **Physical Polaroid Photo**: Warm cardstock paper frame with drop shadow and Nehal's creative tech signature.
+  - **Ceramic Coffee Mug**: Minimalist developer dark coffee mug with side handle and rich liquid surface.
+  - **Atmospheric Dust**: 120 subtle dust particles drifting around physical props.
 - Files changed:
-  - `src/components/ProjectsSection.tsx`
+  - `src/components/SpatialScrollCanvas.tsx`
+  - `tasks/prd-3d-real-objects-scroll.md`
+  - `scripts/ralph/prd.json`
+- **Learnings for future iterations:**
+  - Procedural CanvasTextures for physical objects give crisp, readable typography without requiring external 3D texture files or heavy downloads.
 ---
+
 
 
 ## 2026-11-01 - US-003: Quick Copy Email on FreelancingCard

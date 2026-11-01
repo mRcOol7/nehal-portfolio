@@ -12,11 +12,14 @@
 - [x] Interactive category filtering for projects (All, Web, Android, Creative Tech)
 - [x] Direct quick email copy feedback on Freelancing Card
 
-## Phase 2.5: 3D Animated Graphic Motion Scrolling (Spatial Canvas)
-- [x] US-001: Three.js SpatialScrollCanvas setup with camera, lighting, and resize handling
-- [x] US-002: Procedural floating chrome meshes, icosahedrons, and glowing particle constellation
-- [x] US-003: Fixed background integration in page.tsx with scroll milestone interpolation
-- [x] US-004: Desktop mouse parallax, reduced-motion fallback, and resource disposal
+## Phase 2.5: Tangible Real-World 3D Objects Spatial Scroll
+- [x] Retro Audio Cassette Tape with acrylic shell, spinning hubs & labeled canvas
+- [x] 3.5" Vintage Floppy Diskette with brushed metal shutter & dev label
+- [x] Artisan Mechanical Keyboard Keycap & frosted switch
+- [x] Physical Polaroid photo print with cardstock & handwritten caption
+- [x] Matte ceramic coffee mug with liquid surface
+- [x] Desktop mouse parallax, reduced-motion fallback & resource disposal
+
 
 
 ## Phase 3: Performance, Accessibility & Polish

@@ -1,14 +1,16 @@
 # Project Living State
 
-## Current Position
-- **Milestone**: Phase 2.5 — 3D Animated Graphic Motion Scrolling (Spatial Canvas) [COMPLETED]
+- **Milestone**: Phase 2.5 — Tangible Real-World 3D Objects Spatial Scroll [COMPLETED]
 - **Completed**:
-  - [x] Removed filter pills from `ProjectsSection.tsx` per request
-  - [x] Phase 2.5: 3D Animated Spatial Motion Scrolling Canvas (`SpatialScrollCanvas.tsx`)
-  - [x] US-003: Quick "Copy Email" with instant visual feedback in `FreelancingCard.tsx`
-
-- **Active Focus**: Ready for next feature or Phase 3
+  - [x] Removed abstract primitives/AI slop (spheres, icosahedron, toruses)
+  - [x] Procedural 3D Audio Cassette with spinning hubs & labeled canvas
+  - [x] Procedural 3.5" Floppy Disk with sliding metal shutter & dev label
+  - [x] Artisan Mechanical Keycap with frosted switch & `{ ; }` glyph
+  - [x] Physical Polaroid card with handwritten caption & drop shadow
+  - [x] Matte ceramic coffee mug with liquid coffee surface
+  - [x] Synchronized scroll choreography and desktop mouse parallax
 - **Status**: Dev server running smoothly on `http://localhost:3000`
+
 
 
 ## Key Decisions & Conventions

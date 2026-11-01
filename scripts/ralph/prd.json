@@ -1,64 +1,63 @@
 {
   "project": "NehalChauhanPortfolio",
-  "branchName": "ralph/3d-spatial-scroll-canvas",
-  "description": "3D Floating Spatial Scroll Canvas — Full-Page Animated Motion Scrolling",
+  "branchName": "ralph/3d-real-world-objects",
+  "description": "Tangible Real-World 3D Objects Spatial Scroll Canvas (Cassette, Floppy, Keycap, Polaroid, Mug)",
   "userStories": [
     {
       "id": "US-001",
-      "title": "Build SpatialScrollCanvas component with Three.js scene and lighting",
-      "description": "As a visitor, I want a high-performance WebGL canvas initialized with camera and cinematic ambient lighting in the background.",
+      "title": "Build procedural 3D Retro Audio Cassette Tape model",
+      "description": "As a visitor, I want to see an authentic 3D cassette tape with spools, tape window, and label floating in space instead of abstract shapes.",
       "acceptanceCriteria": [
-        "Create src/components/SpatialScrollCanvas.tsx with client directive",
-        "Setup PerspectiveCamera, WebGLRenderer with alpha support, and dual point lights (indigo/cyan)",
-        "Handle window resizing cleanly and cap pixel ratio at 1.75",
+        "Create Three.js Group with cassette chassis, beveled center cutout, and winding spools",
+        "Generate 2D CanvasTexture label with 'NEHAL // SIDE A - DEV TRACKS'",
+        "Realistic PBR materials with clear polycarbonate and magnetic brown tape",
         "Typecheck passes (npx tsc --noEmit)"
       ],
       "priority": 1,
       "passes": true,
-      "notes": "Built with PerspectiveCamera, dynamic ACESFilmic tone mapping, and point lights"
+      "notes": "Built with clear acrylic body, rotating hubs, tape roll, and labeled canvas"
     },
     {
       "id": "US-002",
-      "title": "Add 3D floating meshes with scroll-driven spatial animations",
-      "description": "As I scroll down the page, 3D chrome spheres, geometric icosahedron wireframes, and glowing rings glide and rotate along the scroll path.",
+      "title": "Build procedural 3D Floppy Disk and Mechanical Keycap models",
+      "description": "As a visitor, I want tactile developer objects: a 3.5-inch floppy disk and an artisan mechanical keyboard keycap.",
       "acceptanceCriteria": [
-        "Create chrome metallic spheres, rotating wireframe icosahedrons, and glowing torus rings",
-        "Add floating star particle constellation (150-200 particles)",
-        "Implement smooth scroll lerp interpolation to drive 3D object positions and rotations",
+        "Create 3.5-inch floppy disk with metallic sliding shutter, corner notch, and label",
+        "Create mechanical switch housing with cross stem and DSA keycap",
+        "Apply authentic materials (matte black plastic, brushed metal, PBT)",
         "Typecheck passes (npx tsc --noEmit)"
       ],
       "priority": 2,
       "passes": true,
-      "notes": "Implemented chrome sphere, icosahedron, torus ring, octahedron, mini orbs, and 180 particles"
+      "notes": "Built floppy with brushed aluminum shutter and keycap with frosted switch + red stem"
     },
     {
       "id": "US-003",
-      "title": "Integrate SpatialScrollCanvas into page layout and calibrate milestones",
-      "description": "As a user, the 3D canvas should be fixed in the background of page.tsx, seamlessly orchestrating elements across Hero, Projects, and Contact.",
+      "title": "Build procedural 3D Polaroid Photo Print and Ceramic Coffee Mug",
+      "description": "As a visitor, I want a physical Polaroid print with drop shadow and a minimal developer coffee mug.",
       "acceptanceCriteria": [
-        "Mount SpatialScrollCanvas in src/app/page.tsx with fixed inset-0 z-0",
-        "Ensure content remains perfectly legible with appropriate opacity and pointer-events-none",
-        "Calibrate scroll progress smoothly from 0 to 1 across the total document height",
+        "Create Polaroid photo card with textured white border and photo print face",
+        "Create ceramic coffee mug with hollow opening and side handle",
+        "Materials reflect paper sheen and glazed matte ceramic",
         "Typecheck passes (npx tsc --noEmit)"
       ],
       "priority": 3,
       "passes": true,
-      "notes": "Mounted in page.tsx with pointer-events-none and smooth lerp interpolation"
+      "notes": "Built photo print with handwritten caption and glazed ceramic mug with coffee surface"
     },
     {
       "id": "US-004",
-      "title": "Add desktop mouse parallax, reduced-motion, and WebGL fallback",
-      "description": "As a visitor, moving the mouse produces subtle 3D perspective tilt; reduced-motion preferences freeze motion; non-WebGL displays a static CSS fallback.",
+      "title": "Integrate real-world objects into SpatialScrollCanvas with scroll trajectory",
+      "description": "As a user, all real-world objects should glide, tilt, and rotate smoothly as I scroll through the portfolio.",
       "acceptanceCriteria": [
-        "Desktop pointer move adds smooth parallax tilt to camera/meshes",
-        "Respects prefers-reduced-motion: reduce by freezing dynamic transforms",
-        "Graceful fallback if WebGL context is not supported",
-        "Full disposal of geometries, materials, and renderer on unmount",
+        "Replace all abstract shapes (spheres, icosahedron, toruses) in SpatialScrollCanvas with real-world objects",
+        "Orchestrate positions: Cassette in Hero, Floppy in About, Keycap & Polaroid in Projects, Mug near Contact",
+        "Smooth scroll lerp and mouse parallax inertia applied to all objects",
         "Typecheck passes (npx tsc --noEmit)"
       ],
       "priority": 4,
       "passes": true,
-      "notes": "Parallax pointer tracking, prefers-reduced-motion check, fallback div, and full disposal"
+      "notes": "Choreographed spatial paths across all sections with pointer parallax and lerp"
     }
   ]
 }
