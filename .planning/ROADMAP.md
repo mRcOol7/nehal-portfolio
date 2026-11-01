@@ -12,8 +12,15 @@
 - [x] Interactive category filtering for projects (All, Web, Android, Creative Tech)
 - [x] Direct quick email copy feedback on Freelancing Card
 
+## Phase 2.5: 3D Animated Graphic Motion Scrolling (Spatial Canvas)
+- [x] US-001: Three.js SpatialScrollCanvas setup with camera, lighting, and resize handling
+- [x] US-002: Procedural floating chrome meshes, icosahedrons, and glowing particle constellation
+- [x] US-003: Fixed background integration in page.tsx with scroll milestone interpolation
+- [x] US-004: Desktop mouse parallax, reduced-motion fallback, and resource disposal
+
 
 ## Phase 3: Performance, Accessibility & Polish
 - [ ] Lazy-loading heavy 3D assets & WebGL visibility observer optimization
 - [ ] Full keyboard navigation and ARIA landmarks for screen readers
 - [ ] Final Lighthouse audit (SEO, Performance, Accessibility)
+

@@ -7,11 +7,15 @@ import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import DevicePlugScrollSection from "@/components/DevicePlugScrollSection";
 import ContactFooter from "@/components/ContactFooter";
+import SpatialScrollCanvas from "@/components/SpatialScrollCanvas";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#FAFAFC] dark:bg-[#0C0C10] text-[#1C1C24] dark:text-[#E8E8EE] selection:bg-[#E11D48]/20 selection:text-[#E11D48] transition-colors duration-200">
-      {/* Outer subtle ambient side-vignettes inspired by palakonweb */}
+      {/* 3D Animated Spatial Motion Scrolling Canvas */}
+      <SpatialScrollCanvas />
+
+      {/* Outer subtle ambient side-vignettes */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-0 w-48 h-full bg-gradient-to-r from-blue-50/40 dark:from-indigo-950/20 to-transparent" />
         <div className="absolute top-0 right-0 w-48 h-full bg-gradient-to-l from-blue-50/40 dark:from-indigo-950/20 to-transparent" />

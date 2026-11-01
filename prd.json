@@ -1,49 +1,64 @@
 {
   "project": "NehalChauhanPortfolio",
-  "branchName": "ralph/project-filtering-and-collaboration",
-  "description": "Interactive Project Category Filtering & Enhanced Collaboration Outreach",
+  "branchName": "ralph/3d-spatial-scroll-canvas",
+  "description": "3D Floating Spatial Scroll Canvas — Full-Page Animated Motion Scrolling",
   "userStories": [
     {
       "id": "US-001",
-      "title": "Add category filter pill buttons to ProjectsSection",
-      "description": "As a portfolio visitor, I want to see filter buttons for project categories (All, Web, Mobile, etc.) so I can narrow down relevant work.",
+      "title": "Build SpatialScrollCanvas component with Three.js scene and lighting",
+      "description": "As a visitor, I want a high-performance WebGL canvas initialized with camera and cinematic ambient lighting in the background.",
       "acceptanceCriteria": [
-        "Dynamically extract unique categories from PORTFOLIO_DATA.projects",
-        "Display 'All' plus each category in a responsive pill tab bar above project cards",
-        "Active filter has distinct highlight styling matching the design system (#E11D48 / dark:rose)",
+        "Create src/components/SpatialScrollCanvas.tsx with client directive",
+        "Setup PerspectiveCamera, WebGLRenderer with alpha support, and dual point lights (indigo/cyan)",
+        "Handle window resizing cleanly and cap pixel ratio at 1.75",
         "Typecheck passes (npx tsc --noEmit)"
       ],
       "priority": 1,
       "passes": true,
-      "notes": "Completed and verified with tsc --noEmit"
+      "notes": "Built with PerspectiveCamera, dynamic ACESFilmic tone mapping, and point lights"
     },
     {
       "id": "US-002",
-      "title": "Filter project grid based on active category selection",
-      "description": "As a visitor, clicking a category tab should immediately filter the displayed projects.",
+      "title": "Add 3D floating meshes with scroll-driven spatial animations",
+      "description": "As I scroll down the page, 3D chrome spheres, geometric icosahedron wireframes, and glowing rings glide and rotate along the scroll path.",
       "acceptanceCriteria": [
-        "Clicking a category updates activeCategory state",
-        "Grid renders only projects matching selected category (or all projects if 'All' is active)",
-        "Empty state message if no projects match",
+        "Create chrome metallic spheres, rotating wireframe icosahedrons, and glowing torus rings",
+        "Add floating star particle constellation (150-200 particles)",
+        "Implement smooth scroll lerp interpolation to drive 3D object positions and rotations",
         "Typecheck passes (npx tsc --noEmit)"
       ],
       "priority": 2,
       "passes": true,
-      "notes": "Completed and verified with tsc --noEmit"
+      "notes": "Implemented chrome sphere, icosahedron, torus ring, octahedron, mini orbs, and 180 particles"
     },
     {
       "id": "US-003",
-      "title": "Add instant Copy Email feedback button to FreelancingCard",
-      "description": "As a collaborator or recruiter, I want to quickly copy Nehal's email to my clipboard with instant visual feedback.",
+      "title": "Integrate SpatialScrollCanvas into page layout and calibrate milestones",
+      "description": "As a user, the 3D canvas should be fixed in the background of page.tsx, seamlessly orchestrating elements across Hero, Projects, and Contact.",
       "acceptanceCriteria": [
-        "Add a 'Copy Email' action button with copy icon alongside 'Get in Touch'",
-        "Clicking copies email to clipboard using navigator.clipboard",
-        "Shows 'Copied!' checkmark badge for 2 seconds",
+        "Mount SpatialScrollCanvas in src/app/page.tsx with fixed inset-0 z-0",
+        "Ensure content remains perfectly legible with appropriate opacity and pointer-events-none",
+        "Calibrate scroll progress smoothly from 0 to 1 across the total document height",
         "Typecheck passes (npx tsc --noEmit)"
       ],
       "priority": 3,
       "passes": true,
-      "notes": "Completed and verified"
+      "notes": "Mounted in page.tsx with pointer-events-none and smooth lerp interpolation"
+    },
+    {
+      "id": "US-004",
+      "title": "Add desktop mouse parallax, reduced-motion, and WebGL fallback",
+      "description": "As a visitor, moving the mouse produces subtle 3D perspective tilt; reduced-motion preferences freeze motion; non-WebGL displays a static CSS fallback.",
+      "acceptanceCriteria": [
+        "Desktop pointer move adds smooth parallax tilt to camera/meshes",
+        "Respects prefers-reduced-motion: reduce by freezing dynamic transforms",
+        "Graceful fallback if WebGL context is not supported",
+        "Full disposal of geometries, materials, and renderer on unmount",
+        "Typecheck passes (npx tsc --noEmit)"
+      ],
+      "priority": 4,
+      "passes": true,
+      "notes": "Parallax pointer tracking, prefers-reduced-motion check, fallback div, and full disposal"
     }
   ]
 }

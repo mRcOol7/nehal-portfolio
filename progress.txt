@@ -27,3 +27,20 @@ Started: 2026-11-01
   - Placed Copy Email next to "Get in Touch" in a flex container so mobile view stacks cleanly without overflowing container padding.
 ---
 
+## 2026-11-01 - Phase 2.5: 3D Animated Graphic Motion Scrolling (Spatial Canvas)
+- What was implemented:
+  - Created `SpatialScrollCanvas.tsx` with full-page fixed Three.js WebGL scene.
+  - Added floating metallic chrome spheres, rotating wireframe icosahedrons, glowing cyan torus rings, octahedron cores, mini satellite orbs, and 180 particle star constellation.
+  - Wired smooth scroll lerp interpolation driving 3D rotation, camera dolly, and translation paths as the user navigates through Hero, About, Projects, and Contact.
+  - Added desktop mouse parallax tilt, `prefers-reduced-motion` detection, non-WebGL fallback, and clean resource disposal.
+- Files changed:
+  - `src/components/SpatialScrollCanvas.tsx`
+  - `src/app/page.tsx`
+  - `tasks/prd-3d-spatial-scroll.md`
+  - `scripts/ralph/prd.json`
+- **Learnings for future iterations:**
+  - Keeping pixel ratio capped at 1.75 ensures butter-smooth 60fps scrolling without burning GPU wattage on high-DPI retina screens.
+  - Pointer events set to `none` on the 3D canvas allows all underlying interactive cards and buttons to receive normal click/hover events.
+---
+
+
