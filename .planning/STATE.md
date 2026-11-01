@@ -3,10 +3,10 @@
 ## Current Position
 - **Milestone**: Phase 2.5 — 3D Animated Graphic Motion Scrolling (Spatial Canvas) [COMPLETED]
 - **Completed**:
-  - [x] US-001: Three.js SpatialScrollCanvas setup with camera, lighting, and resize handling
-  - [x] US-002: Procedural floating chrome meshes, icosahedrons, and glowing particle constellation
-  - [x] US-003: Fixed background integration in page.tsx with scroll milestone interpolation
-  - [x] US-004: Desktop mouse parallax, reduced-motion fallback, and resource disposal
+  - [x] Removed filter pills from `ProjectsSection.tsx` per request
+  - [x] Phase 2.5: 3D Animated Spatial Motion Scrolling Canvas (`SpatialScrollCanvas.tsx`)
+  - [x] US-003: Quick "Copy Email" with instant visual feedback in `FreelancingCard.tsx`
+
 - **Active Focus**: Ready for next feature or Phase 3
 - **Status**: Dev server running smoothly on `http://localhost:3000`
 
