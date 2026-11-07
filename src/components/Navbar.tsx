@@ -44,7 +44,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between">
         {/* Brand Logo */}
         <a
-          href="#"
+          href="#badge-hero"
           className="font-serif italic text-xl sm:text-2xl font-bold tracking-tight text-[#1C1C24] dark:text-white hover:opacity-80 transition-opacity"
         >
           Nehal Chauhan
@@ -92,9 +92,8 @@ export default function Navbar() {
             aria-label="Toggle dark mode"
           >
             <div
-              className={`w-4 h-4 rounded-full bg-white dark:bg-[#E11D48] shadow-sm transform transition-transform duration-200 flex items-center justify-center ${
-                isDark ? "translate-x-6" : "translate-x-0"
-              }`}
+              className={`w-4 h-4 rounded-full bg-white dark:bg-[#E11D48] shadow-sm transform transition-transform duration-200 flex items-center justify-center ${isDark ? "translate-x-6" : "translate-x-0"
+                }`}
             >
               {isDark ? (
                 <Moon className="w-2.5 h-2.5 text-white" />
