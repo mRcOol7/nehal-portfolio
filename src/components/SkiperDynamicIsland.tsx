@@ -11,40 +11,53 @@ import {
   X,
   Clock,
   MapPin,
-  ChevronUp,
+  ChevronDown,
+  Sun,
+  Moon,
+  IdCard,
 } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
 /**
  * SkiperDynamicIsland
+ * Unified Floating Dynamic Island Navigation & Action Dock.
  * Inspired by Skiper UI (skiper-ui.com) uncommon interactive components.
  * Features:
- * - Fluid morphing state transitions powered by Framer Motion layout springs
- * - Compact HUD capsule in resting state with live availability pulse
- * - Expands into an interactive developer command island
- * - Live IST time clock & rapid one-click clipboard copying
- * - Fully accessible and responsive across mobile and desktop
+ * - Replaces traditional static navbar with a floating, spring-animated island capsule
+ * - Integrated theme switch (Dark/Light mode)
+ * - Navigation links with active anchor transitions
+ * - Live availability status pulse
+ * - Fluid spring morph into developer command center with live IST clock & one-click email copying
  */
 export default function SkiperDynamicIsland() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [copied, setCopied] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
-  const [isVisible, setIsVisible] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
-  // Show island after slight scroll past initial hero fold
+  // Synchronize Dark / Light Theme
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-        setIsExpanded(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    if (localStorage.theme === "light") {
+      document.documentElement.classList.remove("dark");
+      setIsDark(false);
+    } else {
+      document.documentElement.classList.add("dark");
+      setIsDark(true);
+    }
   }, []);
+
+  const toggleTheme = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isDark) {
+      document.documentElement.classList.remove("dark");
+      localStorage.theme = "light";
+      setIsDark(false);
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.theme = "dark";
+      setIsDark(true);
+    }
+  };
 
   // Live India Standard Time (IST) clock
   useEffect(() => {
@@ -71,10 +84,17 @@ export default function SkiperDynamicIsland() {
     setTimeout(() => setCopied(false), 2200);
   };
 
-  if (!isVisible) return null;
+  const navLinks = [
+    { label: "Home", href: "#home" },
+    { label: "Projects", href: "#projects" },
+    { label: "Experience", href: "#experience" },
+    { label: "Stack", href: "#tech-stack" },
+    { label: "About", href: "#about" },
+    { label: "Contact", href: "#contact" },
+  ];
 
   return (
-    <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 pointer-events-auto select-none max-w-[94vw]">
+    <div className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-auto select-none max-w-[96vw]">
       <motion.div
         layout
         transition={{
@@ -83,116 +103,180 @@ export default function SkiperDynamicIsland() {
           damping: 28,
           mass: 0.8,
         }}
+        className={`relative overflow-hidden rounded-full sm:rounded-3xl border border-neutral-200/80 dark:border-neutral-800/90 bg-white/90 dark:bg-[#12131A]/90 backdrop-blur-xl shadow-2xl text-[#1C1C24] dark:text-[#EDEDF2] transition-colors ${
+          isExpanded
+            ? "!rounded-3xl w-[340px] sm:w-[420px] p-5 cursor-default"
+            : "px-3 sm:px-4 py-2 cursor-pointer hover:border-[#E11D48]/50 hover:shadow-rose-500/10"
+        }`}
         onClick={() => !isExpanded && setIsExpanded(true)}
-        className={`relative overflow-hidden rounded-3xl border border-neutral-200/80 dark:border-neutral-800/90 bg-white/90 dark:bg-[#12131A]/90 backdrop-blur-xl shadow-2xl text-[#1C1C24] dark:text-[#EDEDF2] transition-colors ${isExpanded
-            ? "w-[340px] sm:w-[380px] p-5 cursor-default"
-            : "px-3.5 py-2 cursor-pointer hover:border-[#E11D48]/50 hover:shadow-rose-500/10"
-          }`}
       >
         <AnimatePresence mode="wait">
           {!isExpanded ? (
-            /* ================= COMPACT ISLAND HUD ================= */
+            /* ================= COMPACT FLOATING ISLAND NAVBAR ================= */
             <motion.div
               key="compact"
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.18 }}
-              className="flex items-center gap-3 text-xs"
+              exit={{ opacity: 0, y: 4 }}
+              transition={{ duration: 0.16 }}
+              className="flex items-center gap-2 sm:gap-4 text-xs"
             >
-              {/* Availability live pulse dot */}
-              <div className="flex items-center gap-1.5 pl-0.5">
+              {/* Brand & 3D Pass Trigger */}
+              <div className="flex items-center gap-1.5 shrink-0">
+                <a
+                  href="#home"
+                  onClick={(e) => e.stopPropagation()}
+                  className="font-serif italic text-sm sm:text-base font-bold text-[#1C1C24] dark:text-white hover:text-[#E11D48] transition-colors"
+                >
+                  Nehal
+                </a>
+                <a
+                  href="#badge-hero"
+                  onClick={(e) => e.stopPropagation()}
+                  title="View 3D Staff Pass"
+                  className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[10px] font-mono text-neutral-600 dark:text-neutral-300 hover:text-[#E11D48] border border-neutral-200 dark:border-neutral-700 transition-colors"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="hidden xs:inline">Pass</span>
+                </a>
+              </div>
+
+              <span className="hidden sm:inline-block h-3.5 w-px bg-neutral-200 dark:bg-neutral-800 shrink-0" />
+
+              {/* Desktop Navigation Links */}
+              <nav className="hidden md:flex items-center gap-3.5 text-xs font-medium text-[#646478] dark:text-[#A1A1B2]">
+                {navLinks.slice(1).map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => e.stopPropagation()}
+                    className="hover:text-[#1C1C24] dark:hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+
+              <span className="hidden md:inline-block h-3.5 w-px bg-neutral-200 dark:bg-neutral-800 shrink-0" />
+
+              {/* Status Pulse */}
+              <div className="flex items-center gap-1.5 shrink-0">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
-                <span className="font-medium text-[11px] text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
+                <span className="text-[11px] font-medium text-emerald-600 dark:text-emerald-400 whitespace-nowrap hidden sm:inline">
                   Open to Roles
                 </span>
               </div>
 
-              <span className="h-3 w-px bg-neutral-200 dark:bg-neutral-800" />
+              <span className="h-3.5 w-px bg-neutral-200 dark:bg-neutral-800 shrink-0" />
 
-              {/* Quick Jump anchors */}
-              <div className="flex items-center gap-2 text-[#646478] dark:text-[#8E8EA2] text-[11px] font-medium">
-                <a
-                  href="#projects"
-                  onClick={(e) => e.stopPropagation()}
-                  className="hover:text-[#E11D48] transition-colors"
-                >
-                  Projects
-                </a>
-                <span>•</span>
-                <a
-                  href="#tech-stack"
-                  onClick={(e) => e.stopPropagation()}
-                  className="hover:text-[#E11D48] transition-colors"
-                >
-                  Stack
-                </a>
-              </div>
+              {/* Sun/Moon Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className="p-1 rounded-full text-neutral-500 dark:text-neutral-400 hover:text-[#1C1C24] dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors shrink-0"
+                aria-label="Toggle theme"
+              >
+                {isDark ? (
+                  <Moon className="w-3.5 h-3.5 text-rose-400" />
+                ) : (
+                  <Sun className="w-3.5 h-3.5 text-amber-500" />
+                )}
+              </button>
 
-              <span className="h-3 w-px bg-neutral-200 dark:bg-neutral-800" />
-
-              {/* Expand prompt button */}
-              <div className="flex items-center gap-1 text-[11px] font-mono text-[#E11D48] dark:text-[#FB7185] pl-0.5">
-                <span>Quick HUD</span>
-                <ChevronUp className="w-3 h-3 animate-bounce" />
+              {/* Expand HUD Pill */}
+              <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-rose-500/10 text-[11px] font-mono text-[#E11D48] dark:text-[#FB7185] border border-rose-500/20 shrink-0">
+                <Sparkles className="w-3 h-3" />
+                <span className="hidden xs:inline">HUD</span>
+                <ChevronDown className="w-2.5 h-2.5" />
               </div>
             </motion.div>
           ) : (
-            /* ================= EXPANDED SKIPER ISLAND COMMAND ================= */
+            /* ================= EXPANDED DYNAMIC COMMAND CENTER ================= */
             <motion.div
               key="expanded"
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.18 }}
               className="space-y-4"
             >
-              {/* Header: Name, Status & Close */}
+              {/* Header: Name, Role & Close */}
               <div className="flex items-start justify-between gap-3">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#E11D48] to-purple-600 flex items-center justify-center text-white font-bold text-sm shadow-md">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#E11D48] to-purple-600 flex items-center justify-center text-white font-bold text-sm shadow-md shrink-0">
                     NC
                   </div>
                   <div>
-                    <h4 className="font-serif font-bold text-sm leading-tight text-[#1C1C24] dark:text-white">
+                    <h3 className="font-serif font-bold text-base leading-tight text-[#1C1C24] dark:text-white">
                       Nehal Chauhan
-                    </h4>
-                    <p className="text-[11px] text-[#646478] dark:text-[#8E8EA2]">
+                    </h3>
+                    <p className="text-xs text-[#646478] dark:text-[#8E8EA2]">
                       Software Engineer • Android &amp; Full-Stack
                     </p>
                   </div>
                 </div>
 
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsExpanded(false);
-                  }}
-                  className="p-1 rounded-full text-neutral-400 hover:text-neutral-700 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-                  aria-label="Close HUD"
-                >
-                  <X className="w-4 h-4" />
-                </button>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    onClick={toggleTheme}
+                    className="p-1.5 rounded-full text-neutral-500 hover:text-neutral-800 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+                    aria-label="Toggle theme"
+                  >
+                    {isDark ? (
+                      <Moon className="w-4 h-4 text-rose-400" />
+                    ) : (
+                      <Sun className="w-4 h-4 text-amber-500" />
+                    )}
+                  </button>
+
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsExpanded(false);
+                    }}
+                    className="p-1.5 rounded-full text-neutral-400 hover:text-neutral-700 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+                    aria-label="Close HUD"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
 
               {/* Status and Location Bar */}
               <div className="grid grid-cols-2 gap-2 text-[11px] bg-neutral-100/70 dark:bg-neutral-900/60 p-2.5 rounded-xl border border-neutral-200/60 dark:border-neutral-800/60">
                 <div className="flex items-center gap-1.5 text-[#3E3E4E] dark:text-[#C4C4D4]">
-                  <MapPin className="w-3 h-3 text-[#E11D48]" />
+                  <MapPin className="w-3.5 h-3.5 text-[#E11D48]" />
                   <span>Gujarat, India</span>
                 </div>
                 <div className="flex items-center gap-1.5 text-[#3E3E4E] dark:text-[#C4C4D4] font-mono justify-end">
-                  <Clock className="w-3 h-3 text-emerald-500" />
+                  <Clock className="w-3.5 h-3.5 text-emerald-500" />
                   <span>{currentTime || "IST"}</span>
                 </div>
               </div>
 
-              {/* Quick Actions Row */}
-              <div className="space-y-2">
-                {/* Copy Email Button */}
+              {/* Quick Navigation Grid */}
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#8E8EA2] dark:text-[#646478] block mb-1.5">
+                  Quick Navigation
+                </span>
+                <div className="grid grid-cols-3 gap-1.5 text-xs font-medium">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setIsExpanded(false)}
+                      className="px-2.5 py-1.5 rounded-lg bg-neutral-50 dark:bg-neutral-800/60 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-center text-[#3E3E4E] dark:text-[#C4C4D4] hover:text-[#E11D48] dark:hover:text-[#FB7185] transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Actions: Copy Email & Resume */}
+              <div className="space-y-2 pt-1 border-t border-neutral-100 dark:border-neutral-800/80">
                 <button
                   onClick={copyEmail}
                   className="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-neutral-50 dark:bg-neutral-800/80 hover:bg-neutral-100 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-700/80 text-xs font-medium text-[#1C1C24] dark:text-white transition-all group"
@@ -218,7 +302,6 @@ export default function SkiperDynamicIsland() {
                   </div>
                 </button>
 
-                {/* Resume Download & Social Shortcuts */}
                 <div className="grid grid-cols-3 gap-2">
                   <a
                     href={PORTFOLIO_DATA.personal.resumeUrl}
