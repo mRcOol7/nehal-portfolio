@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { Award, GraduationCap } from "lucide-react";
+import { Award } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -177,34 +177,6 @@ export default function WhoIsNehal() {
               </div>
             );
           })}
-        </div>
-      </div>
-
-      {/* Education & Certifications Row - Full Width Proportional Scale */}
-      <div className="p-6 sm:p-8 lg:p-10 rounded-2xl dashed-container bg-neutral-50/60 dark:bg-[#14141B]/30">
-        <div className="flex items-center gap-2 mb-4">
-          <GraduationCap className="w-4 h-4 text-[#1C1C24] dark:text-white" />
-          <h3 className="text-xs sm:text-sm font-mono tracking-wider text-[#646478] dark:text-[#8E8EA2]">
-            Education &amp; background
-          </h3>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-dashed divide-neutral-200 dark:divide-neutral-800">
-          {PORTFOLIO_DATA.education.map((edu, idx) => (
-            <div key={edu.institution} className={idx > 0 ? "pt-4 sm:pt-0 sm:pl-6 lg:pl-8" : ""}>
-              <h4 className="text-base sm:text-lg font-bold text-[#1C1C24] dark:text-white">
-                {edu.institution}
-              </h4>
-              <p className="text-xs sm:text-sm md:text-base text-[#3E3E4E] dark:text-[#C4C4D4] mt-1">
-                {edu.degree}
-              </p>
-              <div className="flex items-center gap-3 text-xs sm:text-sm font-mono text-[#646478] dark:text-[#8E8EA2] mt-2">
-                <span>{edu.period}</span>
-                <span>•</span>
-                <span className="text-[#E11D48] dark:text-[#FB7185] font-semibold">{edu.grade}</span>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
