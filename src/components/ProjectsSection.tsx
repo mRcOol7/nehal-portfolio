@@ -2,6 +2,7 @@
 
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { ArrowUpRight } from "lucide-react";
+import AnimasterSpotlightCard from "./AnimasterSpotlightCard";
 
 export default function ProjectsSection() {
   return (
@@ -17,9 +18,11 @@ export default function ProjectsSection() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
         {PORTFOLIO_DATA.projects.map((project) => (
-          <div
+            <AnimasterSpotlightCard
             key={project.id}
-            className="p-4 sm:p-6 rounded-2xl dashed-container bg-white/50 dark:bg-[#14141B]/40 hover:bg-white dark:hover:bg-[#181822] transition-all duration-200 flex flex-col justify-between group"
+            spotlightColor="rgba(225, 29, 72, 0.14)"
+            enableTilt={true}
+            className="p-4 sm:p-6 rounded-2xl dashed-container bg-white/50 dark:bg-[#14141B]/40 hover:bg-white dark:hover:bg-[#181822] transition-colors flex flex-col justify-between group"
           >
             <div>
               {/* Category & Status */}
@@ -98,10 +101,10 @@ export default function ProjectsSection() {
                 )}
               </div>
             </div>
-          </div>
+          </AnimasterSpotlightCard>
         ))}
-      </div>
-    </section>
+    </div>
+    </section >
   );
 }
 

@@ -80,3 +80,18 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(140, 140, 160, 0.5);
 }
+
+/* Animaster kinetic continuous conveyor */
+@keyframes animasterScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-animaster-marquee {
+  animation: animasterScroll var(--marquee-duration, 25s) linear infinite;
+}
+
