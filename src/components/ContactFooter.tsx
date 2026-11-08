@@ -17,6 +17,7 @@ import VisitorCounter from "./VisitorCounter";
 import BenchoMagnetic from "./BenchoMagnetic";
 import ScrolltideGlassLens from "./ScrolltideGlassLens";
 import VengeanceGlowButton from "./VengeanceGlowButton";
+import AirIncFooter from "./AirIncFooter";
 
 /**
  * ContactFooter
@@ -256,15 +257,8 @@ export default function ContactFooter() {
         </div>
       </div>
 
-      {/* Giant Stylized Brand Signature Watermark (Iconic footer.design hallmark) */}
-      <div
-        aria-hidden="true"
-        className="pt-10 sm:pt-14 pb-4 sm:pb-6 overflow-hidden pointer-events-none select-none text-center"
-      >
-        <span className="font-serif italic text-[11vw] font-black tracking-tight leading-none text-neutral-900/[0.04] dark:text-white/[0.05] whitespace-nowrap block">
-          Nehal Chauhan
-        </span>
-      </div>
+      {/* Air.inc Inspired 3D Meadow, Fireflies & Cursive Glass Neon "Nehal" */}
+      <AirIncFooter />
 
       {/* Bottom Bar: Copyright, Telemetry, Back to Top */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8E8EA2] dark:text-[#646478] px-2 font-medium">
