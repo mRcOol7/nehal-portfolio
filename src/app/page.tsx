@@ -9,6 +9,7 @@ import ProjectsSection from "@/components/ProjectsSection";
 import DevicePlugScrollSection from "@/components/DevicePlugScrollSection";
 import ContactFooter from "@/components/ContactFooter";
 import SkiperDynamicIsland from "@/components/SkiperDynamicIsland";
+import ScrolltideTracker from "@/components/ScrolltideTracker";
 
 export default function Home() {
   return (
@@ -28,6 +29,9 @@ export default function Home() {
       <div id="website-content" className="relative z-10 w-full overflow-x-clip">
         {/* Skiper UI Dynamic Island - Unified Floating Navigation Bar & Command Dock */}
         <SkiperDynamicIsland />
+
+        {/* Scrolltide Cinematic Tide Navigation & Depth Tracker (2xl screens) */}
+        <ScrolltideTracker />
 
         {/* Central Content Container with subtle dashed boundary lines */}
           <main className="max-w-4xl mx-auto px-3 sm:px-6 md:px-8 pt-16 sm:pt-20 pb-5 sm:pb-8 border-x border-dashed border-[#DCE0E8] dark:border-[#272736] bg-[#FAFAFC]/60 dark:bg-[#0C0C10]/60 min-h-screen">
