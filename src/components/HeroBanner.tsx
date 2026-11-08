@@ -80,6 +80,7 @@ export default function HeroBanner() {
               href={PORTFOLIO_DATA.personal.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
+              download="Nehal_Chauhan_Resume.pdf"
               suppressHydrationWarning
               className="w-full inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white dark:bg-[#14141B] hover:bg-neutral-50 dark:hover:bg-[#1C1C26] border border-neutral-300 dark:border-neutral-700 text-[#1C1C24] dark:text-white text-xs sm:text-sm md:text-base font-medium transition-all shadow-sm group whitespace-nowrap"
             >

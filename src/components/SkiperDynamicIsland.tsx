@@ -356,6 +356,7 @@ export default function SkiperDynamicIsland() {
                         href={PORTFOLIO_DATA.personal.resumeUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        download="Nehal_Chauhan_Resume.pdf"
                         suppressHydrationWarning
                         className="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-xl bg-[#1C1C24] dark:bg-white text-white dark:text-[#1C1C24] text-xs font-medium hover:opacity-90 transition-opacity"
                       >
