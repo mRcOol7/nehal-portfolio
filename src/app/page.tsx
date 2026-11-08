@@ -9,16 +9,12 @@ import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import DevicePlugScrollSection from "@/components/DevicePlugScrollSection";
 import ContactFooter from "@/components/ContactFooter";
-import SpatialScrollCanvas from "@/components/SpatialScrollCanvas";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#FAFAFC] dark:bg-[#0C0C10] text-[#1C1C24] dark:text-[#E8E8EE] selection:bg-[#E11D48]/20 selection:text-[#E11D48] transition-colors duration-200">
       {/* Route returning visitors directly to the website while allowing 1st-time visitors to see the 3D pass */}
       <FirstTimeVisitorController />
-
-      {/* 3D Animated Spatial Motion Scrolling Canvas */}
-      <SpatialScrollCanvas />
 
       {/* Initial 100vh Interactive 3D ID Badge Lanyard Experience */}
       <LanyardBadgeHero />
