@@ -33,15 +33,14 @@ export default function VengeanceGlowButton({
     >
       {/* Button Surface */}
       <span
-        className={`relative inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-medium border transition-colors ${
-          variant === "primary"
-            ? "bg-[#1C1C24] dark:bg-white text-white dark:text-[#1C1C24] border-neutral-700/80 dark:border-white/20 hover:bg-black dark:hover:bg-neutral-100"
-            : "bg-white dark:bg-[#14141B] text-[#1C1C24] dark:text-white border-neutral-300 dark:border-neutral-700 hover:border-[#E11D48]"
+      className={`relative inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-medium border transition-colors ${variant === "primary"
+          ? "bg-[#1C1C24] dark:bg-white text-white dark:text-[#1C1C24] border-neutral-700/80 dark:border-white/20 hover:bg-black dark:hover:bg-neutral-100"
+          : "bg-white dark:bg-[#14141B] text-[#1C1C24] dark:text-white border-neutral-300 dark:border-neutral-700 hover:border-[#E11D48]"
         }`}
       >
-        {children}
-      </span>
-    </motion.div>
+      {children}
+    </span>
+    </motion.div >
   );
 
   if (href) {
