@@ -6,6 +6,7 @@ import { ArrowRight, FileText } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import InteractiveAvatar from "./InteractiveAvatar";
 import SnowfallOverlay from "./SnowfallOverlay";
+import BenchoMagnetic from "./BenchoMagnetic";
 
 export default function HeroBanner() {
   const titles = PORTFOLIO_DATA.personal.roles;
@@ -62,27 +63,31 @@ export default function HeroBanner() {
 
         {/* Action Buttons Aligned on the Right (Stack neatly on narrow screens) */}
         <div className="flex items-center gap-2 sm:gap-3 pb-1 w-full sm:w-auto">
-          <a
-            href="#projects"
-            suppressHydrationWarning
-            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#1C1C24] hover:bg-black dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-[#1C1C24] text-xs sm:text-sm font-medium transition-all shadow-sm group whitespace-nowrap"
-          >
-            <span>View Projects</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-          </a>
+          <BenchoMagnetic strength={0.25} className="flex-1 sm:flex-initial">
+            <a
+              href="#projects"
+              suppressHydrationWarning
+              className="w-full inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#1C1C24] hover:bg-black dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-[#1C1C24] text-xs sm:text-sm font-medium transition-all shadow-sm group whitespace-nowrap"
+            >
+              <span>View Projects</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </a>
+          </BenchoMagnetic>
 
           {/* Links directly to the real resume PDF */}
-          <a
-            href={PORTFOLIO_DATA.personal.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            suppressHydrationWarning
-            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white dark:bg-[#14141B] hover:bg-neutral-50 dark:hover:bg-[#1C1C26] border border-neutral-300 dark:border-neutral-700 text-[#1C1C24] dark:text-white text-xs sm:text-sm font-medium transition-all shadow-sm group whitespace-nowrap"
-          >
-            <FileText className="w-3.5 h-3.5 text-[#E11D48]" />
-            <span>Resume</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#646478] dark:text-[#8E8EA2] group-hover:translate-x-0.5 transition-transform" />
-          </a>
+          <BenchoMagnetic strength={0.25} className="flex-1 sm:flex-initial">
+            <a
+              href={PORTFOLIO_DATA.personal.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              suppressHydrationWarning
+              className="w-full inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white dark:bg-[#14141B] hover:bg-neutral-50 dark:hover:bg-[#1C1C26] border border-neutral-300 dark:border-neutral-700 text-[#1C1C24] dark:text-white text-xs sm:text-sm font-medium transition-all shadow-sm group whitespace-nowrap"
+            >
+              <FileText className="w-3.5 h-3.5 text-[#E11D48]" />
+              <span>Resume</span>
+              <ArrowRight className="w-3.5 h-3.5 text-[#646478] dark:text-[#8E8EA2] group-hover:translate-x-0.5 transition-transform" />
+            </a>
+          </BenchoMagnetic>
         </div>
       </div>
 

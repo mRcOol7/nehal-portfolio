@@ -1,24 +1,82 @@
 "use client";
 
+import { useState } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import { ArrowUpRight } from "lucide-react";
 import AnimasterSpotlightCard from "./AnimasterSpotlightCard";
+import BenchoMagnetic from "./BenchoMagnetic";
+import BenchoSegmentedControl from "./BenchoSegmentedControl";
 
 export default function ProjectsSection() {
+  const [selectedFilter, setSelectedFilter] = useState("all");
+
+  const filterOptions = [
+    { id: "all", label: "All Works", count: PORTFOLIO_DATA.projects.length },
+    {
+      id: "production",
+      label: "Production",
+      count: PORTFOLIO_DATA.projects.filter((p) =>
+        p.category.toLowerCase().includes("production")
+      ).length,
+    },
+    {
+      id: "fullstack",
+      label: "Full-Stack",
+      count: PORTFOLIO_DATA.projects.filter((p) =>
+        p.category.toLowerCase().includes("full-stack")
+      ).length,
+    },
+    {
+      id: "webgl",
+      label: "3D & WebGL",
+      count: PORTFOLIO_DATA.projects.filter(
+        (p) =>
+          p.category.toLowerCase().includes("personal") ||
+          p.stack.includes("Three.js")
+      ).length,
+    },
+  ];
+
+  const filteredProjects = PORTFOLIO_DATA.projects.filter((project) => {
+    if (selectedFilter === "all") return true;
+    if (selectedFilter === "production")
+      return project.category.toLowerCase().includes("production");
+    if (selectedFilter === "fullstack")
+      return project.category.toLowerCase().includes("full-stack");
+    if (selectedFilter === "webgl")
+      return (
+        project.category.toLowerCase().includes("personal") ||
+        project.stack.includes("Three.js")
+      );
+    return true;
+  });
+
   return (
-    <section id="projects" className="w-full mb-12">
-      <div className="mb-5 sm:mb-6">
-        <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1C24] dark:text-white">
-          Featured Projects
-        </h2>
-        <p className="text-xs sm:text-sm text-[#646478] dark:text-[#8E8EA2] mt-1">
-          Production builds, native mobile architectures, and creative interfaces
-        </p>
+    <section id="projects" className="w-full mb-12 sm:mb-14">
+      {/* Header & Bencho Segmented Filter */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+        <div>
+          <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1C24] dark:text-white">
+            Featured Projects
+          </h2>
+          <p className="text-xs sm:text-sm text-[#646478] dark:text-[#8E8EA2] mt-1">
+            Production builds, native mobile architectures, and creative interfaces
+          </p>
+        </div>
+
+        {/* Bencho Gesture-Driven Magnetic Segmented Control */}
+        <div className="self-start md:self-auto overflow-x-auto max-w-full pb-1 md:pb-0">
+          <BenchoSegmentedControl
+            options={filterOptions}
+            selectedId={selectedFilter}
+            onSelect={setSelectedFilter}
+          />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-        {PORTFOLIO_DATA.projects.map((project) => (
-            <AnimasterSpotlightCard
+        {filteredProjects.map((project) => (
+          <AnimasterSpotlightCard
             key={project.id}
             spotlightColor="rgba(225, 29, 72, 0.14)"
             enableTilt={true}
@@ -47,7 +105,10 @@ export default function ProjectsSection() {
               {/* Highlights */}
               <ul className="space-y-1.5 mb-5">
                 {project.highlights.map((h, idx) => (
-                  <li key={idx} className="text-xs text-[#646478] dark:text-[#8E8EA2] flex items-start gap-2 leading-relaxed">
+                  <li
+                    key={idx}
+                    className="text-xs text-[#646478] dark:text-[#8E8EA2] flex items-start gap-2 leading-relaxed"
+                  >
                     <span className="text-[#E11D48] mt-0.5 shrink-0">•</span>
                     <span>{h}</span>
                   </li>
@@ -67,7 +128,7 @@ export default function ProjectsSection() {
               </div>
             </div>
 
-            {/* Links Row */}
+            {/* Links Row with Bencho Magnetic Pull on action buttons */}
             <div className="flex flex-wrap items-center justify-between gap-2 pt-4 border-t border-neutral-100 dark:border-neutral-800/80">
               <span className="text-[11px] font-mono text-[#8E8EA2] dark:text-[#646478]">
                 Production Code
@@ -75,36 +136,42 @@ export default function ProjectsSection() {
 
               <div className="flex items-center gap-2 sm:gap-3">
                 {project.links.github && (
-                  <a
-                    href={project.links.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 sm:p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 text-[#646478] dark:text-[#A1A1B2] hover:text-[#1C1C24] dark:hover:text-white transition-colors"
-                    aria-label={`GitHub Repository for ${project.title}`}
-                  >
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                    </svg>
-                  </a>
+                  <BenchoMagnetic strength={0.3}>
+                    <a
+                      href={project.links.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 sm:p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800 text-[#646478] dark:text-[#A1A1B2] hover:text-[#1C1C24] dark:hover:text-white transition-colors block"
+                      aria-label={`GitHub Repository for ${project.title}`}
+                    >
+                      <svg
+                        className="w-4 h-4 fill-current"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                      </svg>
+                    </a>
+                  </BenchoMagnetic>
                 )}
                 {project.links.demo && (
-                  <a
-                    href={project.links.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-full bg-[#1C1C24] dark:bg-white text-white dark:text-[#1C1C24] text-xs font-medium hover:bg-black dark:hover:bg-neutral-100 transition-colors whitespace-nowrap"
-                    aria-label={`Live Demo for ${project.title}`}
-                  >
-                    <span>Visit Live</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
+                  <BenchoMagnetic strength={0.3}>
+                    <a
+                      href={project.links.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-full bg-[#1C1C24] dark:bg-white text-white dark:text-[#1C1C24] text-xs font-medium hover:bg-black dark:hover:bg-neutral-100 transition-colors whitespace-nowrap"
+                      aria-label={`Live Demo for ${project.title}`}
+                    >
+                      <span>Visit Live</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  </BenchoMagnetic>
                 )}
               </div>
             </div>
           </AnimasterSpotlightCard>
         ))}
-    </div>
-    </section >
+      </div>
+    </section>
   );
 }
-
