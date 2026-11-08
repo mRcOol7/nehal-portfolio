@@ -17,7 +17,6 @@ import VisitorCounter from "./VisitorCounter";
 import BenchoMagnetic from "./BenchoMagnetic";
 import ScrolltideGlassLens from "./ScrolltideGlassLens";
 import VengeanceGlowButton from "./VengeanceGlowButton";
-import AirIncFooter from "./AirIncFooter";
 
 /**
  * ContactFooter
@@ -249,19 +248,42 @@ export default function ContactFooter() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between text-[11px] font-mono text-neutral-500 dark:text-neutral-400">
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                <span>All services operational</span>
-              </div>
-              <VisitorCounter />
+            <div className="flex items-center gap-2 text-[11px] font-mono text-neutral-500 dark:text-neutral-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+              <span>All services operational</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Air.inc Inspired 3D Meadow, Fireflies, Butterflies & Cursive Glass Neon "Nehal" */}
-      <AirIncFooter />
+      {/* Giant Stylized Brand Signature Watermark (Iconic footer.design hallmark) */}
+      <div
+        aria-hidden="true"
+        className="pt-10 sm:pt-14 pb-4 sm:pb-6 overflow-hidden pointer-events-none select-none text-center"
+      >
+        <span className="font-serif italic text-[11vw] font-black tracking-tight leading-none text-neutral-900/[0.04] dark:text-white/[0.05] whitespace-nowrap block">
+          Nehal Chauhan
+        </span>
+      </div>
+
+      {/* Bottom Bar: Copyright, Telemetry, Back to Top */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8E8EA2] dark:text-[#646478] px-2 font-medium">
+        <span>© 2026 {PORTFOLIO_DATA.personal.displayName}. All rights reserved.</span>
+
+        {/* Live Visitor Counter */}
+        <VisitorCounter />
+
+        <BenchoMagnetic strength={0.3}>
+          <button
+            onClick={scrollToTop}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800/80 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:text-[#1C1C24] dark:hover:text-white transition-all shadow-2xs group"
+            title="Scroll smoothly back to the top"
+          >
+            <span>Back to top</span>
+            <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform" />
+          </button>
+        </BenchoMagnetic>
+      </div>
     </footer>
   );
 }
