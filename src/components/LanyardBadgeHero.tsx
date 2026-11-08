@@ -523,230 +523,230 @@ export default function LanyardBadgeHero({ onScrollDown }: LanyardBadgeHeroProps
       style={{ "--accent": accentColor } as React.CSSProperties}
       className="relative w-full h-screen min-h-[640px] overflow-hidden flex flex-col items-center justify-between py-6 px-4 select-none bg-[#0B0C12] text-[#F3F5FC]"
     >
-      {/* Background Hero Titles (Quiet architectural backdrop) */}
-      <div className="relative z-0 text-center mt-3 sm:mt-5 pointer-events-none select-none">
-        <h1 className="font-serif font-semibold text-3xl sm:text-6xl md:text-7xl uppercase tracking-wider text-white/[0.08]">
-          NEHAL CHAUHAN
-        </h1>
-        <p className="text-xs sm:text-sm font-mono tracking-widest uppercase text-neutral-400/80 mt-2 font-medium">
-          Software Engineer • Android &amp; Full-Stack
-        </p>
-      </div>
+          {/* Background Hero Titles (Quiet architectural backdrop) */}
+          <div className="relative z-0 text-center mt-3 sm:mt-5 pointer-events-none select-none">
+            <h1 className="font-serif font-semibold text-3xl sm:text-6xl md:text-7xl uppercase tracking-wider text-white/[0.08]">
+              NEHAL CHAUHAN
+            </h1>
+              <p className="text-xs sm:text-sm font-mono tracking-widest uppercase text-neutral-400/80 mt-2 font-medium">
+                Software Engineer • Android &amp; Full-Stack
+              </p>
+          </div>
 
-      {/* WebGL Canvas for lanyard ribbon simulation */}
-      <canvas
-        ref={canvasRef}
-        id="badge-canvas"
-        className="absolute inset-0 w-full h-full pointer-events-auto cursor-grab active:cursor-grabbing z-1"
-      />
+          {/* WebGL Canvas for lanyard ribbon simulation */}
+          <canvas
+            ref={canvasRef}
+            id="badge-canvas"
+            className="absolute inset-0 w-full h-full pointer-events-auto cursor-grab active:cursor-grabbing z-1"
+          />
 
-      {/* 3D DOM Badge projected on top */}
-      <div
-        ref={cardRef}
-        className="corp-card-root absolute left-0 top-0 z-2 w-0 h-0 pointer-events-none [perspective:1400px] will-change-transform"
-      >
-        {/* Real Metal Lanyard Clip */}
-        <div className="absolute -left-[18px] -top-[24px] w-[36px] h-[52px] rounded-xl z-5 bg-gradient-to-b from-[#565C70] via-[#2A2E3D] to-[#12141C] border border-white/20 shadow-[0_6px_16px_rgba(0,0,0,0.6)] after:content-[''] after:absolute after:left-1/2 after:top-[16px] after:w-[12px] after:h-[18px] after:-translate-x-1/2 after:bg-[#07090E] after:rounded-md after:border after:border-white/15" />
+          {/* 3D DOM Badge projected on top */}
+          <div
+            ref={cardRef}
+            className="corp-card-root absolute left-0 top-0 z-2 w-0 h-0 pointer-events-none [perspective:1400px] will-change-transform"
+          >
+            {/* Real Metal Lanyard Clip */}
+            <div className="absolute -left-[18px] -top-[24px] w-[36px] h-[52px] rounded-xl z-5 bg-gradient-to-b from-[#565C70] via-[#2A2E3D] to-[#12141C] border border-white/20 shadow-[0_6px_16px_rgba(0,0,0,0.6)] after:content-[''] after:absolute after:left-1/2 after:top-[16px] after:w-[12px] after:h-[18px] after:-translate-x-1/2 after:bg-[#07090E] after:rounded-md after:border after:border-white/15" />
 
-        {/* Spin container that applies 3D rotation */}
-        <div
-          ref={spinRef}
-          className="corp-spin absolute -left-[calc(var(--cw,300px)/2)] top-[24px] w-[var(--cw,300px)] h-[var(--ch,450px)] [transform-style:preserve-3d] will-change-transform pointer-events-auto cursor-pointer"
-        >
-          {/* =========================================================
+            {/* Spin container that applies 3D rotation */}
+            <div
+              ref={spinRef}
+              className="corp-spin absolute -left-[calc(var(--cw,300px)/2)] top-[24px] w-[var(--cw,300px)] h-[var(--ch,450px)] [transform-style:preserve-3d] will-change-transform pointer-events-auto cursor-pointer"
+            >
+              {/* =========================================================
               REAL CORPORATE OFFICE ID CARD: FRONT FACE
              ========================================================= */}
-          <div className="corp-face corp-front absolute inset-0 rounded-[22px] bg-[#12141D] border border-white/15 px-3.5 pt-2.5 pb-2.5 shadow-[0_24px_50px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.2)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(0deg)_translateZ(0)] flex flex-col justify-between overflow-hidden antialiased [text-rendering:optimizeLegibility]">
+              <div className="corp-face corp-front absolute inset-0 rounded-[22px] bg-[#12141D] border border-white/15 px-3.5 pt-2.5 pb-2.5 shadow-[0_24px_50px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.2)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(0deg)_translateZ(0)] flex flex-col justify-between overflow-hidden antialiased [text-rendering:optimizeLegibility]">
 
-            {/* Top Lanyard Slot Punch Hole (Real physical badge sleeve feature) */}
-            <div className="w-8 h-1 rounded-full bg-[#08090E] border border-white/15 mx-auto mb-1 shrink-0" />
+                {/* Top Lanyard Slot Punch Hole (Real physical badge sleeve feature) */}
+                <div className="w-8 h-1 rounded-full bg-[#08090E] border border-white/15 mx-auto mb-1 shrink-0" />
 
-            {/* Top Header Strip */}
-            <div className="relative z-10 flex items-center justify-between border-b border-white/10 pb-1.5 shrink-0">
-              <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[var(--accent)]" />
-                <span className="font-sans text-[10px] font-bold tracking-[0.16em] text-white uppercase">
-                  STAFF PASS
-                </span>
-              </div>
-              <span className="font-mono text-[10px] font-semibold text-slate-300">
-                #NC-2026
-              </span>
-            </div>
+                {/* Top Header Strip */}
+                <div className="relative z-10 flex items-center justify-between border-b border-white/10 pb-1.5 shrink-0">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[var(--accent)]" />
+                    <span className="font-sans text-[10px] font-bold tracking-[0.16em] text-white uppercase">
+                      STAFF PASS
+                    </span>
+                  </div>
+                  <span className="font-mono text-[10px] font-semibold text-slate-300">
+                    #NC-2026
+                  </span>
+                </div>
 
-            {/* Middle Section: Clean Corporate Photo + Name */}
-            <div className="relative z-10 flex flex-col items-center mt-1 shrink-0">
-              {/* Photo Frame (Apple/Google style rounded square) - Protected from dragging & saving */}
-              <div
-                className="relative p-1 rounded-xl bg-gradient-to-b from-white/20 via-white/5 to-white/10 shadow-md select-none"
-                onContextMenu={(e) => e.preventDefault()}
-              >
-                <div className="relative w-[86px] h-[86px] rounded-lg overflow-hidden bg-[#181B26] border border-white/10 select-none">
-                  <Image
-                    src="/nehal-chauhan.jpg"
-                    alt="Nehal Chauhan"
-                    fill
-                    sizes="140px"
-                    priority
-                    draggable={false}
-                    onDragStart={(e) => e.preventDefault()}
+                {/* Middle Section: Clean Corporate Photo + Name */}
+                <div className="relative z-10 flex flex-col items-center mt-1 shrink-0">
+                  {/* Photo Frame (Apple/Google style rounded square) - Protected from dragging & saving */}
+                  <div
+                    className="relative p-1 rounded-xl bg-gradient-to-b from-white/20 via-white/5 to-white/10 shadow-md select-none"
                     onContextMenu={(e) => e.preventDefault()}
-                    className="object-cover object-center pointer-events-none select-none [-webkit-user-drag:none] [user-drag:none]"
-                  />
+                  >
+                    <div className="relative w-[86px] h-[86px] rounded-lg overflow-hidden bg-[#181B26] border border-white/10 select-none">
+                      <Image
+                        src="/nehal-chauhan.jpg"
+                        alt="Nehal Chauhan"
+                        fill
+                        sizes="140px"
+                        priority
+                        draggable={false}
+                        onDragStart={(e) => e.preventDefault()}
+                        onContextMenu={(e) => e.preventDefault()}
+                        className="object-cover object-center pointer-events-none select-none [-webkit-user-drag:none] [user-drag:none]"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Name & Title */}
+                  <div className="text-center mt-1.5 w-full">
+                    <h2 className="font-sans font-extrabold text-[17px] leading-tight tracking-tight text-white">
+                      Nehal Chauhan
+                    </h2>
+                    <div className="inline-block mt-0.5 px-2 py-0.5 rounded-full bg-[var(--accent)]/15 border border-[var(--accent)]/30">
+                      <span className="font-sans font-bold text-[10px] text-[var(--accent)] tracking-wider uppercase">
+                        Software Engineer
+                      </span>
+                    </div>
+                    <p className="font-sans text-[10px] font-medium text-slate-300 mt-0.5">
+                      Mobile &amp; Web Development
+                    </p>
+                  </div>
+                </div>
+
+                {/* Clean Employee Details Grid (Plain, friendly language - NO jargon) */}
+                <div className="relative z-10 bg-[#171A26] border border-white/10 rounded-xl px-2.5 py-1.5 my-1 grid grid-cols-2 gap-x-2 gap-y-1 text-left shrink-0">
+                  <div>
+                    <span className="block font-sans text-[9px] font-semibold text-slate-400 uppercase tracking-wide">
+                      Department
+                    </span>
+                    <span className="font-sans text-[11px] font-bold text-white">
+                      Engineering
+                    </span>
+                  </div>
+                  <div>
+                    <span className="block font-sans text-[9px] font-semibold text-slate-400 uppercase tracking-wide">
+                      Status
+                    </span>
+                    {/* Solid green indicator dot - NO pulse animation */}
+                    <div className="flex items-center gap-1.5 mt-0.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span className="font-sans text-[11px] font-bold text-emerald-300">
+                        Active Member
+                      </span>
+                    </div>
+                  </div>
+                  <div>
+                    <span className="block font-sans text-[9px] font-semibold text-slate-400 uppercase tracking-wide">
+                      Location
+                    </span>
+                    <span className="font-sans text-[11px] font-bold text-white">
+                      Gujarat, India
+                    </span>
+                  </div>
+                  <div>
+                    <span className="block font-sans text-[9px] font-semibold text-slate-400 uppercase tracking-wide">
+                      Role Type
+                    </span>
+                    <span className="font-sans text-[11px] font-bold text-white">
+                      Full-Time &amp; Remote
+                    </span>
+                  </div>
+                </div>
+
+                {/* Bottom Scannable Barcode & Card Notice (Safely buffered above bottom border) */}
+                <div className="relative z-10 border-t border-white/10 pt-1.5 pb-0.5 flex flex-col items-center gap-1 shrink-0">
+                  {/* Minimalist Corporate Barcode */}
+                  <div className="w-[82%] h-4 bg-[repeating-linear-gradient(90deg,#ffffff_0_2px,transparent_2px_4px,#ffffff_4px_5px,transparent_5px_8px,#ffffff_8px_11px,transparent_11px_12px,#ffffff_12px_15px,transparent_15px_17px,#ffffff_17px_20px,transparent_20px_23px)] opacity-75" />
+                  <span className="font-sans text-[8.5px] text-slate-400 uppercase tracking-wider">              </span>
                 </div>
               </div>
 
-              {/* Name & Title */}
-              <div className="text-center mt-1.5 w-full">
-                <h2 className="font-sans font-extrabold text-[17px] leading-tight tracking-tight text-white">
-                  Nehal Chauhan
-                </h2>
-                <div className="inline-block mt-0.5 px-2 py-0.5 rounded-full bg-[var(--accent)]/15 border border-[var(--accent)]/30">
-                  <span className="font-sans font-bold text-[10px] text-[var(--accent)] tracking-wider uppercase">
-                    Software Engineer
-                  </span>
-                </div>
-                <p className="font-sans text-[10px] font-medium text-slate-300 mt-0.5">
-                  Mobile &amp; Web Development
-                </p>
-              </div>
-            </div>
-
-            {/* Clean Employee Details Grid (Plain, friendly language - NO jargon) */}
-            <div className="relative z-10 bg-[#171A26] border border-white/10 rounded-xl px-2.5 py-1.5 my-1 grid grid-cols-2 gap-x-2 gap-y-1 text-left shrink-0">
-              <div>
-                <span className="block font-sans text-[9px] font-semibold text-slate-400 uppercase tracking-wide">
-                  Department
-                </span>
-                <span className="font-sans text-[11px] font-bold text-white">
-                  Engineering
-                </span>
-              </div>
-              <div>
-                <span className="block font-sans text-[9px] font-semibold text-slate-400 uppercase tracking-wide">
-                  Status
-                </span>
-                {/* Solid green indicator dot - NO pulse animation */}
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  <span className="font-sans text-[11px] font-bold text-emerald-300">
-                    Active Member
-                  </span>
-                </div>
-              </div>
-              <div>
-                <span className="block font-sans text-[9px] font-semibold text-slate-400 uppercase tracking-wide">
-                  Location
-                </span>
-                <span className="font-sans text-[11px] font-bold text-white">
-                  Gujarat, India
-                </span>
-              </div>
-              <div>
-                <span className="block font-sans text-[9px] font-semibold text-slate-400 uppercase tracking-wide">
-                  Role Type
-                </span>
-                <span className="font-sans text-[11px] font-bold text-white">
-                  Full-Time &amp; Remote
-                </span>
-              </div>
-            </div>
-
-            {/* Bottom Scannable Barcode & Card Notice (Safely buffered above bottom border) */}
-            <div className="relative z-10 border-t border-white/10 pt-1.5 pb-0.5 flex flex-col items-center gap-1 shrink-0">
-              {/* Minimalist Corporate Barcode */}
-              <div className="w-[82%] h-4 bg-[repeating-linear-gradient(90deg,#ffffff_0_2px,transparent_2px_4px,#ffffff_4px_5px,transparent_5px_8px,#ffffff_8px_11px,transparent_11px_12px,#ffffff_12px_15px,transparent_15px_17px,#ffffff_17px_20px,transparent_20px_23px)] opacity-75" />
-              <span className="font-sans text-[8.5px] text-slate-400 uppercase tracking-wider">              </span>
-            </div>
-          </div>
-
-          {/* =========================================================
+              {/* =========================================================
               REAL CORPORATE OFFICE ID CARD: BACK FACE
              ========================================================= */}
-          <div className="corp-face corp-back absolute inset-0 rounded-[22px] bg-[#12141D] border border-white/15 px-3.5 pt-2.5 pb-2.5 shadow-[0_24px_50px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.2)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)_translateZ(0)] flex flex-col justify-between overflow-hidden antialiased [text-rendering:optimizeLegibility]">
+              <div className="corp-face corp-back absolute inset-0 rounded-[22px] bg-[#12141D] border border-white/15 px-3.5 pt-2.5 pb-2.5 shadow-[0_24px_50px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.2)] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)_translateZ(0)] flex flex-col justify-between overflow-hidden antialiased [text-rendering:optimizeLegibility]">
 
-            {/* Real Top Magnetic Stripe */}
-            <div className="-mx-3.5 -mt-2.5 h-7 bg-[#1B1E2B] border-b border-white/15 flex items-center justify-between px-3 shrink-0">
-              <span className="font-mono text-[8.5px] tracking-widest text-slate-400 uppercase">
-                MAGNETIC ACCESS STRIPE
-              </span>
-              <span className="font-mono text-[8.5px] text-slate-400">
-                DO NOT BEND
-              </span>
-            </div>
+                {/* Real Top Magnetic Stripe */}
+                <div className="-mx-3.5 -mt-2.5 h-7 bg-[#1B1E2B] border-b border-white/15 flex items-center justify-between px-3 shrink-0">
+                  <span className="font-mono text-[8.5px] tracking-widest text-slate-400 uppercase">
+                    MAGNETIC ACCESS STRIPE
+                  </span>
+                  <span className="font-mono text-[8.5px] text-slate-400">
+                    DO NOT BEND
+                  </span>
+                </div>
 
-            {/* About Nehal in Clear, Friendly Language */}
-            <div className="relative z-10 mt-1.5 shrink-0 text-left">
-              <span className="font-sans text-[10px] font-bold text-[var(--accent)] uppercase tracking-wider">
-                About Nehal
-              </span>
-              <p className="font-sans text-[11px] text-slate-200 leading-snug mt-0.5 font-medium">
-                Passionate software engineer building fast, responsive mobile apps and modern web platforms that feel effortless to use.
-              </p>
-            </div>
+                {/* About Nehal in Clear, Friendly Language */}
+                <div className="relative z-10 mt-1.5 shrink-0 text-left">
+                  <span className="font-sans text-[10px] font-bold text-[var(--accent)] uppercase tracking-wider">
+                    About Nehal
+                  </span>
+                  <p className="font-sans text-[11px] text-slate-200 leading-snug mt-0.5 font-medium">
+                    Passionate software engineer building fast, responsive mobile apps and modern web platforms that feel effortless to use.
+                  </p>
+                </div>
 
-            {/* What I Do - User-Friendly Categories (NO technical jargon) */}
-            <div className="relative z-10 flex flex-col gap-1.5 my-auto">
-              <div className="px-2.5 py-1.5 rounded-lg bg-[#181B28] border border-white/8 text-left">
-                <b className="block font-sans text-[11px] text-white font-bold leading-tight">Android Mobile Apps</b>
-                <p className="font-sans text-[10px] text-slate-300 leading-tight mt-0.5">
-                  Developing smooth, responsive apps for phones and tablets.
-                </p>
+                {/* What I Do - User-Friendly Categories (NO technical jargon) */}
+                <div className="relative z-10 flex flex-col gap-1.5 my-auto">
+                  <div className="px-2.5 py-1.5 rounded-lg bg-[#181B28] border border-white/8 text-left">
+                    <b className="block font-sans text-[11px] text-white font-bold leading-tight">Android Mobile Apps</b>
+                    <p className="font-sans text-[10px] text-slate-300 leading-tight mt-0.5">
+                      Developing smooth, responsive apps for phones and tablets.
+                    </p>
+                  </div>
+
+                  <div className="px-2.5 py-1.5 rounded-lg bg-[#181B28] border border-white/8 text-left">
+                    <b className="block font-sans text-[11px] text-white font-bold leading-tight">Modern Web Applications</b>
+                    <p className="font-sans text-[10px] text-slate-300 leading-tight mt-0.5">
+                      Building clean, interactive websites and online services.
+                    </p>
+                  </div>
+
+                  <div className="px-2.5 py-1.5 rounded-lg bg-[#181B28] border border-white/8 text-left">
+                    <b className="block font-sans text-[11px] text-white font-bold leading-tight">Fast &amp; Reliable Systems</b>
+                    <p className="font-sans text-[10px] text-slate-300 leading-tight mt-0.5">
+                      Ensuring smooth performance, secure data, and fast loading.
+                    </p>
+                  </div>
+
+                  <div className="px-2.5 py-1.5 rounded-lg bg-[#181B28] border border-white/8 text-left">
+                    <b className="block font-sans text-[11px] text-white font-bold leading-tight">High-Reach Creative Projects</b>
+                    <p className="font-sans text-[10px] text-slate-300 leading-tight mt-0.5">
+                      Creator of digital camera filters experienced by over 915 million people.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Card Notice & Contact Footer (Safely buffered above bottom border) */}
+                <div className="relative z-10 border-t border-white/10 pt-1.5 pb-0.5 text-center shrink-0">
+                  <p className="font-sans text-[9.5px] text-slate-300">
+                    If found, please return to: <span className="text-white font-semibold">cnehal194@gmail.com</span>
+                  </p>
+                  <span className="block font-sans text-[8.5px] text-slate-400 mt-0.5">
+                    Gujarat, India • Available for Roles Worldwide
+                  </span>
+                </div>
               </div>
-
-              <div className="px-2.5 py-1.5 rounded-lg bg-[#181B28] border border-white/8 text-left">
-                <b className="block font-sans text-[11px] text-white font-bold leading-tight">Modern Web Applications</b>
-                <p className="font-sans text-[10px] text-slate-300 leading-tight mt-0.5">
-                  Building clean, interactive websites and online services.
-                </p>
-              </div>
-
-              <div className="px-2.5 py-1.5 rounded-lg bg-[#181B28] border border-white/8 text-left">
-                <b className="block font-sans text-[11px] text-white font-bold leading-tight">Fast &amp; Reliable Systems</b>
-                <p className="font-sans text-[10px] text-slate-300 leading-tight mt-0.5">
-                  Ensuring smooth performance, secure data, and fast loading.
-                </p>
-              </div>
-
-              <div className="px-2.5 py-1.5 rounded-lg bg-[#181B28] border border-white/8 text-left">
-                <b className="block font-sans text-[11px] text-white font-bold leading-tight">High-Reach Creative Projects</b>
-                <p className="font-sans text-[10px] text-slate-300 leading-tight mt-0.5">
-                  Creator of digital camera filters experienced by over 915 million people.
-                </p>
-              </div>
-            </div>
-
-            {/* Card Notice & Contact Footer (Safely buffered above bottom border) */}
-            <div className="relative z-10 border-t border-white/10 pt-1.5 pb-0.5 text-center shrink-0">
-              <p className="font-sans text-[9.5px] text-slate-300">
-                If found, please return to: <span className="text-white font-semibold">cnehal194@gmail.com</span>
-              </p>
-              <span className="block font-sans text-[8.5px] text-slate-400 mt-0.5">
-                Gujarat, India • Available for Roles Worldwide
-              </span>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Theme Swatches - Elevated Above Bottom Left Corner */}
-      <div className="absolute bottom-10 left-6 sm:bottom-12 sm:left-8 z-30 flex items-center gap-2 bg-[#12141F]/85 p-2 rounded-full border border-white/15 backdrop-blur-md shadow-2xl">
-        {[
-          { color: "#e11d48", label: "Crimson" },
-          { color: "#6366f1", label: "Indigo" },
-          { color: "#0ea5e9", label: "Cyan" },
-          { color: "#10b981", label: "Emerald" },
-        ].map((s) => (
-          <button
-            key={s.color}
-            onClick={() => setAccentColor(s.color)}
-            aria-label={s.label}
-            className={`w-5 h-5 rounded-full transition-transform cursor-pointer ${accentColor === s.color ? "scale-125 ring-2 ring-white" : "hover:scale-110 opacity-70"
-              }`}
-            style={{ backgroundColor: s.color }}
-          />
-        ))}
-      </div>
-    </section>
-  );
+          {/* Theme Swatches - Elevated Above Bottom Left Corner */}
+          <div className="absolute bottom-10 left-6 sm:bottom-12 sm:left-8 z-30 flex items-center gap-2 bg-[#12141F]/85 p-2 rounded-full border border-white/15 backdrop-blur-md shadow-2xl">
+            {[
+              { color: "#e11d48", label: "Crimson" },
+              { color: "#6366f1", label: "Indigo" },
+              { color: "#0ea5e9", label: "Cyan" },
+              { color: "#10b981", label: "Emerald" },
+            ].map((s) => (
+              <button
+                key={s.color}
+                onClick={() => setAccentColor(s.color)}
+                aria-label={s.label}
+                className={`w-5 h-5 rounded-full transition-transform cursor-pointer ${accentColor === s.color ? "scale-125 ring-2 ring-white" : "hover:scale-110 opacity-70"
+                  }`}
+                style={{ backgroundColor: s.color }}
+              />
+            ))}
+          </div>
+        </section>
+        );
 }
