@@ -25,8 +25,8 @@ export default function FreelancingCard() {
         Collaboration & Opportunities
       </h2>
 
-      <div className="p-4 sm:p-6 md:p-8 rounded-2xl dashed-container bg-[#FFF1F2]/60 dark:bg-[#1E1218]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6">
-        <p className="text-xs sm:text-sm md:text-base text-[#3E3E4E] dark:text-[#D4C4CA] leading-relaxed max-w-xl">
+      <div className="p-4 sm:p-6 md:p-8 rounded-2xl dashed-container bg-white/60 dark:bg-[#14141B]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6">
+        <p className="text-xs sm:text-sm md:text-base text-[#3E3E4E] dark:text-[#C4C4D4] leading-relaxed max-w-xl">
           Specializing in Native Android and Full-Stack Web Development.
           Available for engineering roles, production web & mobile builds, and technical collaboration.
         </p>
@@ -52,14 +52,13 @@ export default function FreelancingCard() {
 
           <VengeanceGlowButton
             href={`mailto:${PORTFOLIO_DATA.personal.email}`}
-            glowColor="#E11D48"
           >
             <Mail className="w-4 h-4 text-[#E11D48]" />
             <span>Get in Touch</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-          </VengeanceGlowButton>
-        </div>
+        </VengeanceGlowButton>
       </div>
-    </section>
+    </div>
+    </section >
   );
 }

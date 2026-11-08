@@ -523,13 +523,13 @@ export default function LanyardBadgeHero({ onScrollDown }: LanyardBadgeHeroProps
       style={{ "--accent": accentColor } as React.CSSProperties}
       className="relative w-full h-screen min-h-[640px] overflow-hidden flex flex-col items-center justify-between py-6 px-4 select-none bg-[#0B0C12] text-[#F3F5FC]"
     >
-      {/* Background Hero Titles (Clean Corporate Subtitle - No // slashes) */}
-      <div className="relative z-0 text-center mt-3 sm:mt-5 pointer-events-none">
-        <h1 className="font-serif font-black text-3xl sm:text-6xl md:text-7xl uppercase tracking-tighter opacity-15 bg-gradient-to-b from-white to-white/10 bg-clip-text text-transparent">
+      {/* Background Hero Titles (Quiet architectural backdrop) */}
+      <div className="relative z-0 text-center mt-3 sm:mt-5 pointer-events-none select-none">
+        <h1 className="font-serif font-semibold text-3xl sm:text-6xl md:text-7xl uppercase tracking-wider text-white/[0.08]">
           NEHAL CHAUHAN
         </h1>
-        <p className="text-xs sm:text-sm font-sans tracking-[0.22em] uppercase text-[var(--accent)] mt-1.5 opacity-90 font-bold">
-          SOFTWARE ENGINEER • ANDROID &amp; FULL-STACK
+        <p className="text-xs sm:text-sm font-mono tracking-widest uppercase text-neutral-400/80 mt-2 font-medium">
+          Software Engineer • Android &amp; Full-Stack
         </p>
       </div>
 

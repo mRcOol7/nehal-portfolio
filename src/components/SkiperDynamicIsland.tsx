@@ -181,7 +181,7 @@ export default function SkiperDynamicIsland() {
                         title="View 3D Staff Pass"
                         className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[10px] font-mono text-neutral-600 dark:text-neutral-300 hover:text-[#E11D48] border border-neutral-200 dark:border-neutral-700 transition-colors"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                         <span className="hidden xs:inline">Pass</span>
                       </a>
                     </div>
@@ -204,12 +204,9 @@ export default function SkiperDynamicIsland() {
 
                     <span className="hidden md:inline-block h-3.5 w-px bg-neutral-200 dark:bg-neutral-800 shrink-0" />
 
-                    {/* Status Pulse */}
+                    {/* Status Indicator */}
                     <div className="flex items-center gap-1.5 shrink-0">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                      </span>
+                      <span className="w-2 h-2 rounded-full bg-emerald-500" />
                       <span className="text-[11px] font-medium text-emerald-600 dark:text-emerald-400 whitespace-nowrap hidden sm:inline">
                         Open to Roles
                       </span>
@@ -231,10 +228,9 @@ export default function SkiperDynamicIsland() {
                     </button>
 
                     {/* Expand HUD Pill */}
-                    <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-rose-500/10 text-[11px] font-mono text-[#E11D48] dark:text-[#FB7185] border border-rose-500/20 shrink-0">
-                      <Sparkles className="w-3 h-3" />
+                    <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[11px] font-mono text-[#1C1C24] dark:text-[#EDEDF2] border border-neutral-200 dark:border-neutral-700 shrink-0">
                       <span className="hidden xs:inline">HUD</span>
-                      <ChevronDown className="w-2.5 h-2.5" />
+                      <ChevronDown className="w-2.5 h-2.5 text-[#646478] dark:text-[#8E8EA2]" />
                     </div>
                 </motion.div>
               ) : (
@@ -311,8 +307,8 @@ export default function SkiperDynamicIsland() {
 
                     {/* Quick Navigation Grid */}
                     <div>
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-[#8E8EA2] dark:text-[#646478] block mb-1.5">
-                        Quick Navigation
+                      <span className="text-[10px] font-mono tracking-wider text-[#8E8EA2] dark:text-[#646478] block mb-1.5">
+                        Quick navigation
                       </span>
                       <div className="grid grid-cols-3 gap-1.5 text-xs font-medium">
                         {navLinks.map((link) => (

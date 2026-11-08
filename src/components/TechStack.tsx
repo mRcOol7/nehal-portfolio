@@ -2,7 +2,7 @@
 
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import AnimasterMarquee from "./AnimasterMarquee";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function TechStack() {
   const engineeringStack = [
@@ -30,9 +30,9 @@ export default function TechStack() {
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-5 sm:mb-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono text-[#E11D48] dark:text-[#FB7185] bg-rose-500/10 border border-rose-500/20 mb-2">
-            <Sparkles className="w-3 h-3" />
-            <span>Active Ecosystem</span>
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono text-[#646478] dark:text-[#8E8EA2] bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" />
+            <span>Active ecosystem</span>
           </div>
           <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1C24] dark:text-white">
             Technical Stack
@@ -61,7 +61,7 @@ export default function TechStack() {
           {engineeringStack.map((s, idx) => (
             <div
               key={idx}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#14141B] border border-neutral-200/90 dark:border-neutral-800 text-xs text-[#1C1C24] dark:text-[#EDEDF2] shadow-xs whitespace-nowrap hover:border-[#E11D48] hover:scale-[1.02] transition-all cursor-default"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#14141B] border border-neutral-200/90 dark:border-neutral-800 text-xs text-[#1C1C24] dark:text-[#EDEDF2] shadow-xs whitespace-nowrap hover:border-[#E11D48] transition-colors cursor-default"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" />
               <span className="font-medium">{s.name}</span>
@@ -77,7 +77,7 @@ export default function TechStack() {
           {systemsAndCloudStack.map((s, idx) => (
             <div
               key={idx}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#14141B] border border-neutral-200/90 dark:border-neutral-800 text-xs text-[#1C1C24] dark:text-[#EDEDF2] shadow-xs whitespace-nowrap hover:border-[#E11D48] hover:scale-[1.02] transition-all cursor-default"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#14141B] border border-neutral-200/90 dark:border-neutral-800 text-xs text-[#1C1C24] dark:text-[#EDEDF2] shadow-xs whitespace-nowrap hover:border-[#E11D48] transition-colors cursor-default"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" />
               <span className="font-medium">{s.name}</span>
