@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { ArrowRight, Mail, Copy, Check } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import VengeanceGlowButton from "./VengeanceGlowButton";
 
 export default function FreelancingCard() {
   const [copied, setCopied] = useState(false);
@@ -49,14 +50,14 @@ export default function FreelancingCard() {
             )}
           </button>
 
-          <a
+          <VengeanceGlowButton
             href={`mailto:${PORTFOLIO_DATA.personal.email}`}
-            className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-[#1C1C24] dark:bg-white text-white dark:text-[#1C1C24] hover:bg-black dark:hover:bg-neutral-100 text-xs sm:text-sm font-medium transition-all shadow-sm group whitespace-nowrap"
+            glowColor="#E11D48"
           >
             <Mail className="w-4 h-4 text-[#E11D48]" />
             <span>Get in Touch</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-          </a>
+          </VengeanceGlowButton>
         </div>
       </div>
     </section>

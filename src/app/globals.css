@@ -95,3 +95,18 @@ body {
   animation: animasterScroll var(--marquee-duration, 25s) linear infinite;
 }
 
+/* Vengeance UI Conical Border Shimmer */
+@keyframes vengeanceSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-vengeance-spin {
+  animation: vengeanceSpin 3.5s linear infinite;
+}
+
+

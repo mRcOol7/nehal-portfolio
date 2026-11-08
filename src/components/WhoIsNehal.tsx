@@ -5,6 +5,7 @@ import { Award, GraduationCap } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import VengeanceCounter from "./VengeanceCounter";
 
 export default function WhoIsNehal() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -141,22 +142,39 @@ export default function WhoIsNehal() {
         </div>
 
         <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
-          {PORTFOLIO_DATA.achievements.map((item) => (
-            <div
-              key={item.title}
-              className="milestone-card p-3.5 sm:p-4 rounded-xl dashed-container bg-white/50 dark:bg-[#14141B]/40 hover:bg-white dark:hover:bg-[#181824] transition-colors"
-            >
-              <div className="text-base sm:text-lg font-serif font-bold text-[#E11D48] dark:text-[#FB7185] mb-1">
-                {item.metric}
+          {PORTFOLIO_DATA.achievements.map((item) => {
+            const match = item.metric.match(/^([\d.]+)(.*)$/);
+            const val = match ? parseFloat(match[1]) : 0;
+            const decimals = match && match[1].includes(".") ? match[1].split(".")[1].length : 0;
+            const suffix = match ? match[2] : "";
+
+            return (
+              <div
+                key={item.title}
+                className="milestone-card p-3.5 sm:p-4 rounded-xl dashed-container bg-white/50 dark:bg-[#14141B]/40 hover:bg-white dark:hover:bg-[#181824] transition-colors"
+              >
+                <div className="text-base sm:text-lg font-serif font-bold text-[#E11D48] dark:text-[#FB7185] mb-1">
+                  {match ? (
+                    <VengeanceCounter
+                      value={val}
+                      decimals={decimals}
+                      suffix={suffix}
+                      duration={2.2}
+                      className="font-serif font-bold"
+                    />
+                  ) : (
+                    item.metric
+                  )}
+                </div>
+                <h4 className="text-xs sm:text-sm font-bold text-[#1C1C24] dark:text-white mb-1.5">
+                  {item.title}
+                </h4>
+                <p className="text-xs text-[#646478] dark:text-[#8E8EA2] leading-relaxed">
+                  {item.description}
+                </p>
               </div>
-              <h4 className="text-xs sm:text-sm font-bold text-[#1C1C24] dark:text-white mb-1.5">
-                {item.title}
-              </h4>
-              <p className="text-xs text-[#646478] dark:text-[#8E8EA2] leading-relaxed">
-                {item.description}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
