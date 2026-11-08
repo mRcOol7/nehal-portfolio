@@ -74,7 +74,7 @@ export default function ContactFooter() {
   ];
 
   return (
-    <footer id="contact" className="w-full pt-8 sm:pt-12 pb-12 sm:pb-16 select-none">
+    <footer id="contact" className="w-full pt-8 sm:pt-12 pb-3 sm:pb-4 select-none">
       {/* High-Impact Conversion Hub - Scrolltide Liquid Glass Box */}
       <ScrolltideGlassLens className="p-8 sm:p-12 lg:p-16 mb-12 sm:mb-16">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 sm:gap-10">
@@ -259,7 +259,7 @@ export default function ContactFooter() {
       {/* Giant Stylized Brand Signature Watermark (Iconic footer.design hallmark) */}
       <div
         aria-hidden="true"
-        className="pt-10 sm:pt-14 pb-4 sm:pb-6 overflow-hidden pointer-events-none select-none text-center"
+        className="pt-4 sm:pt-6 pb-1 overflow-hidden pointer-events-none select-none text-center -mb-2 sm:-mb-3"
       >
         <span className="font-serif italic text-[11vw] font-black tracking-tight leading-none text-neutral-900/[0.04] dark:text-white/[0.05] whitespace-nowrap block">
           Nehal Chauhan
@@ -267,7 +267,7 @@ export default function ContactFooter() {
       </div>
 
       {/* Bottom Bar: Copyright, Telemetry, Back to Top */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8E8EA2] dark:text-[#646478] px-2 font-medium">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#8E8EA2] dark:text-[#646478] px-2 font-medium pt-2 pb-1">
         <span>© 2026 {PORTFOLIO_DATA.personal.displayName}. All rights reserved.</span>
 
         {/* Live Visitor Counter */}
