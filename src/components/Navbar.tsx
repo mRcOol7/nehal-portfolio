@@ -42,13 +42,23 @@ export default function Navbar() {
   return (
     <header className="relative w-full max-w-4xl mx-auto px-3 sm:px-6 pt-5 sm:pt-6 pb-4">
       <div className="flex items-center justify-between">
-        {/* Brand Logo */}
-        <a
-          href="#badge-hero"
-          className="font-serif italic text-xl sm:text-2xl font-bold tracking-tight text-[#1C1C24] dark:text-white hover:opacity-80 transition-opacity"
-        >
-          Nehal Chauhan
-        </a>
+        {/* Brand Logo & Interactive Badge Pass Pill */}
+        <div className="flex items-center gap-2 sm:gap-2.5">
+          <a
+            href="#badge-hero"
+            className="font-serif italic text-xl sm:text-2xl font-bold tracking-tight text-[#1C1C24] dark:text-white hover:opacity-80 transition-opacity"
+          >
+            Nehal Chauhan
+          </a>
+          <a
+            href="#badge-hero"
+            title="View 3D Staff ID Badge"
+            className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-neutral-200/70 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-[10px] font-mono font-semibold text-neutral-600 dark:text-neutral-300 hover:border-[#E11D48] dark:hover:border-[#E11D48] transition-colors"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Pass</span>
+          </a>
+        </div>
 
         {/* Navigation Links & Theme Switcher */}
         <div className="flex items-center gap-3 sm:gap-8">

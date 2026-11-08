@@ -557,11 +557,11 @@
             <span class="cbadge-id">#NC-2026</span>
           </div>
 
-          <!-- Photo + Name Section -->
+          <!-- Photo + Name Section (Protected from dragging & saving) -->
           <div class="cphoto-section">
-            <div class="cphoto-frame">
+            <div class="cphoto-frame" oncontextmenu="return false;">
               <div class="cphoto-box">
-                <img src="nehal-chauhan.jpg" alt="Nehal Chauhan"
+                <img src="nehal-chauhan.jpg" alt="Nehal Chauhan" draggable="false" ondragstart="return false;" oncontextmenu="return false;" style="-webkit-user-drag: none; user-select: none; pointer-events: none;"
                   onerror="this.onerror=null;this.src='../public/nehal-chauhan.jpg';" />
               </div>
             </div>
@@ -991,6 +991,7 @@
       }
 
       function onPointerDown(e) {
+        if (e.button && e.button !== 0) return; // Ignore right-click/middle-click drag
         const pt = getCanvasCoords(e);
         if (isPointOnBadge(pt)) {
           isDragging = true;
@@ -1001,7 +1002,7 @@
           dragOffset.y = P.y - pt.y;
           dragTarget.x = P.x;
           dragTarget.y = P.y;
-          if (e.cancelable && e.touches) e.preventDefault();
+          if (e.cancelable) e.preventDefault(); // Prevent native browser image dragging
         }
       }
 
@@ -1037,6 +1038,20 @@
         tiltTargetX = 0;
         tiltTargetY = 0;
       }
+
+      // Prevent right-click context menu (Save image as, Copy image, etc.)
+      window.addEventListener('contextmenu', (e) => {
+        if (isPointOnBadge(getCanvasCoords(e))) {
+          e.preventDefault();
+        }
+      });
+
+      // Prevent native browser ghost drag of images
+      window.addEventListener('dragstart', (e) => {
+        if (isPointOnBadge(getCanvasCoords(e))) {
+          e.preventDefault();
+        }
+      });
 
       window.addEventListener('mousedown', onPointerDown);
       window.addEventListener('mousemove', onPointerMove);

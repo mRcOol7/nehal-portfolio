@@ -45,7 +45,8 @@ export default function HeroBanner() {
           alt="Winter Landscape Header Banner"
           fill
           priority
-          className="object-cover object-center"
+          draggable={false}
+          className="object-cover object-center pointer-events-none select-none [-webkit-user-drag:none]"
         />
 
         {/* Live Cinematic Falling Snow Overlay */}

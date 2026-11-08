@@ -111,389 +111,410 @@ export default function LanyardBadgeHero({ onScrollDown }: LanyardBadgeHeroProps
       sCtx.fillRect(112, 0, 2, 1024);
 
       // Fine woven herringbone texture simulation
-        sCtx.fillStyle = "rgba(255, 255, 255, 0.05)";
-        for (let i = 18; i < 110; i += 6) {
-          sCtx.fillRect(i, 0, 2, 1024);
+      sCtx.fillStyle = "rgba(255, 255, 255, 0.05)";
+      for (let i = 18; i < 110; i += 6) {
+        sCtx.fillRect(i, 0, 2, 1024);
+      }
+      sCtx.fillStyle = "rgba(0, 0, 0, 0.4)";
+      for (let j = 0; j < 1024; j += 6) {
+        sCtx.fillRect(8, j, 112, 2);
+      }
+
+      // Top decorative emblem
+      sCtx.save();
+      sCtx.translate(64, 170);
+      sCtx.rotate(Math.PI / 2);
+      sCtx.fillStyle = color;
+      sCtx.textAlign = "center";
+      sCtx.textBaseline = "middle";
+      sCtx.font = "900 32px sans-serif";
+      sCtx.fillText("✦", 0, 0);
+      sCtx.restore();
+
+      // Bold, clean, razor-sharp corporate typography (reads downwards from top to bottom)
+      sCtx.save();
+      sCtx.translate(64, 512);
+      sCtx.rotate(Math.PI / 2);
+      sCtx.fillStyle = "#ffffff";
+      sCtx.textAlign = "center";
+      sCtx.textBaseline = "middle";
+      sCtx.font = "900 50px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+      sCtx.shadowColor = "rgba(0, 0, 0, 0.95)";
+      sCtx.shadowBlur = 8;
+      sCtx.fillText("NEHAL CHAUHAN", 0, 0);
+      sCtx.restore();
+
+      // Bottom decorative emblem
+      sCtx.save();
+      sCtx.translate(64, 854);
+      sCtx.rotate(Math.PI / 2);
+      sCtx.fillStyle = color;
+      sCtx.textAlign = "center";
+      sCtx.textBaseline = "middle";
+      sCtx.font = "900 32px sans-serif";
+      sCtx.fillText("✦", 0, 0);
+      sCtx.restore();
+
+      if (strapTexture) {
+        strapTexture.needsUpdate = true;
+      } else {
+        strapTexture = new THREE.CanvasTexture(strapCanvas);
+        strapTexture.flipY = false;
+        strapTexture.wrapS = THREE.ClampToEdgeWrapping;
+        strapTexture.wrapT = THREE.RepeatWrapping;
+        strapTexture.generateMipmaps = true;
+        strapTexture.minFilter = THREE.LinearMipmapLinearFilter;
+        strapTexture.magFilter = THREE.LinearFilter;
+        if (renderer) {
+          strapTexture.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 16);
         }
-        sCtx.fillStyle = "rgba(0, 0, 0, 0.4)";
-        for (let j = 0; j < 1024; j += 6) {
-          sCtx.fillRect(8, j, 112, 2);
+      }
+    }
+
+    renderStrapTexture(accentRef.current);
+
+    const strapMat = new THREE.MeshBasicMaterial({
+      map: strapTexture,
+      side: THREE.DoubleSide,
+    });
+    const strapMesh = new THREE.Mesh(strapGeo, strapMat);
+    scene.add(strapMesh);
+
+    // Realistic Drop Shadow
+    const shadowGeo = new THREE.PlaneGeometry(1, 1);
+    const shadowCanvas = document.createElement("canvas");
+    shadowCanvas.width = 128;
+    shadowCanvas.height = 128;
+    const shadowCtx = shadowCanvas.getContext("2d");
+    if (shadowCtx) {
+      const grad = shadowCtx.createRadialGradient(64, 64, 0, 64, 64, 64);
+      grad.addColorStop(0, "rgba(0,0,0,0.65)");
+      grad.addColorStop(0.4, "rgba(0,0,0,0.25)");
+      grad.addColorStop(1, "rgba(0,0,0,0)");
+      shadowCtx.fillStyle = grad;
+      shadowCtx.fillRect(0, 0, 128, 128);
+    }
+    const shadowTex = new THREE.CanvasTexture(shadowCanvas);
+    const shadowMat = new THREE.MeshBasicMaterial({
+      map: shadowTex,
+      transparent: true,
+      opacity: 0.5,
+    });
+    const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
+    scene.add(shadowMesh);
+
+    // --- UPDATE STRAP VERTICES & ARC-LENGTH DYNAMIC UV MAPPING ---
+    function updateStrapGeometry() {
+      const pos = strapGeo.attributes.position;
+      const uv = strapGeo.attributes.uv;
+      const hw = 17; // 34px width ribbon matching lanyard clip
+      const dx = P.x;
+      const dy = P.y - Ay;
+      const dist = Math.hypot(dx, dy) || 1;
+      const sag = Math.sqrt(Math.max(0, L * L - dist * dist)) * 0.35;
+
+      const midX = P.x / 2;
+      const midY = (Ay + P.y) / 2 - sag;
+
+      let cumLen = 0;
+      let prevX = 0;
+      let prevY = Ay;
+
+      for (let i = 0; i <= SEGMENTS; i++) {
+        const t = i / SEGMENTS;
+        const u = 1 - t;
+
+        const x = 2 * u * t * midX + t * t * P.x;
+        const y = u * u * Ay + 2 * u * t * midY + t * t * P.y;
+
+        if (i > 0) {
+          cumLen += Math.hypot(x - prevX, y - prevY);
         }
+        prevX = x;
+        prevY = y;
 
-        // Top decorative emblem
-        sCtx.save();
-        sCtx.translate(64, 170);
-        sCtx.rotate(Math.PI / 2);
-        sCtx.fillStyle = color;
-        sCtx.textAlign = "center";
-        sCtx.textBaseline = "middle";
-        sCtx.font = "900 32px sans-serif";
-        sCtx.fillText("✦", 0, 0);
-        sCtx.restore();
+        const tx = 2 * (1 - t) * midX + 2 * t * (P.x - midX);
+        const ty = 2 * (1 - t) * (midY - Ay) + 2 * t * (P.y - midY);
+        const tl = Math.hypot(tx, ty) || 1;
+        const nx = -ty / tl;
+        const ny = tx / tl;
 
-        // Bold, clean, razor-sharp corporate typography (reads downwards from top to bottom)
-        sCtx.save();
-        sCtx.translate(64, 512);
-        sCtx.rotate(Math.PI / 2);
-        sCtx.fillStyle = "#ffffff";
-        sCtx.textAlign = "center";
-        sCtx.textBaseline = "middle";
-        sCtx.font = "900 50px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
-        sCtx.shadowColor = "rgba(0, 0, 0, 0.95)";
-        sCtx.shadowBlur = 8;
-        sCtx.fillText("NEHAL CHAUHAN", 0, 0);
-        sCtx.restore();
+        const idx = i * 2;
+        pos.setXYZ(idx, x - nx * hw, y - ny * hw, 0);
+        pos.setXYZ(idx + 1, x + nx * hw, y + ny * hw, 0);
 
-        // Bottom decorative emblem
-        sCtx.save();
-        sCtx.translate(64, 854);
-        sCtx.rotate(Math.PI / 2);
-        sCtx.fillStyle = color;
-        sCtx.textAlign = "center";
-        sCtx.textBaseline = "middle";
-        sCtx.font = "900 32px sans-serif";
-        sCtx.fillText("✦", 0, 0);
-        sCtx.restore();
+        // Map UV coordinates along ribbon length: 160 world units per repeat cycle
+        // Centers "NEHAL CHAUHAN" on the visible strap with zero squishing or collision
+        const v = cumLen / 160;
+        uv.setXY(idx, 0, v);
+        uv.setXY(idx + 1, 1, v);
+      }
+      pos.needsUpdate = true;
+      uv.needsUpdate = true;
+    }
 
-        if (strapTexture) {
-          strapTexture.needsUpdate = true;
+    // --- PHYSICS LOOP ---
+    const STEP = 1 / 120;
+    function updatePhysics(dt: number) {
+      let ax = 0, ay = 0;
+
+      if (isDragging) {
+        ax = (dragTarget.x - P.x) * 600 - V.x * 45;
+        ay = (dragTarget.y - P.y) * 600 - V.y * 45;
+      } else {
+        ay = -G;
+        ax -= V.x * 1.6;
+        ay -= V.y * 1.6;
+      }
+
+      const dx = P.x;
+      const dy = P.y - Ay;
+      const dist = Math.hypot(dx, dy) || 1;
+      if (dist > L) {
+        const nx = dx / dist, ny = dy / dist;
+        const vr = V.x * nx + V.y * ny;
+        const f = -K * (dist - L) - 25 * vr;
+        ax += nx * f;
+        ay += ny * f;
+      }
+
+      V.x += ax * dt;
+      V.y += ay * dt;
+      P.x += V.x * dt;
+      P.y += V.y * dt;
+
+      const targetTheta = Math.atan2(P.x, Ay - P.y) - Math.max(-0.4, Math.min(0.4, V.x * 0.0004));
+      thetaV += ((targetTheta - theta) * 160 - thetaV * 12) * dt;
+      theta += thetaV * dt;
+
+      // Spring mechanics for smooth 3D flip rotation
+      const fk = 65, fc = 12;
+      flipV += ((flipTarget - flip) * fk - flipV * fc) * dt;
+      flip += flipV * dt;
+
+      tiltX += (tiltTargetX - tiltX) * Math.min(1, dt * 7);
+      tiltY += (tiltTargetY - tiltY) * Math.min(1, dt * 7);
+    }
+
+    // Toggle Flip ONLY on Click: 1st click -> Back (PI), 2nd click -> Front (0)
+    const triggerFlip = () => {
+      const now = performance.now();
+      if (now - lastFlipTime < 320) return;
+      lastFlipTime = now;
+
+      isBack = !isBack;
+      flipTarget = isBack ? Math.PI : 0;
+      setIsFlipped(isBack);
+
+      if (!isDragging) {
+        V.x += (isBack ? 1 : -1) * 35;
+      }
+    };
+    flipTriggerRef.current = triggerFlip;
+
+    const initTimer = setTimeout(() => {
+      V.x = 120;
+    }, 450);
+
+    // --- ANIMATION FRAME ---
+    let animId: number;
+    let lastTime = performance.now();
+    let accumulator = 0;
+    let activeColor = accentRef.current;
+
+    function animate() {
+      animId = requestAnimationFrame(animate);
+
+      if (accentRef.current !== activeColor) {
+        activeColor = accentRef.current;
+        renderStrapTexture(activeColor);
+      }
+
+      const now = performance.now();
+      const dt = Math.min((now - lastTime) / 1000, 0.05);
+      lastTime = now;
+      accumulator += dt;
+
+      while (accumulator >= STEP) {
+        updatePhysics(STEP);
+        accumulator -= STEP;
+      }
+
+      updateStrapGeometry();
+
+      const shadowH = CH / 2 + CLIP;
+      shadowMesh.position.set(
+        P.x + Math.sin(theta) * shadowH + 12,
+        P.y - Math.cos(theta) * shadowH - 30,
+        -5
+      );
+      shadowMesh.rotation.z = theta;
+      shadowMesh.scale.set(CW * 1.8 * Math.max(0.3, Math.abs(Math.cos(flip))), CH * 1.5, 1);
+
+      if (domCard && domSpin) {
+        // Integer pixel-snapping to prevent text antialiasing blur in Chrome
+        const screenX = Math.round(W / 2 + P.x);
+        const screenY = Math.round(H / 2 - P.y);
+        domCard.style.transform = `translate3d(${screenX}px, ${screenY}px, 0) rotate(${(-theta).toFixed(4)}rad)`;
+        domSpin.style.transform = `rotateX(${(-tiltX).toFixed(4)}rad) rotateY(${(flip + tiltY).toFixed(4)}rad)`;
+      }
+
+      if (renderer) renderer.render(scene, camera);
+    }
+    animate();
+
+    // --- POINTER / DRAG HANDLERS ---
+    function getCanvasCoords(e: MouseEvent | TouchEvent) {
+      const r = canvas!.getBoundingClientRect();
+      const clientX = "touches" in e && e.touches.length > 0 ? e.touches[0].clientX : (e as MouseEvent).clientX;
+      const clientY = "touches" in e && e.touches.length > 0 ? e.touches[0].clientY : (e as MouseEvent).clientY;
+      return {
+        x: clientX - r.left - W / 2,
+        y: H / 2 - (clientY - r.top),
+      };
+    }
+
+    function isPointOnBadge(pt: { x: number; y: number }) {
+      const dx = pt.x - P.x, dy = pt.y - P.y;
+      const c = Math.cos(-theta), s = Math.sin(-theta);
+      const lx = dx * c - dy * s;
+      const ly = dx * s + dy * c;
+      return Math.abs(lx) < CW / 2 && ly < 0 && ly > -(CLIP + CH);
+    }
+
+    function onPointerDown(e: MouseEvent | TouchEvent) {
+      if ("button" in e && e.button !== 0) return; // Prevent right-click or middle-click drag
+      const pt = getCanvasCoords(e);
+      if (isPointOnBadge(pt)) {
+        isDragging = true;
+        startX = pt.x;
+        startY = pt.y;
+        startTime = performance.now();
+        dragOffset.x = P.x - pt.x;
+        dragOffset.y = P.y - pt.y;
+        dragTarget.x = P.x;
+        dragTarget.y = P.y;
+        if (e.cancelable) e.preventDefault(); // Prevent native browser image ghost dragging
+      }
+    }
+
+    function onContextMenu(e: MouseEvent) {
+      const pt = getCanvasCoords(e);
+      if (isPointOnBadge(pt)) {
+        e.preventDefault(); // Prevent right-click context menu (Save image as, Copy, etc.)
+      }
+    }
+
+    function onNativeDragStart(e: DragEvent) {
+      const pt = getCanvasCoords(e);
+      if (isPointOnBadge(pt)) {
+        e.preventDefault(); // Completely stop HTML5 native dragging
+      }
+    }
+
+    function onPointerMove(e: MouseEvent | TouchEvent) {
+      const pt = getCanvasCoords(e);
+      if (isDragging) {
+        dragTarget.x = pt.x + dragOffset.x;
+        dragTarget.y = pt.y + dragOffset.y;
+        if (e.cancelable && "touches" in e) e.preventDefault();
+      } else {
+        const dx = pt.x - P.x;
+        const dy = pt.y - (P.y - CH / 2);
+        tiltTargetY = Math.max(-0.25, Math.min(0.25, (dx / CW) * 0.35));
+        tiltTargetX = Math.max(-0.2, Math.min(0.2, (-dy / CH) * 0.3));
+      }
+    }
+
+    function onPointerUp() {
+      if (isDragging) {
+        const dist = Math.hypot(dragTarget.x - (startX + dragOffset.x), dragTarget.y - (startY + dragOffset.y));
+        const elapsed = performance.now() - startTime;
+
+        // Quick click without dragging: FLIP face
+        if (dist < 10 && elapsed < 320) {
+          triggerFlip();
         } else {
-          strapTexture = new THREE.CanvasTexture(strapCanvas);
-          strapTexture.flipY = false;
-          strapTexture.wrapS = THREE.ClampToEdgeWrapping;
-          strapTexture.wrapT = THREE.RepeatWrapping;
-          strapTexture.generateMipmaps = true;
-          strapTexture.minFilter = THREE.LinearMipmapLinearFilter;
-          strapTexture.magFilter = THREE.LinearFilter;
-          if (renderer) {
-            strapTexture.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 16);
-          }
+          // Drag and drop: DO NOT FLIP!
+          // Badge swings back to its rest position with momentum:
+          const tossVx = (dragTarget.x - (startX + dragOffset.x)) * 1.5;
+          V.x += Math.max(-420, Math.min(420, tossVx));
         }
+        isDragging = false;
       }
+      tiltTargetX = 0;
+      tiltTargetY = 0;
+    }
 
-      renderStrapTexture(accentRef.current);
+    const domCardClick = () => {
+      // Handled cleanly in onPointerUp
+    };
+    domSpin.addEventListener("click", domCardClick);
+    domSpin.addEventListener("contextmenu", onContextMenu);
 
-      const strapMat = new THREE.MeshBasicMaterial({
-        map: strapTexture,
-        side: THREE.DoubleSide,
-      });
-      const strapMesh = new THREE.Mesh(strapGeo, strapMat);
-      scene.add(strapMesh);
+    window.addEventListener("mousedown", onPointerDown);
+    window.addEventListener("mousemove", onPointerMove);
+    window.addEventListener("mouseup", onPointerUp);
+    window.addEventListener("contextmenu", onContextMenu);
+    window.addEventListener("dragstart", onNativeDragStart);
 
-      // Realistic Drop Shadow
-      const shadowGeo = new THREE.PlaneGeometry(1, 1);
-      const shadowCanvas = document.createElement("canvas");
-      shadowCanvas.width = 128;
-      shadowCanvas.height = 128;
-      const shadowCtx = shadowCanvas.getContext("2d");
-      if (shadowCtx) {
-        const grad = shadowCtx.createRadialGradient(64, 64, 0, 64, 64, 64);
-        grad.addColorStop(0, "rgba(0,0,0,0.65)");
-        grad.addColorStop(0.4, "rgba(0,0,0,0.25)");
-        grad.addColorStop(1, "rgba(0,0,0,0)");
-        shadowCtx.fillStyle = grad;
-        shadowCtx.fillRect(0, 0, 128, 128);
+    window.addEventListener("touchstart", onPointerDown, { passive: false });
+    window.addEventListener("touchmove", onPointerMove, { passive: false });
+    window.addEventListener("touchend", onPointerUp);
+
+    // Resize handler
+    const onResize = () => {
+      if (!container || !renderer) return;
+      W = container.clientWidth || window.innerWidth;
+      H = container.clientHeight || window.innerHeight;
+
+      camera.left = -W / 2;
+      camera.right = W / 2;
+      camera.top = H / 2;
+      camera.bottom = -H / 2;
+      camera.updateProjectionMatrix();
+      renderer.setSize(W, H);
+
+      CW = Math.min(Math.round(W * 0.72), 304, Math.round(H * 0.42));
+      CW = Math.max(260, CW);
+      CH = Math.min(Math.round(CW * 1.54), Math.round(H * 0.64));
+      CH = Math.max(420, CH);
+      CLIP = CW * 0.09;
+      if (domCard) {
+        domCard.style.setProperty("--cw", `${CW}px`);
+        domCard.style.setProperty("--ch", `${CH}px`);
       }
-      const shadowTex = new THREE.CanvasTexture(shadowCanvas);
-      const shadowMat = new THREE.MeshBasicMaterial({
-        map: shadowTex,
-        transparent: true,
-        opacity: 0.5,
-      });
-      const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
-      scene.add(shadowMesh);
+      Ay = H / 2 + 10;
+      targetClipScreenY = Math.max(70, Math.min(120, H * 0.12));
+      restY = H / 2 - targetClipScreenY;
+      L = Ay - restY;
+    };
+    window.addEventListener("resize", onResize);
 
-      // --- UPDATE STRAP VERTICES & ARC-LENGTH DYNAMIC UV MAPPING ---
-      function updateStrapGeometry() {
-        const pos = strapGeo.attributes.position;
-        const uv = strapGeo.attributes.uv;
-        const hw = 17; // 34px width ribbon matching lanyard clip
-        const dx = P.x;
-        const dy = P.y - Ay;
-        const dist = Math.hypot(dx, dy) || 1;
-        const sag = Math.sqrt(Math.max(0, L * L - dist * dist)) * 0.35;
+    return () => {
+      clearTimeout(initTimer);
+      cancelAnimationFrame(animId);
+      window.removeEventListener("mousedown", onPointerDown);
+      window.removeEventListener("mousemove", onPointerMove);
+      window.removeEventListener("mouseup", onPointerUp);
+      window.removeEventListener("contextmenu", onContextMenu);
+      window.removeEventListener("dragstart", onNativeDragStart);
+      window.removeEventListener("touchstart", onPointerDown);
+      window.removeEventListener("touchmove", onPointerMove);
+      window.removeEventListener("touchend", onPointerUp);
+      window.removeEventListener("resize", onResize);
+      domSpin.removeEventListener("click", domCardClick);
+      domSpin.removeEventListener("contextmenu", onContextMenu);
 
-        const midX = P.x / 2;
-        const midY = (Ay + P.y) / 2 - sag;
-
-        let cumLen = 0;
-        let prevX = 0;
-        let prevY = Ay;
-
-        for (let i = 0; i <= SEGMENTS; i++) {
-          const t = i / SEGMENTS;
-          const u = 1 - t;
-
-          const x = 2 * u * t * midX + t * t * P.x;
-          const y = u * u * Ay + 2 * u * t * midY + t * t * P.y;
-
-          if (i > 0) {
-            cumLen += Math.hypot(x - prevX, y - prevY);
-          }
-          prevX = x;
-          prevY = y;
-
-          const tx = 2 * (1 - t) * midX + 2 * t * (P.x - midX);
-          const ty = 2 * (1 - t) * (midY - Ay) + 2 * t * (P.y - midY);
-          const tl = Math.hypot(tx, ty) || 1;
-          const nx = -ty / tl;
-          const ny = tx / tl;
-
-          const idx = i * 2;
-          pos.setXYZ(idx, x - nx * hw, y - ny * hw, 0);
-          pos.setXYZ(idx + 1, x + nx * hw, y + ny * hw, 0);
-
-          // Map UV coordinates along ribbon length: 160 world units per repeat cycle
-          // Centers "NEHAL CHAUHAN" on the visible strap with zero squishing or collision
-          const v = cumLen / 160;
-          uv.setXY(idx, 0, v);
-          uv.setXY(idx + 1, 1, v);
-        }
-        pos.needsUpdate = true;
-        uv.needsUpdate = true;
-      }
-
-      // --- PHYSICS LOOP ---
-      const STEP = 1 / 120;
-      function updatePhysics(dt: number) {
-        let ax = 0, ay = 0;
-
-        if (isDragging) {
-          ax = (dragTarget.x - P.x) * 600 - V.x * 45;
-          ay = (dragTarget.y - P.y) * 600 - V.y * 45;
-        } else {
-          ay = -G;
-          ax -= V.x * 1.6;
-          ay -= V.y * 1.6;
-        }
-
-        const dx = P.x;
-        const dy = P.y - Ay;
-        const dist = Math.hypot(dx, dy) || 1;
-        if (dist > L) {
-          const nx = dx / dist, ny = dy / dist;
-          const vr = V.x * nx + V.y * ny;
-          const f = -K * (dist - L) - 25 * vr;
-          ax += nx * f;
-          ay += ny * f;
-        }
-
-        V.x += ax * dt;
-        V.y += ay * dt;
-        P.x += V.x * dt;
-        P.y += V.y * dt;
-
-        const targetTheta = Math.atan2(P.x, Ay - P.y) - Math.max(-0.4, Math.min(0.4, V.x * 0.0004));
-        thetaV += ((targetTheta - theta) * 160 - thetaV * 12) * dt;
-        theta += thetaV * dt;
-
-        // Spring mechanics for smooth 3D flip rotation
-        const fk = 65, fc = 12;
-        flipV += ((flipTarget - flip) * fk - flipV * fc) * dt;
-        flip += flipV * dt;
-
-        tiltX += (tiltTargetX - tiltX) * Math.min(1, dt * 7);
-        tiltY += (tiltTargetY - tiltY) * Math.min(1, dt * 7);
-      }
-
-      // Toggle Flip ONLY on Click: 1st click -> Back (PI), 2nd click -> Front (0)
-      const triggerFlip = () => {
-        const now = performance.now();
-        if (now - lastFlipTime < 320) return;
-        lastFlipTime = now;
-
-        isBack = !isBack;
-        flipTarget = isBack ? Math.PI : 0;
-        setIsFlipped(isBack);
-
-        if (!isDragging) {
-          V.x += (isBack ? 1 : -1) * 35;
-        }
-      };
-      flipTriggerRef.current = triggerFlip;
-
-      const initTimer = setTimeout(() => {
-        V.x = 120;
-      }, 450);
-
-      // --- ANIMATION FRAME ---
-      let animId: number;
-      let lastTime = performance.now();
-      let accumulator = 0;
-      let activeColor = accentRef.current;
-
-      function animate() {
-        animId = requestAnimationFrame(animate);
-
-        if (accentRef.current !== activeColor) {
-          activeColor = accentRef.current;
-          renderStrapTexture(activeColor);
-        }
-
-        const now = performance.now();
-        const dt = Math.min((now - lastTime) / 1000, 0.05);
-        lastTime = now;
-        accumulator += dt;
-
-        while (accumulator >= STEP) {
-          updatePhysics(STEP);
-          accumulator -= STEP;
-        }
-
-        updateStrapGeometry();
-
-        const shadowH = CH / 2 + CLIP;
-        shadowMesh.position.set(
-          P.x + Math.sin(theta) * shadowH + 12,
-          P.y - Math.cos(theta) * shadowH - 30,
-          -5
-        );
-        shadowMesh.rotation.z = theta;
-        shadowMesh.scale.set(CW * 1.8 * Math.max(0.3, Math.abs(Math.cos(flip))), CH * 1.5, 1);
-
-        if (domCard && domSpin) {
-          // Integer pixel-snapping to prevent text antialiasing blur in Chrome
-          const screenX = Math.round(W / 2 + P.x);
-          const screenY = Math.round(H / 2 - P.y);
-          domCard.style.transform = `translate3d(${screenX}px, ${screenY}px, 0) rotate(${(-theta).toFixed(4)}rad)`;
-          domSpin.style.transform = `rotateX(${(-tiltX).toFixed(4)}rad) rotateY(${(flip + tiltY).toFixed(4)}rad)`;
-        }
-
-        if (renderer) renderer.render(scene, camera);
-      }
-      animate();
-
-      // --- POINTER / DRAG HANDLERS ---
-      function getCanvasCoords(e: MouseEvent | TouchEvent) {
-        const r = canvas!.getBoundingClientRect();
-        const clientX = "touches" in e && e.touches.length > 0 ? e.touches[0].clientX : (e as MouseEvent).clientX;
-        const clientY = "touches" in e && e.touches.length > 0 ? e.touches[0].clientY : (e as MouseEvent).clientY;
-        return {
-          x: clientX - r.left - W / 2,
-          y: H / 2 - (clientY - r.top),
-        };
-      }
-
-      function isPointOnBadge(pt: { x: number; y: number }) {
-        const dx = pt.x - P.x, dy = pt.y - P.y;
-        const c = Math.cos(-theta), s = Math.sin(-theta);
-        const lx = dx * c - dy * s;
-        const ly = dx * s + dy * c;
-        return Math.abs(lx) < CW / 2 && ly < 0 && ly > -(CLIP + CH);
-      }
-
-      function onPointerDown(e: MouseEvent | TouchEvent) {
-        const pt = getCanvasCoords(e);
-        if (isPointOnBadge(pt)) {
-          isDragging = true;
-          startX = pt.x;
-          startY = pt.y;
-          startTime = performance.now();
-          dragOffset.x = P.x - pt.x;
-          dragOffset.y = P.y - pt.y;
-          dragTarget.x = P.x;
-          dragTarget.y = P.y;
-          if (e.cancelable && "touches" in e) e.preventDefault();
-        }
-      }
-
-      function onPointerMove(e: MouseEvent | TouchEvent) {
-        const pt = getCanvasCoords(e);
-        if (isDragging) {
-          dragTarget.x = pt.x + dragOffset.x;
-          dragTarget.y = pt.y + dragOffset.y;
-          if (e.cancelable && "touches" in e) e.preventDefault();
-        } else {
-          const dx = pt.x - P.x;
-          const dy = pt.y - (P.y - CH / 2);
-          tiltTargetY = Math.max(-0.25, Math.min(0.25, (dx / CW) * 0.35));
-          tiltTargetX = Math.max(-0.2, Math.min(0.2, (-dy / CH) * 0.3));
-        }
-      }
-
-      function onPointerUp() {
-        if (isDragging) {
-          const dist = Math.hypot(dragTarget.x - (startX + dragOffset.x), dragTarget.y - (startY + dragOffset.y));
-          const elapsed = performance.now() - startTime;
-
-          // Quick click without dragging: FLIP face
-          if (dist < 10 && elapsed < 320) {
-            triggerFlip();
-          } else {
-            // Drag and drop: DO NOT FLIP!
-            // Badge swings back to its rest position with momentum:
-            const tossVx = (dragTarget.x - (startX + dragOffset.x)) * 1.5;
-            V.x += Math.max(-420, Math.min(420, tossVx));
-          }
-          isDragging = false;
-        }
-        tiltTargetX = 0;
-        tiltTargetY = 0;
-      }
-
-      const domCardClick = () => {
-        // Handled cleanly in onPointerUp
-      };
-      domSpin.addEventListener("click", domCardClick);
-
-      window.addEventListener("mousedown", onPointerDown);
-      window.addEventListener("mousemove", onPointerMove);
-      window.addEventListener("mouseup", onPointerUp);
-
-      window.addEventListener("touchstart", onPointerDown, { passive: false });
-      window.addEventListener("touchmove", onPointerMove, { passive: false });
-      window.addEventListener("touchend", onPointerUp);
-
-      // Resize handler
-      const onResize = () => {
-        if (!container || !renderer) return;
-        W = container.clientWidth || window.innerWidth;
-        H = container.clientHeight || window.innerHeight;
-
-        camera.left = -W / 2;
-        camera.right = W / 2;
-        camera.top = H / 2;
-        camera.bottom = -H / 2;
-        camera.updateProjectionMatrix();
-        renderer.setSize(W, H);
-
-        CW = Math.min(Math.round(W * 0.72), 304, Math.round(H * 0.42));
-        CW = Math.max(260, CW);
-        CH = Math.min(Math.round(CW * 1.54), Math.round(H * 0.64));
-        CH = Math.max(420, CH);
-        CLIP = CW * 0.09;
-        if (domCard) {
-          domCard.style.setProperty("--cw", `${CW}px`);
-          domCard.style.setProperty("--ch", `${CH}px`);
-        }
-        Ay = H / 2 + 10;
-        targetClipScreenY = Math.max(70, Math.min(120, H * 0.12));
-        restY = H / 2 - targetClipScreenY;
-        L = Ay - restY;
-      };
-      window.addEventListener("resize", onResize);
-
-      return () => {
-        clearTimeout(initTimer);
-        cancelAnimationFrame(animId);
-        window.removeEventListener("mousedown", onPointerDown);
-        window.removeEventListener("mousemove", onPointerMove);
-        window.removeEventListener("mouseup", onPointerUp);
-        window.removeEventListener("touchstart", onPointerDown);
-        window.removeEventListener("touchmove", onPointerMove);
-        window.removeEventListener("touchend", onPointerUp);
-        window.removeEventListener("resize", onResize);
-        domSpin.removeEventListener("click", domCardClick);
-
-        strapGeo.dispose();
-        strapMat.dispose();
-        if (strapTexture) strapTexture.dispose();
-        shadowGeo.dispose();
-        shadowMat.dispose();
-        shadowTex.dispose();
-        if (renderer) renderer.dispose();
-      };
-    }, []);
+      strapGeo.dispose();
+      strapMat.dispose();
+      if (strapTexture) strapTexture.dispose();
+      shadowGeo.dispose();
+      shadowMat.dispose();
+      shadowTex.dispose();
+      if (renderer) renderer.dispose();
+    };
+  }, []);
 
   return (
     <section
@@ -555,16 +576,22 @@ export default function LanyardBadgeHero({ onScrollDown }: LanyardBadgeHeroProps
 
             {/* Middle Section: Clean Corporate Photo + Name */}
             <div className="relative z-10 flex flex-col items-center mt-1 shrink-0">
-              {/* Photo Frame (Apple/Google style rounded square) */}
-              <div className="relative p-1 rounded-xl bg-gradient-to-b from-white/20 via-white/5 to-white/10 shadow-md">
-                <div className="relative w-[86px] h-[86px] rounded-lg overflow-hidden bg-[#181B26] border border-white/10">
+              {/* Photo Frame (Apple/Google style rounded square) - Protected from dragging & saving */}
+              <div
+                className="relative p-1 rounded-xl bg-gradient-to-b from-white/20 via-white/5 to-white/10 shadow-md select-none"
+                onContextMenu={(e) => e.preventDefault()}
+              >
+                <div className="relative w-[86px] h-[86px] rounded-lg overflow-hidden bg-[#181B26] border border-white/10 select-none">
                   <Image
                     src="/nehal-chauhan.jpg"
                     alt="Nehal Chauhan"
                     fill
                     sizes="140px"
                     priority
-                    className="object-cover object-center"
+                    draggable={false}
+                    onDragStart={(e) => e.preventDefault()}
+                    onContextMenu={(e) => e.preventDefault()}
+                    className="object-cover object-center pointer-events-none select-none [-webkit-user-drag:none] [user-drag:none]"
                   />
                 </div>
               </div>
@@ -629,9 +656,7 @@ export default function LanyardBadgeHero({ onScrollDown }: LanyardBadgeHeroProps
             <div className="relative z-10 border-t border-white/10 pt-1.5 pb-0.5 flex flex-col items-center gap-1 shrink-0">
               {/* Minimalist Corporate Barcode */}
               <div className="w-[82%] h-4 bg-[repeating-linear-gradient(90deg,#ffffff_0_2px,transparent_2px_4px,#ffffff_4px_5px,transparent_5px_8px,#ffffff_8px_11px,transparent_11px_12px,#ffffff_12px_15px,transparent_15px_17px,#ffffff_17px_20px,transparent_20px_23px)] opacity-75" />
-              <span className="font-sans text-[8.5px] text-slate-400 uppercase tracking-wider">
-                Official Corporate Staff Badge • 2026
-              </span>
+              <span className="font-sans text-[8.5px] text-slate-400 uppercase tracking-wider">              </span>
             </div>
           </div>
 
