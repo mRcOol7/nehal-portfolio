@@ -19,24 +19,24 @@ export default function ContactFooter() {
   };
 
   return (
-    <footer id="contact" className="w-full pt-4 sm:pt-6 pb-12">
+    <footer id="contact" className="w-full pt-6 sm:pt-8 pb-16">
       {/* Contact Prompt Box */}
-      <div className="p-5 sm:p-8 md:p-10 rounded-2xl dashed-container bg-white/60 dark:bg-[#14141B]/50 mb-8 sm:mb-10 text-center flex flex-col items-center">
-        <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-2 sm:mb-3">
+      <div className="p-8 sm:p-12 lg:p-16 rounded-2xl dashed-container bg-white/60 dark:bg-[#14141B]/50 mb-10 sm:mb-12 text-center flex flex-col items-center">
+        <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-3 sm:mb-4">
           let&apos;s talk
         </h2>
 
-        <p className="text-xs sm:text-sm md:text-base text-[#646478] dark:text-[#A1A1B2] max-w-md mx-auto mb-5 sm:mb-6 leading-relaxed">
+        <p className="text-sm sm:text-base md:text-lg text-[#646478] dark:text-[#A1A1B2] max-w-xl mx-auto mb-6 sm:mb-8 leading-relaxed">
           Open for Software Engineering, Native Android, and Full-Stack Web opportunities.
         </p>
 
         {/* Email Contact Bar (Mobile number removed as requested) */}
-        <div className="w-full max-w-sm flex items-center justify-center mb-6 px-1">
+        <div className="w-full max-w-md flex items-center justify-center mb-8 px-1">
           {/* Email Copy Pill */}
-          <div className="max-w-full inline-flex items-center justify-between gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-full bg-neutral-100 dark:bg-[#1E1E28] border border-neutral-200 dark:border-neutral-700/80">
-            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
-              <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#E11D48] shrink-0" />
-              <span className="text-[11px] xs:text-xs sm:text-sm font-mono text-[#1C1C24] dark:text-[#E8E8EE] truncate">
+          <div className="max-w-full inline-flex items-center justify-between gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-neutral-100 dark:bg-[#1E1E28] border border-neutral-200 dark:border-neutral-700/80">
+            <div className="flex items-center gap-2 min-w-0">
+              <Mail className="w-4 h-4 text-[#E11D48] shrink-0" />
+              <span className="text-xs sm:text-sm font-mono text-[#1C1C24] dark:text-[#E8E8EE] truncate">
                 {PORTFOLIO_DATA.personal.email}
               </span>
             </div>

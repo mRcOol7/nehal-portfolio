@@ -21,19 +21,19 @@ export default function FreelancingCard() {
   };
 
   return (
-    <section className="w-full mb-10 sm:mb-12">
-      <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-5 sm:mb-6">
+    <section className="w-full mb-14 sm:mb-18">
+      <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-6 sm:mb-8">
         Collaboration & Opportunities
       </h2>
 
-      <ScrolltideGlassLens className="p-4 sm:p-6 md:p-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6">
-          <p className="text-xs sm:text-sm md:text-base text-[#3E3E4E] dark:text-[#C4C4D4] leading-relaxed max-w-xl">
+      <ScrolltideGlassLens className="p-6 sm:p-8 lg:p-10">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-8">
+          <p className="text-sm sm:text-base md:text-lg text-[#3E3E4E] dark:text-[#C4C4D4] leading-relaxed max-w-2xl">
             Specializing in Native Android and Full-Stack Web Development.
             Available for engineering roles, production web & mobile builds, and technical collaboration.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 shrink-0">
             <button
               onClick={handleCopyEmail}
               className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-3 rounded-full bg-white/80 dark:bg-[#14141B]/80 hover:bg-white dark:hover:bg-[#1E1E28] border border-neutral-300/80 dark:border-neutral-700/80 text-[#1C1C24] dark:text-white text-xs sm:text-sm font-medium transition-all shadow-sm"

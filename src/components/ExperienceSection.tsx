@@ -12,8 +12,8 @@ export default function ExperienceSection() {
   };
 
   return (
-    <section id="experience" className="w-full mb-12">
-      <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-6">
+    <section id="experience" className="w-full mb-14 sm:mb-18">
+      <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-6 sm:mb-8">
         Professional Experience
       </h2>
 

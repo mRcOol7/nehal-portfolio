@@ -102,15 +102,15 @@ export default function WhoIsNehal() {
   };
 
   return (
-    <section ref={sectionRef} id="about" className="w-full mb-10 sm:mb-12">
-      <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-4 sm:mb-5">
+    <section ref={sectionRef} id="about" className="w-full mb-12 sm:mb-16">
+      <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-5 sm:mb-6">
         Who is Nehal?
       </h2>
 
       {/* Professional Summary with Interactive Karaoke Scroll Scrub */}
       <div
         ref={textRef}
-        className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg leading-relaxed font-normal mb-6 sm:mb-8"
+        className="space-y-3 sm:space-y-4 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed font-normal mb-8 sm:mb-10 max-w-5xl"
       >
         <p>
           {renderScrubWords("I am a")}
@@ -133,15 +133,15 @@ export default function WhoIsNehal() {
       </div>
 
       {/* Key Achievements Grid directly from Resume */}
-      <div className="mb-6 sm:mb-8">
-        <div className="flex items-center gap-2 mb-3 sm:mb-4">
+      <div className="mb-8 sm:mb-10">
+        <div className="flex items-center gap-2 mb-4">
           <Award className="w-4 h-4 text-[#E11D48] shrink-0" />
-            <h3 className="text-xs font-mono tracking-wider text-[#646478] dark:text-[#8E8EA2]">
-              Key milestones &amp; impact
-            </h3>
+          <h3 className="text-xs font-mono tracking-wider text-[#646478] dark:text-[#8E8EA2]">
+            Key milestones &amp; impact
+          </h3>
         </div>
 
-        <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+        <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {PORTFOLIO_DATA.achievements.map((item) => {
             const match = item.metric.match(/^([\d.]+)(.*)$/);
             const val = match ? parseFloat(match[1]) : 0;

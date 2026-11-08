@@ -26,36 +26,36 @@ export default function TechStack() {
   ];
 
   return (
-    <section id="tech-stack" className="w-full mb-12 sm:mb-14">
+    <section id="tech-stack" className="w-full mb-14 sm:mb-18">
       {/* Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-5 sm:mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
         <div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono text-[#646478] dark:text-[#8E8EA2] bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 mb-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" />
-              <span>Active ecosystem</span>
-            </div>
-            <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1C24] dark:text-white">
-              Technical Stack
-            </h2>
-            <p className="text-xs sm:text-sm text-[#646478] dark:text-[#8E8EA2] mt-1">
-              Engineered with modern mobile runtimes, reactive web frameworks, and low-latency data layers.
-            </p>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono text-[#646478] dark:text-[#8E8EA2] bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 mb-2.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" />
+            <span>Active ecosystem</span>
           </div>
-
-          <a
-            href={PORTFOLIO_DATA.personal.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            suppressHydrationWarning
-            className="inline-flex items-center gap-1 text-xs font-mono text-[#E11D48] dark:text-[#FB7185] hover:underline whitespace-nowrap self-start sm:self-auto"
-          >
-            <span>Full Resume Specs</span>
-            <ArrowRight className="w-3 h-3" />
-          </a>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white">
+            Technical Stack
+          </h2>
+          <p className="text-sm sm:text-base text-[#646478] dark:text-[#8E8EA2] mt-1.5 max-w-2xl">
+            Engineered with modern mobile runtimes, reactive web frameworks, and low-latency data layers.
+          </p>
         </div>
 
-        {/* Dual-Track Velocity Marquee - Seamless, Single-Display, Zero Duplication */}
-        <div className="p-3 sm:p-4 rounded-2xl border border-dashed border-[#DCE0E8] dark:border-[#272736] bg-white/40 dark:bg-[#14141B]/30 backdrop-blur-xs space-y-2.5">
+        <a
+          href={PORTFOLIO_DATA.personal.resumeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          suppressHydrationWarning
+          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono text-[#E11D48] dark:text-[#FB7185] hover:underline whitespace-nowrap self-start sm:self-auto"
+        >
+          <span>Full Resume Specs</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </a>
+      </div>
+
+      {/* Dual-Track Velocity Marquee - Seamless, Single-Display, Zero Duplication */}
+      <div className="p-4 sm:p-6 rounded-2xl border border-dashed border-[#DCE0E8] dark:border-[#272736] bg-white/40 dark:bg-[#14141B]/30 backdrop-blur-xs space-y-3">
           {/* Track 1: Mobile & Web Engineering (Flows Left) */}
           <AnimasterMarquee speed={32} direction="left" pauseOnHover={true}>
             {engineeringStack.map((s, idx) => (

@@ -52,20 +52,20 @@ export default function ProjectsSection() {
   });
 
   return (
-    <section id="projects" className="w-full mb-12 sm:mb-14">
+    <section id="projects" className="w-full mb-14 sm:mb-18">
       {/* Header & Bencho Segmented Filter */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8">
         <div>
-          <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1C24] dark:text-white">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white">
             Featured Projects
           </h2>
-          <p className="text-xs sm:text-sm text-[#646478] dark:text-[#8E8EA2] mt-1">
+          <p className="text-sm sm:text-base text-[#646478] dark:text-[#8E8EA2] mt-1.5">
             Production builds, native mobile architectures, and creative interfaces
           </p>
         </div>
 
         {/* Bencho Gesture-Driven Magnetic Segmented Control */}
-        <div className="self-start md:self-auto overflow-x-auto max-w-full pb-1 md:pb-0">
+        <div className="self-start lg:self-auto overflow-x-auto max-w-full pb-1 lg:pb-0">
           <BenchoSegmentedControl
             options={filterOptions}
             selectedId={selectedFilter}
@@ -74,13 +74,13 @@ export default function ProjectsSection() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
         {filteredProjects.map((project) => (
           <AnimasterSpotlightCard
             key={project.id}
             spotlightColor="rgba(225, 29, 72, 0.14)"
             enableTilt={true}
-            className="p-4 sm:p-6 rounded-2xl dashed-container bg-white/50 dark:bg-[#14141B]/40 hover:bg-white dark:hover:bg-[#181822] transition-colors flex flex-col justify-between group"
+            className="p-6 sm:p-8 rounded-2xl dashed-container bg-white/50 dark:bg-[#14141B]/40 hover:bg-white dark:hover:bg-[#181822] transition-colors flex flex-col justify-between group"
           >
             <div>
               {/* Category & Status */}
@@ -94,11 +94,11 @@ export default function ProjectsSection() {
               </div>
 
               {/* Title & Tagline */}
-              <h3 className="font-serif text-lg sm:text-xl md:text-2xl font-bold text-[#1C1C24] dark:text-white group-hover:text-[#E11D48] transition-colors mb-2">
+              <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl font-bold text-[#1C1C24] dark:text-white group-hover:text-[#E11D48] transition-colors mb-2.5">
                 {project.title}
               </h3>
 
-              <p className="text-xs sm:text-sm text-[#3E3E4E] dark:text-[#C4C4D4] leading-relaxed mb-4">
+              <p className="text-sm sm:text-base text-[#3E3E4E] dark:text-[#C4C4D4] leading-relaxed mb-5">
                 {project.tagline}
               </p>
 

@@ -40,7 +40,7 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="relative w-full max-w-4xl mx-auto px-3 sm:px-6 pt-5 sm:pt-6 pb-4">
+    <header className="relative w-full max-w-[1440px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-8 md:px-12 pt-5 sm:pt-6 pb-4">
       <div className="flex items-center justify-between">
         {/* Brand Logo & Interactive Badge Pass Pill */}
         <div className="flex items-center gap-2 sm:gap-2.5">
