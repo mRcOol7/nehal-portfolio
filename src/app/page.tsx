@@ -9,6 +9,7 @@ import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import DevicePlugScrollSection from "@/components/DevicePlugScrollSection";
 import ContactFooter from "@/components/ContactFooter";
+import SkiperDynamicIsland from "@/components/SkiperDynamicIsland";
 
 export default function Home() {
   return (
@@ -25,37 +26,40 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-48 h-full bg-gradient-to-l from-blue-50/40 dark:from-indigo-950/20 to-transparent" />
       </div>
 
-        <div id="website-content" className="relative z-10 w-full overflow-x-clip">
-          {/* Navigation */}
-          <Navbar />
+      <div id="website-content" className="relative z-10 w-full overflow-x-clip">
+        {/* Navigation */}
+        <Navbar />
 
-          {/* Central Content Container with subtle dashed boundary lines */}
-          <main className="max-w-4xl mx-auto px-3 sm:px-6 md:px-8 py-5 sm:py-8 border-x border-dashed border-[#DCE0E8] dark:border-[#272736] bg-[#FAFAFC]/60 dark:bg-[#0C0C10]/60 min-h-screen">
-            {/* Animated Hero Banner with landscape header & animated circular avatar */}
-            <HeroBanner />
+        {/* Central Content Container with subtle dashed boundary lines */}
+        <main className="max-w-4xl mx-auto px-3 sm:px-6 md:px-8 py-5 sm:py-8 border-x border-dashed border-[#DCE0E8] dark:border-[#272736] bg-[#FAFAFC]/60 dark:bg-[#0C0C10]/60 min-h-screen">
+          {/* Animated Hero Banner with landscape header & animated circular avatar */}
+          <HeroBanner />
 
-            {/* Who is Nehal? (About Narrative & Key Milestones) */}
-            <WhoIsNehal />
+          {/* Who is Nehal? (About Narrative & Key Milestones) */}
+          <WhoIsNehal />
 
-            {/* Interactive Scroll-Driven Device Plug-In Workstation (The Hook) */}
-            <DevicePlugScrollSection />
+          {/* Interactive Scroll-Driven Device Plug-In Workstation (The Hook) */}
+          <DevicePlugScrollSection />
 
-            {/* Featured Projects (Proof of Work) */}
-            <ProjectsSection />
+          {/* Featured Projects (Proof of Work) */}
+          <ProjectsSection />
 
-            {/* Tech Stack Pills (Technical Depth & Tooling) */}
-            <TechStack />
+          {/* Tech Stack Pills (Technical Depth & Tooling) */}
+          <TechStack />
 
-            {/* Work Experience (Career Timeline & Milestones) */}
-            <ExperienceSection />
+          {/* Work Experience (Career Timeline & Milestones) */}
+          <ExperienceSection />
 
-            {/* Freelancing & Collaboration Banner (High-Intent Conversion CTA) */}
-            <FreelancingCard />
+          {/* Freelancing & Collaboration Banner (High-Intent Conversion CTA) */}
+          <FreelancingCard />
 
-            {/* Contact & Footer */}
-            <ContactFooter />
-          </main>
-        </div>
+          {/* Contact & Footer */}
+          <ContactFooter />
+        </main>
+
+        {/* Skiper UI Dynamic Island - Floating Interactive HUD & Quick Action Dock */}
+        <SkiperDynamicIsland />
       </div>
-      );
+    </div>
+    );
 }
