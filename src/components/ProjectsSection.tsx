@@ -59,7 +59,7 @@ export default function ProjectsSection() {
                 <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white">
                   Featured Projects
                 </h2>
-                  <p className="text-sm sm:text-base text-[#646478] dark:text-[#8E8EA2] mt-1.5">
+                  <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-400 mt-1.5">
                     Production builds, native mobile architectures, and creative interfaces
                   </p>
                 </div>
@@ -84,11 +84,11 @@ export default function ProjectsSection() {
                       >
                         <div>
                           {/* Category & Status */}
-                          <div className="flex flex-wrap items-center justify-between gap-1 text-xs text-[#646478] dark:text-[#8E8EA2] mb-3">
+                          <div className="flex flex-wrap items-center justify-between gap-1 text-xs text-neutral-600 dark:text-neutral-400 mb-3">
                             <span className="font-medium text-[#E11D48] dark:text-[#FB7185]">
                               {project.category}
                             </span>
-                            <span className="font-mono text-[11px] text-[#646478] dark:text-[#8E8EA2]">
+                            <span className="font-mono text-[11px] text-neutral-600 dark:text-neutral-400">
                               {project.metrics}
                             </span>
                           </div>
@@ -98,7 +98,7 @@ export default function ProjectsSection() {
                               {project.title}
                             </h3>
 
-                              <p className="text-sm sm:text-base text-[#3E3E4E] dark:text-[#C4C4D4] leading-relaxed mb-5">
+                              <p className="text-sm sm:text-base text-neutral-800 dark:text-neutral-200 leading-relaxed mb-5">
                                 {project.tagline}
                               </p>
 
@@ -107,7 +107,7 @@ export default function ProjectsSection() {
                                 {project.highlights.map((h, idx) => (
                                   <li
                                     key={idx}
-                                    className="text-xs text-[#646478] dark:text-[#8E8EA2] flex items-start gap-2 leading-relaxed"
+                                    className="text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 flex items-start gap-2 leading-relaxed"
                                   >
                                     <span className="text-[#E11D48] mt-0.5 shrink-0">•</span>
                                     <span>{h}</span>
@@ -120,7 +120,7 @@ export default function ProjectsSection() {
                                 {project.stack.map((item) => (
                                   <span
                                     key={item}
-                                    className="px-2.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[11px] font-medium text-[#646478] dark:text-[#A1A1B2]"
+                                    className="px-2.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[11px] font-medium text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700"
                                   >
                                     {item}
                                   </span>
@@ -129,8 +129,8 @@ export default function ProjectsSection() {
                             </div>
 
                             {/* Links Row with Bencho Magnetic Pull on action buttons */}
-                            <div className="flex flex-wrap items-center justify-between gap-2 pt-4 border-t border-neutral-100 dark:border-neutral-800/80">
-                              <span className="text-[11px] font-mono text-[#8E8EA2] dark:text-[#646478]">
+                            <div className="flex flex-wrap items-center justify-between gap-2 pt-4 border-t border-neutral-200 dark:border-neutral-800/80">
+                              <span className="text-[11px] font-mono text-neutral-600 dark:text-neutral-400">
                                 Production Code
                               </span>
 

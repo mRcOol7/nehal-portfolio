@@ -27,7 +27,7 @@ export default function WhoIsNehal() {
           gsap.fromTo(
             words,
             {
-              opacity: 0.25,
+              opacity: 0.45,
               y: 2,
             },
             {
@@ -89,9 +89,9 @@ export default function WhoIsNehal() {
       if (isAccent) {
         className += " font-semibold text-[#E11D48] dark:text-[#FB7185]";
       } else if (isBold) {
-        className += " font-semibold text-[#1C1C24] dark:text-white";
+        className += " font-semibold text-neutral-950 dark:text-white";
       } else {
-        className += " text-[#3E3E4E] dark:text-[#C4C4D4]";
+        className += " text-neutral-800 dark:text-neutral-200";
       }
       return (
         <span key={`${word}-${idx}`} className={className}>
@@ -136,7 +136,7 @@ export default function WhoIsNehal() {
       <div className="mb-10 sm:mb-14">
         <div className="flex items-center gap-2 mb-4 sm:mb-5">
           <Award className="w-4 h-4 text-[#E11D48] shrink-0" />
-          <h3 className="text-xs sm:text-sm font-mono tracking-wider text-[#646478] dark:text-[#8E8EA2]">
+          <h3 className="text-xs sm:text-sm font-mono tracking-wider text-neutral-600 dark:text-neutral-400">
             Key milestones &amp; impact
           </h3>
         </div>
@@ -151,7 +151,7 @@ export default function WhoIsNehal() {
             return (
               <div
                 key={item.title}
-                className="milestone-card p-6 sm:p-8 lg:p-10 rounded-2xl dashed-container bg-white/50 dark:bg-[#14141B]/40 hover:bg-white dark:hover:bg-[#181824] transition-colors flex flex-col justify-between"
+                className="milestone-card p-6 sm:p-8 lg:p-10 rounded-2xl dashed-container bg-white/70 dark:bg-[#14141B]/40 hover:bg-white dark:hover:bg-[#181824] transition-colors flex flex-col justify-between"
               >
                 <div>
                   <div className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#E11D48] dark:text-[#FB7185] mb-2">
@@ -167,10 +167,10 @@ export default function WhoIsNehal() {
                       item.metric
                     )}
                   </div>
-                  <h4 className="text-base sm:text-lg md:text-xl font-bold text-[#1C1C24] dark:text-white mb-2">
+                  <h4 className="text-base sm:text-lg md:text-xl font-bold text-neutral-900 dark:text-white mb-2">
                     {item.title}
                   </h4>
-                  <p className="text-xs sm:text-sm md:text-base text-[#646478] dark:text-[#8E8EA2] leading-relaxed">
+                  <p className="text-xs sm:text-sm md:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed">
                     {item.description}
                   </p>
                 </div>

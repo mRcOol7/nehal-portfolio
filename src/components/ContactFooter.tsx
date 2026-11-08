@@ -48,7 +48,7 @@ export default function ContactFooter() {
               Let&apos;s build something <span className="text-[#E11D48] dark:text-[#FB7185] italic font-serif">remarkable</span> together.
             </h2>
 
-            <p className="text-sm sm:text-base md:text-lg text-[#646478] dark:text-[#A1A1B2] leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
               Have an opening, a production challenge, or a collaborative vision?
               I specialize in Native Android systems and reactive Full-Stack web architectures.
             </p>
@@ -59,7 +59,7 @@ export default function ContactFooter() {
             {/* One-Click Copy Email Pill */}
             <button
               onClick={copyEmail}
-              className="inline-flex items-center justify-between gap-3 px-5 py-3 rounded-full bg-white dark:bg-[#1A1A24] hover:bg-neutral-50 dark:hover:bg-[#20202E] border border-neutral-300/80 dark:border-neutral-700/80 text-xs sm:text-sm font-medium text-[#1C1C24] dark:text-white transition-all shadow-sm"
+              className="inline-flex items-center justify-between gap-3 px-5 py-3 rounded-full bg-white dark:bg-[#1A1A24] hover:bg-neutral-50 dark:hover:bg-[#20202E] border border-neutral-300 dark:border-neutral-700 text-xs sm:text-sm font-medium text-neutral-900 dark:text-white transition-all shadow-sm"
               title="Click to copy email address"
               aria-label="Copy email address"
             >
@@ -67,7 +67,7 @@ export default function ContactFooter() {
                 <Mail className="w-4 h-4 text-[#E11D48]" />
                 <span className="font-mono">{PORTFOLIO_DATA.personal.email}</span>
               </div>
-              <span className="p-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[#646478] dark:text-[#A1A1B2]">
+              <span className="p-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
                 {copied ? (
                   <Check className="w-3.5 h-3.5 text-emerald-500" />
                 ) : (
@@ -82,7 +82,7 @@ export default function ContactFooter() {
                 href="https://github.com/mRcOol7"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-white dark:bg-[#1A1A24] hover:bg-neutral-50 dark:hover:bg-[#20202E] border border-neutral-300/80 dark:border-neutral-700/80 text-[#646478] dark:text-[#A1A1B2] hover:text-[#1C1C24] dark:hover:text-white transition-all shadow-sm"
+                className="p-3 rounded-full bg-white dark:bg-[#1A1A24] hover:bg-neutral-50 dark:hover:bg-[#20202E] border border-neutral-300 dark:border-neutral-700 text-neutral-700 hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-white transition-all shadow-sm"
                 title="GitHub: github.com/mRcOol7"
                 aria-label="GitHub Profile"
               >
@@ -95,7 +95,7 @@ export default function ContactFooter() {
                 href="https://www.linkedin.com/in/nehal-chauhan19"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-white dark:bg-[#1A1A24] hover:bg-neutral-50 dark:hover:bg-[#20202E] border border-neutral-300/80 dark:border-neutral-700/80 text-[#646478] dark:text-[#A1A1B2] hover:text-[#1C1C24] dark:hover:text-white transition-all shadow-sm"
+                className="p-3 rounded-full bg-white dark:bg-[#1A1A24] hover:bg-neutral-50 dark:hover:bg-[#20202E] border border-neutral-300 dark:border-neutral-700 text-neutral-700 hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-white transition-all shadow-sm"
                 title="LinkedIn: linkedin.com/in/nehal-chauhan19"
                 aria-label="LinkedIn Profile"
               >
@@ -119,13 +119,13 @@ export default function ContactFooter() {
         aria-hidden="true"
         className="pt-2 sm:pt-4 pb-1 overflow-hidden pointer-events-none select-none text-center -mb-2 sm:-mb-3"
       >
-        <span className="font-serif italic text-[11vw] font-black tracking-tight leading-none text-neutral-900/[0.04] dark:text-white/[0.05] whitespace-nowrap block">
+        <span className="font-serif italic text-[11vw] font-black tracking-tight leading-none text-neutral-900/[0.08] dark:text-white/[0.06] whitespace-nowrap block">
           Nehal Chauhan
         </span>
       </div>
 
       {/* Bottom Bar: Copyright, Telemetry, Back to Top */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#8E8EA2] dark:text-[#646478] px-2 font-medium pt-2 pb-1">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-700 dark:text-neutral-400 px-2 font-medium pt-2 pb-1">
         <span>© 2026 {PORTFOLIO_DATA.personal.displayName} · Gujarat, India</span>
 
         {/* Live Visitor Counter */}
@@ -134,7 +134,7 @@ export default function ContactFooter() {
         <BenchoMagnetic strength={0.3}>
           <button
             onClick={scrollToTop}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800/80 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:text-[#1C1C24] dark:hover:text-white transition-all shadow-2xs group"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 hover:text-black dark:hover:text-white border border-neutral-300 dark:border-neutral-700 transition-all shadow-2xs group font-medium"
             title="Scroll smoothly back to the top"
           >
             <span>Back to top</span>

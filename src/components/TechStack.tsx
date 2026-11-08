@@ -30,14 +30,14 @@ export default function TechStack() {
         {/* Section Header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono text-[#646478] dark:text-[#8E8EA2] bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 mb-2.5">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 mb-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" />
                 <span>Active ecosystem</span>
               </div>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white">
                 Technical Stack
               </h2>
-              <p className="text-sm sm:text-base text-[#646478] dark:text-[#8E8EA2] mt-1.5 max-w-2xl">
+              <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-400 mt-1.5 max-w-2xl">
                 Engineered with modern mobile runtimes, reactive web frameworks, and low-latency data layers.
               </p>
             </div>

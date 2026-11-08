@@ -49,7 +49,7 @@ export default function BenchoSegmentedControl({
               className={`relative px-3.5 py-1.5 rounded-full text-xs font-medium transition-colors focus:outline-none cursor-pointer ${
                 isSelected
                   ? "text-[#1C1C24] dark:text-white"
-                  : "text-[#646478] dark:text-[#8E8EA2] hover:text-[#1C1C24] dark:hover:text-white"
+                  : "text-neutral-700 dark:text-neutral-300 hover:text-[#1C1C24] dark:hover:text-white"
               }`}
             >
               {isSelected && (
@@ -70,7 +70,7 @@ export default function BenchoSegmentedControl({
                     className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
                       isSelected
                         ? "bg-neutral-100 dark:bg-neutral-800 text-[#E11D48] dark:text-[#FB7185] font-semibold"
-                        : "text-[#8E8EA2] dark:text-[#646478]"
+                        : "text-neutral-600 dark:text-neutral-400"
                     }`}
                   >
                     {opt.count}

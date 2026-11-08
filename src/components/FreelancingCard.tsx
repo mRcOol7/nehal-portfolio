@@ -28,7 +28,7 @@ export default function FreelancingCard() {
 
       <ScrolltideGlassLens className="p-6 sm:p-8 lg:p-10">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-8">
-          <p className="text-sm sm:text-base md:text-lg text-[#3E3E4E] dark:text-[#C4C4D4] leading-relaxed max-w-2xl">
+          <p className="text-sm sm:text-base md:text-lg text-neutral-800 dark:text-neutral-200 leading-relaxed max-w-2xl">
             Specializing in Native Android and Full-Stack Web Development.
             Available for engineering roles, production web & mobile builds, and technical collaboration.
           </p>
@@ -36,7 +36,7 @@ export default function FreelancingCard() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 shrink-0">
             <button
               onClick={handleCopyEmail}
-              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-3 rounded-full bg-white/80 dark:bg-[#14141B]/80 hover:bg-white dark:hover:bg-[#1E1E28] border border-neutral-300/80 dark:border-neutral-700/80 text-[#1C1C24] dark:text-white text-xs sm:text-sm font-medium transition-all shadow-sm"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-3 rounded-full bg-white/80 dark:bg-[#14141B]/80 hover:bg-white dark:hover:bg-[#1E1E28] border border-neutral-300 dark:border-neutral-700 text-[#1C1C24] dark:text-white text-xs sm:text-sm font-medium transition-all shadow-sm"
               aria-label="Copy email address"
             >
               {copied ? (
@@ -46,7 +46,7 @@ export default function FreelancingCard() {
                 </>
               ) : (
                 <>
-                  <Copy className="w-4 h-4 text-[#646478] dark:text-[#A1A1B2]" />
+                  <Copy className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
                   <span>Copy Email</span>
                 </>
               )}

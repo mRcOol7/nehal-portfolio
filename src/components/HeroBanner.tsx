@@ -105,7 +105,7 @@ export default function HeroBanner() {
           <span className="w-0.5 h-5 sm:h-6 lg:h-7 bg-[#E11D48] ml-1.5 animate-pulse" />
         </div>
 
-        <p className="text-sm sm:text-base md:text-lg text-[#646478] dark:text-[#8E8EA2] mt-1.5 font-medium max-w-2xl">
+        <p className="text-sm sm:text-base md:text-lg text-neutral-700 dark:text-neutral-400 mt-1.5 font-medium max-w-2xl">
           {PORTFOLIO_DATA.personal.location} · Available for opportunities
         </p>
       </div>

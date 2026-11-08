@@ -37,7 +37,7 @@ export default function ExperienceSection() {
                       </span>
                     )}
                   </div>
-                  <p className="text-xs sm:text-sm text-[#646478] dark:text-[#8E8EA2] mt-0.5 flex flex-wrap items-center gap-1.5">
+                  <p className="text-xs sm:text-sm text-neutral-700 dark:text-neutral-400 mt-0.5 flex flex-wrap items-center gap-1.5">
                     <span className="font-semibold text-[#1C1C24] dark:text-white">{exp.company}</span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
@@ -48,11 +48,11 @@ export default function ExperienceSection() {
                 </div>
 
                 <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-3 shrink-0 pt-1 sm:pt-0">
-                  <span className="text-xs sm:text-sm font-medium text-[#646478] dark:text-[#8E8EA2]">
+                  <span className="text-xs sm:text-sm font-medium text-neutral-700 dark:text-neutral-400">
                     {exp.period}
                   </span>
                   <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center text-[#646478] dark:text-[#8E8EA2] transition-transform duration-200 ${
+                    className={`w-6 h-6 rounded-full flex items-center justify-center text-neutral-700 dark:text-neutral-400 transition-transform duration-200 ${
                       isExpanded ? "rotate-180" : ""
                     }`}
                   >
@@ -67,7 +67,7 @@ export default function ExperienceSection() {
                     {exp.contributions.map((point, idx) => (
                       <li
                         key={idx}
-                        className="text-xs sm:text-sm text-[#3E3E4E] dark:text-[#C4C4D4] flex items-start gap-2.5 leading-relaxed"
+                        className="text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 flex items-start gap-2.5 leading-relaxed"
                       >
                         <span className="text-[#E11D48] mt-1 shrink-0">•</span>
                         <span>{point}</span>

@@ -189,7 +189,7 @@ export default function SkiperDynamicIsland() {
                   <span className="hidden sm:inline-block h-3.5 w-px bg-neutral-200 dark:bg-neutral-800 shrink-0" />
 
                   {/* Desktop Navigation Links */}
-                  <nav className="hidden md:flex items-center gap-3.5 text-xs font-medium text-[#646478] dark:text-[#A1A1B2]">
+                  <nav className="hidden md:flex items-center gap-3.5 text-xs font-medium text-neutral-700 dark:text-neutral-300">
                     {navLinks.slice(1).map((link) => (
                       <a
                         key={link.href}
