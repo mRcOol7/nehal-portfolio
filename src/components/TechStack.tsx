@@ -46,6 +46,7 @@ export default function TechStack() {
           href={PORTFOLIO_DATA.personal.resumeUrl}
           target="_blank"
           rel="noopener noreferrer"
+          suppressHydrationWarning
           className="inline-flex items-center gap-1 text-xs font-mono text-[#E11D48] dark:text-[#FB7185] hover:underline whitespace-nowrap self-start sm:self-auto"
         >
           <span>Full Resume Specs</span>
