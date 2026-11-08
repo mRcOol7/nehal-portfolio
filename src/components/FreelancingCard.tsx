@@ -62,6 +62,6 @@ export default function FreelancingCard() {
           </div>
         </div>
       </ScrolltideGlassLens>
-        </section >
-        );
+    </section >
+  );
 }

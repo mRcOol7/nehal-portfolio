@@ -102,15 +102,15 @@ export default function WhoIsNehal() {
   };
 
   return (
-    <section ref={sectionRef} id="about" className="w-full mb-12 sm:mb-16">
-      <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-5 sm:mb-6">
-        Who is Nehal?
-      </h2>
+        <section ref={sectionRef} id="about" className="w-full mb-12 sm:mb-16">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-5 sm:mb-6">
+            Who is Nehal?
+          </h2>
 
       {/* Professional Summary with Interactive Karaoke Scroll Scrub */}
       <div
         ref={textRef}
-        className="space-y-3 sm:space-y-4 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed font-normal mb-8 sm:mb-10 max-w-5xl"
+        className="space-y-4 sm:space-y-5 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed font-normal mb-8 sm:mb-12 w-full"
       >
         <p>
           {renderScrubWords("I am a")}
@@ -132,8 +132,8 @@ export default function WhoIsNehal() {
         </p>
       </div>
 
-      {/* Key Achievements Grid directly from Resume */}
-      <div className="mb-8 sm:mb-10">
+      {/* Key Achievements Grid directly from Resume - Balanced 2-Column Full-Width Bento */}
+      <div className="mb-8 sm:mb-12">
         <div className="flex items-center gap-2 mb-4">
           <Award className="w-4 h-4 text-[#E11D48] shrink-0" />
           <h3 className="text-xs font-mono tracking-wider text-[#646478] dark:text-[#8E8EA2]">
@@ -141,7 +141,7 @@ export default function WhoIsNehal() {
           </h3>
         </div>
 
-        <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 w-full">
           {PORTFOLIO_DATA.achievements.map((item) => {
             const match = item.metric.match(/^([\d.]+)(.*)$/);
             const val = match ? parseFloat(match[1]) : 0;
@@ -151,52 +151,54 @@ export default function WhoIsNehal() {
             return (
               <div
                 key={item.title}
-                className="milestone-card p-3.5 sm:p-4 rounded-xl dashed-container bg-white/50 dark:bg-[#14141B]/40 hover:bg-white dark:hover:bg-[#181824] transition-colors"
+                className="milestone-card p-5 sm:p-7 rounded-2xl dashed-container bg-white/50 dark:bg-[#14141B]/40 hover:bg-white dark:hover:bg-[#181824] transition-colors flex flex-col justify-between"
               >
-                <div className="text-base sm:text-lg font-serif font-bold text-[#E11D48] dark:text-[#FB7185] mb-1">
-                  {match ? (
-                    <VengeanceCounter
-                      value={val}
-                      decimals={decimals}
-                      suffix={suffix}
-                      duration={2.2}
-                      className="font-serif font-bold"
-                    />
-                  ) : (
-                    item.metric
-                  )}
+                <div>
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#E11D48] dark:text-[#FB7185] mb-2">
+                    {match ? (
+                      <VengeanceCounter
+                        value={val}
+                        decimals={decimals}
+                        suffix={suffix}
+                        duration={2.2}
+                        className="font-serif font-bold"
+                      />
+                    ) : (
+                      item.metric
+                    )}
+                  </div>
+                  <h4 className="text-sm sm:text-base font-bold text-[#1C1C24] dark:text-white mb-2">
+                    {item.title}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#646478] dark:text-[#8E8EA2] leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <h4 className="text-xs sm:text-sm font-bold text-[#1C1C24] dark:text-white mb-1.5">
-                  {item.title}
-                </h4>
-                <p className="text-xs text-[#646478] dark:text-[#8E8EA2] leading-relaxed">
-                  {item.description}
-                </p>
               </div>
             );
           })}
         </div>
       </div>
 
-      {/* Education & Certifications Row */}
-      <div className="p-4 sm:p-5 rounded-2xl dashed-container bg-neutral-50/60 dark:bg-[#14141B]/30">
-        <div className="flex items-center gap-2 mb-3">
+      {/* Education & Certifications Row - Full-Width Balanced Grid */}
+      <div className="p-6 sm:p-8 rounded-2xl dashed-container bg-neutral-50/60 dark:bg-[#14141B]/30 w-full">
+        <div className="flex items-center gap-2 mb-4">
           <GraduationCap className="w-4 h-4 text-[#1C1C24] dark:text-white" />
-            <h3 className="text-xs font-mono tracking-wider text-[#646478] dark:text-[#8E8EA2]">
-              Education &amp; background
-            </h3>
+          <h3 className="text-xs font-mono tracking-wider text-[#646478] dark:text-[#8E8EA2]">
+            Education &amp; background
+          </h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 divide-y sm:divide-y-0 sm:divide-x divide-dashed divide-neutral-200 dark:divide-neutral-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 divide-y md:divide-y-0 md:divide-x divide-dashed divide-neutral-200 dark:divide-neutral-800">
           {PORTFOLIO_DATA.education.map((edu, idx) => (
-            <div key={edu.institution} className={idx > 0 ? "pt-3 sm:pt-0 sm:pl-4" : ""}>
-              <h4 className="text-sm font-bold text-[#1C1C24] dark:text-white">
+            <div key={edu.institution} className={idx > 0 ? "pt-4 md:pt-0 md:pl-6" : ""}>
+              <h4 className="text-base font-bold text-[#1C1C24] dark:text-white">
                 {edu.institution}
               </h4>
-              <p className="text-xs text-[#3E3E4E] dark:text-[#C4C4D4] mt-0.5">
+              <p className="text-xs sm:text-sm text-[#3E3E4E] dark:text-[#C4C4D4] mt-1">
                 {edu.degree}
               </p>
-              <div className="flex items-center gap-3 text-[11px] font-mono text-[#646478] dark:text-[#8E8EA2] mt-1">
+              <div className="flex items-center gap-3 text-xs font-mono text-[#646478] dark:text-[#8E8EA2] mt-2">
                 <span>{edu.period}</span>
                 <span>•</span>
                 <span className="text-[#E11D48] dark:text-[#FB7185] font-semibold">{edu.grade}</span>

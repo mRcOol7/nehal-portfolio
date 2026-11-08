@@ -33,8 +33,8 @@ export default function Home() {
         {/* Scrolltide Cinematic Tide Navigation & Depth Tracker (2xl screens) */}
         <ScrolltideTracker />
 
-        {/* Central Content Container - Expansive Full-Screen Widescreen Architecture */}
-        <main className="w-full max-w-[1440px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-16 sm:pt-24 pb-12 sm:pb-20 border-x border-dashed border-[#DCE0E8]/70 dark:border-[#272736]/70 bg-[#FAFAFC]/60 dark:bg-[#0C0C10]/60 min-h-screen transition-all duration-200">
+          {/* Central Content Container - Expansive Full-Screen Widescreen Architecture */}
+          <main className="w-full max-w-[1440px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-16 sm:pt-24 pb-12 sm:pb-20 border-x border-dashed border-[#DCE0E8]/70 dark:border-[#272736]/70 bg-[#FAFAFC]/60 dark:bg-[#0C0C10]/60 min-h-screen transition-all duration-200">
             {/* Animated Hero Banner with landscape header & animated circular avatar */}
             <HeroBanner />
 

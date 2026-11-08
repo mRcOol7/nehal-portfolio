@@ -102,7 +102,7 @@ export default function InteractiveAvatar({
       if (
         lastDirIndex !== -1 &&
         Math.abs(normalizeAngle(angle - lastDirIndex * STEP_ANGLE)) <
-          STEP_ANGLE / 2 + ANGLE_HYSTERESIS
+        STEP_ANGLE / 2 + ANGLE_HYSTERESIS
       ) {
         return;
       }
