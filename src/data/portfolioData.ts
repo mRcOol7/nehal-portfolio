@@ -179,7 +179,8 @@ export const PORTFOLIO_DATA = {
       ],
       metrics: "Sub-200ms latency · OAuth 2.0 & RBAC",
       links: {
-        github: "https://github.com/mRcOol7",
+        demo: "https://esg-internship.vercel.app/",
+        github: "https://github.com/mRcOol7/esg-next-ts",
       },
     },
     {
@@ -196,7 +197,8 @@ export const PORTFOLIO_DATA = {
       ],
       metrics: "60% faster turnaround · Vector PDF engine",
       links: {
-        github: "https://github.com/mRcOol7",
+        demo: "https://internship-esg.vercel.app/",
+        github: "https://github.com/mRcOol7/internship",
       },
     },
     {
