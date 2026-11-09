@@ -312,10 +312,6 @@ export default function LanyardBadgeHero({ onScrollDown }: LanyardBadgeHeroProps
     };
     flipTriggerRef.current = triggerFlip;
 
-    const initTimer = setTimeout(() => {
-      V.x = 120;
-    }, 450);
-
     // --- ANIMATION FRAME ---
     let animId: number;
     let lastTime = performance.now();
@@ -353,7 +349,7 @@ export default function LanyardBadgeHero({ onScrollDown }: LanyardBadgeHeroProps
 
       if (domCard && domSpin) {
         // Integer pixel-snapping to prevent text antialiasing blur in Chrome
-        const screenX = Math.round(W / 2 + P.x);
+        const screenX = Math.round(P.x);
         const screenY = Math.round(H / 2 - P.y);
         domCard.style.transform = `translate3d(${screenX}px, ${screenY}px, 0) rotate(${(-theta).toFixed(4)}rad)`;
         domSpin.style.transform = `rotateX(${(-tiltX).toFixed(4)}rad) rotateY(${(flip + tiltY).toFixed(4)}rad)`;
@@ -492,7 +488,6 @@ export default function LanyardBadgeHero({ onScrollDown }: LanyardBadgeHeroProps
     window.addEventListener("resize", onResize);
 
     return () => {
-      clearTimeout(initTimer);
       cancelAnimationFrame(animId);
       window.removeEventListener("mousedown", onPointerDown);
       window.removeEventListener("mousemove", onPointerMove);
@@ -540,10 +535,11 @@ export default function LanyardBadgeHero({ onScrollDown }: LanyardBadgeHeroProps
             className="absolute inset-0 w-full h-full pointer-events-auto cursor-grab active:cursor-grabbing z-1"
           />
 
-          {/* 3D DOM Badge projected on top */}
+          {/* 3D DOM Badge projected on top - Centered by default on frame 0 */}
           <div
             ref={cardRef}
-            className="corp-card-root absolute left-0 top-0 z-2 w-0 h-0 pointer-events-none [perspective:1400px] will-change-transform"
+            className="corp-card-root absolute left-1/2 top-0 z-2 w-0 h-0 pointer-events-none [perspective:1400px] will-change-transform"
+            style={{ transform: "translate3d(0px, 90px, 0)" }}
           >
             {/* Real Metal Lanyard Clip */}
             <div className="absolute -left-[18px] -top-[24px] w-[36px] h-[52px] rounded-xl z-5 bg-gradient-to-b from-[#565C70] via-[#2A2E3D] to-[#12141C] border border-white/20 shadow-[0_6px_16px_rgba(0,0,0,0.6)] after:content-[''] after:absolute after:left-1/2 after:top-[16px] after:w-[12px] after:h-[18px] after:-translate-x-1/2 after:bg-[#07090E] after:rounded-md after:border after:border-white/15" />
