@@ -519,13 +519,13 @@ export default function LanyardBadgeHero({ onScrollDown }: LanyardBadgeHeroProps
       className="relative w-full h-screen min-h-[640px] overflow-hidden flex flex-col items-center justify-between py-6 px-4 select-none bg-[#0B0C12] text-[#F3F5FC]"
     >
           {/* Background Hero Titles (Quiet architectural backdrop) */}
-          <div className="relative z-0 text-center mt-3 sm:mt-5 pointer-events-none select-none">
-            <h1 className="font-serif font-semibold text-3xl sm:text-6xl md:text-7xl uppercase tracking-wider text-white/[0.08]">
+          <div className="relative z-0 text-center mt-3 sm:mt-5 pointer-events-none select-none" aria-hidden="true">
+            <div className="font-serif font-semibold text-3xl sm:text-6xl md:text-7xl uppercase tracking-wider text-white/[0.08]">
               NEHAL CHAUHAN
-            </h1>
-              <p className="text-xs sm:text-sm font-mono tracking-widest uppercase text-neutral-400/80 mt-2 font-medium">
-                Software Engineer • Android &amp; Full-Stack
-              </p>
+            </div>
+            <p className="text-xs sm:text-sm font-mono tracking-widest uppercase text-neutral-400/80 mt-2 font-medium">
+              Software Engineer • Android &amp; Full-Stack
+            </p>
           </div>
 
           {/* WebGL Canvas for lanyard ribbon simulation */}
