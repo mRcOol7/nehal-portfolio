@@ -141,7 +141,7 @@ export default function WhoIsNehal() {
           </h3>
         </div>
 
-        <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 lg:gap-8 w-full">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 w-full">
           {PORTFOLIO_DATA.achievements.map((item) => {
             const match = item.metric.match(/^([\d.]+)(.*)$/);
             const val = match ? parseFloat(match[1]) : 0;
