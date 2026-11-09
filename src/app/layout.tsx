@@ -39,6 +39,15 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Nehal Chauhan" }],
   creator: "Nehal Chauhan",
+  icons: {
+    icon: [
+      { url: "/icon.png", sizes: "256x256", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      { url: "/icon.png", sizes: "256x256", type: "image/png" },
+    ],
+  },
 };
 
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
