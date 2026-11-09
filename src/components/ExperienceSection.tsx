@@ -23,8 +23,11 @@ export default function ExperienceSection() {
           return (
             <div key={exp.id} className="p-4 sm:p-6 transition-colors">
               <button
+                type="button"
                 onClick={() => toggle(exp.id)}
-                className="w-full flex flex-col sm:flex-row sm:items-center justify-between text-left gap-2 sm:gap-4 focus:outline-none group"
+                aria-expanded={isExpanded}
+                aria-controls={`exp-content-${exp.id}`}
+                className="w-full flex flex-col sm:flex-row sm:items-center justify-between text-left gap-2 sm:gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E11D48] rounded-lg group cursor-pointer"
               >
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
@@ -61,8 +64,11 @@ export default function ExperienceSection() {
                 </div>
               </button>
 
-              {isExpanded && (
-                <div className="mt-4 pt-3 border-t border-neutral-100 dark:border-neutral-800/60 animate-in fade-in duration-200">
+              {isExpanded ? (
+                <div
+                  id={`exp-content-${exp.id}`}
+                  className="mt-4 pt-3 border-t border-neutral-100 dark:border-neutral-800/60 animate-in fade-in duration-200"
+                >
                   <ul className="space-y-2 mb-4">
                     {exp.contributions.map((point, idx) => (
                       <li
@@ -86,7 +92,7 @@ export default function ExperienceSection() {
                     ))}
                   </div>
                 </div>
-              )}
+              ) : null}
             </div>
           );
         })}

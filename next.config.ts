@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
+  experimental: {
+    optimizePackageImports: ["lucide-react", "framer-motion"],
+  },
   turbopack: {
     rules: {
       "*.css": {

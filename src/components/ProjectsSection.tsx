@@ -7,35 +7,37 @@ import AnimasterSpotlightCard from "./AnimasterSpotlightCard";
 import BenchoMagnetic from "./BenchoMagnetic";
 import BenchoSegmentedControl from "./BenchoSegmentedControl";
 
+const FILTER_OPTIONS = [
+  { id: "all", label: "All Works", count: PORTFOLIO_DATA.projects.length },
+  {
+    id: "production",
+    label: "Production",
+    count: PORTFOLIO_DATA.projects.filter((p) =>
+      p.category.toLowerCase().includes("production")
+    ).length,
+  },
+  {
+    id: "fullstack",
+    label: "Full-Stack",
+    count: PORTFOLIO_DATA.projects.filter((p) =>
+      p.category.toLowerCase().includes("full-stack")
+    ).length,
+  },
+  {
+    id: "webgl",
+    label: "3D & WebGL",
+    count: PORTFOLIO_DATA.projects.filter(
+      (p) =>
+        p.category.toLowerCase().includes("personal") ||
+        p.stack.includes("Three.js")
+    ).length,
+  },
+];
+
 export default function ProjectsSection() {
   const [selectedFilter, setSelectedFilter] = useState("all");
 
-  const filterOptions = [
-    { id: "all", label: "All Works", count: PORTFOLIO_DATA.projects.length },
-    {
-      id: "production",
-      label: "Production",
-      count: PORTFOLIO_DATA.projects.filter((p) =>
-        p.category.toLowerCase().includes("production")
-      ).length,
-    },
-    {
-      id: "fullstack",
-      label: "Full-Stack",
-      count: PORTFOLIO_DATA.projects.filter((p) =>
-        p.category.toLowerCase().includes("full-stack")
-      ).length,
-    },
-    {
-      id: "webgl",
-      label: "3D & WebGL",
-      count: PORTFOLIO_DATA.projects.filter(
-        (p) =>
-          p.category.toLowerCase().includes("personal") ||
-          p.stack.includes("Three.js")
-      ).length,
-    },
-  ];
+  const filterOptions = FILTER_OPTIONS;
 
   const filteredProjects = PORTFOLIO_DATA.projects.filter((project) => {
     if (selectedFilter === "all") return true;
@@ -135,7 +137,7 @@ export default function ProjectsSection() {
                               </span>
 
                               <div className="flex items-center gap-2 sm:gap-3">
-                                {project.links.github && (
+                                {project.links.github ? (
                                   <BenchoMagnetic strength={0.3}>
                                     <a
                                       href={project.links.github}
@@ -152,8 +154,8 @@ export default function ProjectsSection() {
                                       </svg>
                                     </a>
                                   </BenchoMagnetic>
-                                )}
-                                {project.links.demo && (
+                                ) : null}
+                                {project.links.demo ? (
                                   <BenchoMagnetic strength={0.3}>
                                     <a
                                       href={project.links.demo}
@@ -166,7 +168,7 @@ export default function ProjectsSection() {
                                       <ArrowUpRight className="w-3.5 h-3.5" />
                                     </a>
                                   </BenchoMagnetic>
-                                )}
+                                ) : null}
                               </div>
                             </div>
                           </AnimasterSpotlightCard>
