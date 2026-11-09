@@ -24,17 +24,18 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nehal Chauhan — Frontend Developer & Creative Technologist",
+  title: "Nehal Chauhan — Software Engineer · Native Android & Full-Stack Web",
   description:
-    "Personal portfolio of Nehal Chauhan. I design and build products that feel effortless to use and enjoyable to interact with. Specializing in frontend architecture, React Native, and creative web technologies.",
+    "Personal developer portfolio of Nehal Chauhan. Specializing in Native Android (Java), modern React/Next.js platforms, distributed caching, and high-performance web experiences.",
   keywords: [
     "Nehal Chauhan",
-    "Frontend Developer",
-    "React Native Developer",
-    "Creative Technologist",
-    "Portfolio",
+    "Software Engineer",
+    "Native Android Developer",
+    "Full-Stack Web Developer",
+    "React",
     "Next.js",
     "TypeScript",
+    "Portfolio",
   ],
   authors: [{ name: "Nehal Chauhan" }],
   creator: "Nehal Chauhan",
@@ -54,6 +55,10 @@ export default function RootLayout({
       className={`dark ${playfair.variable} ${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}
     >
       <head suppressHydrationWarning>
+        <meta name="page-type" content="software" />
+        <meta name="site-kind" content="software" />
+        <meta name="theme-color" content="#0C0C10" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#FAFAFC" media="(prefers-color-scheme: light)" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
