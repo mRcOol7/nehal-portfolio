@@ -28,6 +28,22 @@
 
 * {
   box-sizing: border-box;
+  caret-color: var(--accent);
+}
+
+::selection {
+  background-color: rgba(225, 29, 72, 0.18);
+  color: #1C1C24;
+}
+
+.dark ::selection {
+  background-color: rgba(251, 113, 133, 0.28);
+  color: #FFFFFF;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 html {
@@ -68,6 +84,11 @@ body {
 }
 
 /* Custom scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140, 140, 160, 0.35) transparent;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }

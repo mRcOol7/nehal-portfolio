@@ -136,8 +136,8 @@ export default function WhoIsNehal() {
       <div className="mb-10 sm:mb-14">
         <div className="flex items-center gap-2 mb-4 sm:mb-5">
           <Award className="w-4 h-4 text-[#E11D48] shrink-0" />
-          <h3 className="text-xs sm:text-sm font-mono tracking-wider text-neutral-600 dark:text-neutral-400">
-            Key milestones &amp; impact
+          <h3 className="text-sm sm:text-base font-semibold text-neutral-900 dark:text-neutral-200">
+            Key Milestones &amp; Impact
           </h3>
         </div>
 

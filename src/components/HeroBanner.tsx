@@ -103,7 +103,7 @@ export default function HeroBanner() {
         {/* Dynamic Typewriter Role */}
         <div className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-serif text-[#E11D48] dark:text-[#FB7185] font-semibold min-h-[2rem] sm:min-h-[2.5rem] lg:min-h-[3rem] flex items-center mt-1 sm:mt-2">
           <span>{displayedText}</span>
-          <span className="w-0.5 h-5 sm:h-6 lg:h-7 bg-[#E11D48] ml-1.5 animate-pulse" />
+          <span className="w-0.5 h-5 sm:h-6 lg:h-7 bg-[#E11D48] ml-1.5 animate-pulse motion-reduce:animate-none" />
         </div>
 
         <p className="text-sm sm:text-base md:text-lg text-neutral-700 dark:text-neutral-400 mt-1.5 font-medium max-w-2xl">

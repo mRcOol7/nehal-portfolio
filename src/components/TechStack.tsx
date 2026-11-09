@@ -4,26 +4,29 @@ import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import AnimasterMarquee from "./AnimasterMarquee";
 import { ArrowRight } from "lucide-react";
 
-export default function TechStack() {
-  const engineeringStack = [
-    { name: "Native Android", badge: "Java SDK" },
-    { name: "React 19 & Next.js", badge: "App Router" },
-    { name: "TypeScript", badge: "ES6+ Strict" },
-    { name: "Three.js", badge: "WebGL 3D" },
-    { name: "Node.js & Express", badge: "Server Runtimes" },
-    { name: "Tailwind CSS", badge: "Modern UI" },
-    { name: "TanStack Router", badge: "Type-Safe Routing" },
-  ];
+const ENGINEERING_STACK = [
+  { name: "Native Android", badge: "Java SDK" },
+  { name: "React 19 & Next.js", badge: "App Router" },
+  { name: "TypeScript", badge: "ES6+ Strict" },
+  { name: "Three.js", badge: "WebGL 3D" },
+  { name: "Node.js & Express", badge: "Server Runtimes" },
+  { name: "Tailwind CSS", badge: "Modern UI" },
+  { name: "TanStack Router", badge: "Type-Safe Routing" },
+];
 
-  const systemsAndCloudStack = [
-    { name: "Redis & TiDB", badge: "Distributed Cache" },
-    { name: "SQL & MySQL", badge: "Relational DB" },
-    { name: "MongoDB", badge: "Document Store" },
-    { name: "RESTful APIs", badge: "Architecture" },
-    { name: "OAuth 2.0 & JWT", badge: "Auth & Security" },
-    { name: "Postman & API QA", badge: "Testing & Validation" },
-    { name: "Vercel & Git", badge: "CI/CD & Cloud" },
-  ];
+const SYSTEMS_AND_CLOUD_STACK = [
+  { name: "Redis & TiDB", badge: "Distributed Cache" },
+  { name: "SQL & MySQL", badge: "Relational DB" },
+  { name: "MongoDB", badge: "Document Store" },
+  { name: "RESTful APIs", badge: "Architecture" },
+  { name: "OAuth 2.0 & JWT", badge: "Auth & Security" },
+  { name: "Postman & API QA", badge: "Testing & Validation" },
+  { name: "Vercel & Git", badge: "CI/CD & Cloud" },
+];
+
+export default function TechStack() {
+  const engineeringStack = ENGINEERING_STACK;
+  const systemsAndCloudStack = SYSTEMS_AND_CLOUD_STACK;
 
   return (
       <section id="tech-stack" className="w-full mb-14 sm:mb-18">
