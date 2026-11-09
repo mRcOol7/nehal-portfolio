@@ -35,7 +35,7 @@ export default function ExperienceSection() {
                       {exp.role}
                     </h3>
                     {exp.isCurrent && (
-                      <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-mono font-medium">
+                      <span className="px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-mono font-medium">
                         Current
                       </span>
                     )}

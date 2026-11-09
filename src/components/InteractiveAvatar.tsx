@@ -198,7 +198,7 @@ export default function InteractiveAvatar({
         suppressHydrationWarning
         aria-label={`Boop ${label}`}
         title="Move your mouse to watch Nehal follow your cursor! Click to Boop!"
-        className="relative block rounded-full p-1 bg-white dark:bg-[#0C0C10] shadow-xl overflow-hidden cursor-pointer focus:outline-none transition-transform hover:scale-[1.03] active:scale-[0.97] w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36"
+        className="relative block rounded-full p-1 bg-white dark:bg-[#0C0C10] shadow-xl overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E11D48] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-black transition-transform hover:scale-[1.03] active:scale-[0.97] w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36"
         style={{
           touchAction: "manipulation",
         }}

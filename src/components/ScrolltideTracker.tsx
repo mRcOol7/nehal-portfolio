@@ -85,7 +85,7 @@ export default function ScrolltideTracker() {
     >
       {/* Scroll Depth Counter Badge */}
       <motion.div
-        className="mb-3 px-2 py-0.5 rounded-full bg-white/70 dark:bg-[#12131A]/80 backdrop-blur-md border border-neutral-200/80 dark:border-neutral-800/80 text-[10px] font-mono text-neutral-600 dark:text-neutral-300 shadow-xs flex items-center gap-1.5"
+        className="mb-3 px-2 py-0.5 rounded-md bg-white/70 dark:bg-[#12131A]/80 backdrop-blur-md border border-neutral-200/80 dark:border-neutral-800/80 text-[10px] font-mono text-neutral-600 dark:text-neutral-300 shadow-xs flex items-center gap-1.5"
         title="Scroll Depth"
       >
         <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48] animate-pulse" />

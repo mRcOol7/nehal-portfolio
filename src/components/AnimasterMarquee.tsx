@@ -39,7 +39,7 @@ export default function AnimasterMarquee({
       }}
     >
       <div
-        className={`flex shrink-0 items-center gap-3 pr-3 py-1 animate-animaster-marquee ${pauseOnHover ? "hover:[animation-play-state:paused]" : ""
+        className={`flex shrink-0 items-center gap-3 pr-3 py-1 animate-animaster-marquee motion-reduce:animate-none ${pauseOnHover ? "hover:[animation-play-state:paused]" : ""
           }`}
         style={
           {
@@ -53,7 +53,7 @@ export default function AnimasterMarquee({
 
       <div
         aria-hidden="true"
-        className={`flex shrink-0 items-center gap-3 pr-3 py-1 animate-animaster-marquee ${pauseOnHover ? "hover:[animation-play-state:paused]" : ""
+        className={`flex shrink-0 items-center gap-3 pr-3 py-1 animate-animaster-marquee motion-reduce:animate-none ${pauseOnHover ? "hover:[animation-play-state:paused]" : ""
           }`}
         style={
           {

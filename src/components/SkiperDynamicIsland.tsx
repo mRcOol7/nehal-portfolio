@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -36,6 +36,32 @@ export default function SkiperDynamicIsland() {
   const [copied, setCopied] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
   const [isDark, setIsDark] = useState(true);
+  const islandRef = useRef<HTMLDivElement>(null);
+
+  // Close expanded island on Escape or click outside
+  useEffect(() => {
+    if (!isExpanded) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsExpanded(false);
+      }
+    };
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (islandRef.current && !islandRef.current.contains(e.target as Node)) {
+        setIsExpanded(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isExpanded]);
 
   // Synchronize Dark / Light Theme
   useEffect(() => {
@@ -128,6 +154,7 @@ export default function SkiperDynamicIsland() {
       {isVisible && (
         <div className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-auto select-none max-w-[96vw]">
           <motion.div
+            ref={islandRef}
             initial={{ y: -70, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -70, opacity: 0 }}
