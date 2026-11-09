@@ -11,8 +11,8 @@
 :root {
   --bg-primary: #FAFAFC;
   --bg-card: #FFFFFF;
-  --text-main: #1C1C24;
-  --text-muted: #646478;
+  --text-main: #18181B;
+  --text-muted: #525266;
   --border-dashed: #DCE0E8;
   --accent: #E11D48;
 }
@@ -21,7 +21,7 @@
   --bg-primary: #0C0C10;
   --bg-card: #14141B;
   --text-main: #EDEDF2;
-  --text-muted: #8E8EA2;
+  --text-muted: #9E9EB2;
   --border-dashed: #272736;
   --accent: #FB7185;
 }

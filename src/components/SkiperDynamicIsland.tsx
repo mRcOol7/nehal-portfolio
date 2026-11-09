@@ -217,7 +217,7 @@ export default function SkiperDynamicIsland() {
                   {/* Sun/Moon Theme Toggle */}
                   <button
                     onClick={toggleTheme}
-                    className="p-1 rounded-full text-neutral-500 dark:text-neutral-400 hover:text-[#1C1C24] dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors shrink-0"
+                    className="p-1 rounded-full text-neutral-700 dark:text-neutral-300 hover:text-[#1C1C24] dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors shrink-0"
                     aria-label="Toggle theme"
                   >
                     {isDark ? (
@@ -270,7 +270,7 @@ export default function SkiperDynamicIsland() {
                     <div className="flex items-center gap-1.5">
                       <button
                         onClick={toggleTheme}
-                        className="p-1.5 rounded-full text-neutral-500 hover:text-neutral-800 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+                        className="p-1.5 rounded-full text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
                         aria-label="Toggle theme"
                       >
                         {isDark ? (
