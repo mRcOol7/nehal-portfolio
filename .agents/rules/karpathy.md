@@ -29,3 +29,4 @@ Derived from Andrej Karpathy's observations on reducing common LLM coding mistak
 - **Define success criteria. Loop until verified.**
 - Formulate each task with clear verification steps.
 - Always run available typechecks, builds, or browser verifications before declaring completion.
+

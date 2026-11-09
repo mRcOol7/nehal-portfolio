@@ -24,6 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.nehalchauhan.site"),
   title: "Nehal Chauhan — Software Engineer · Native Android & Full-Stack Web",
   description:
     "Personal developer portfolio of Nehal Chauhan. Specializing in Native Android (Java), modern React/Next.js platforms, distributed caching, and high-performance web experiences.",
@@ -39,6 +40,15 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Nehal Chauhan" }],
   creator: "Nehal Chauhan",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.nehalchauhan.site",
+    siteName: "Nehal Chauhan Portfolio",
+    title: "Nehal Chauhan — Software Engineer · Native Android & Full-Stack Web",
+    description:
+      "Personal developer portfolio of Nehal Chauhan. Specializing in Native Android (Java), modern React/Next.js platforms, distributed caching, and high-performance web experiences.",
+  },
   icons: {
     icon: [
       { url: "/icon.png", sizes: "256x256", type: "image/png" },
