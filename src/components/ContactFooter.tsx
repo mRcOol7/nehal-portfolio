@@ -55,11 +55,11 @@ export default function ContactFooter() {
           </div>
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 shrink-0 w-full lg:w-auto">
             {/* One-Click Copy Email Button */}
             <button
               onClick={copyEmail}
-              className="inline-flex items-center justify-between gap-3 px-5 py-3 rounded-xl bg-white dark:bg-[#161620] hover:bg-neutral-50 dark:hover:bg-[#1C1C28] border border-neutral-300 dark:border-neutral-800 text-xs sm:text-sm font-medium text-neutral-900 dark:text-white transition-all shadow-2xs"
+              className="w-full sm:w-auto inline-flex items-center justify-between gap-3 px-5 py-3 rounded-xl bg-white dark:bg-[#161620] hover:bg-neutral-50 dark:hover:bg-[#1C1C28] border border-neutral-300 dark:border-neutral-800 text-xs sm:text-sm font-medium text-neutral-900 dark:text-white transition-all shadow-2xs"
               title="Click to copy email address"
               aria-label="Copy email address"
             >
@@ -77,7 +77,7 @@ export default function ContactFooter() {
             </button>
 
             {/* Social Icons (GitHub & LinkedIn) */}
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-2 w-full sm:w-auto">
               <a
                 href="https://github.com/mRcOol7"
                 target="_blank"
@@ -106,7 +106,10 @@ export default function ContactFooter() {
             </div>
 
             {/* Direct Send Email Trigger */}
-            <VengeanceGlowButton href={`mailto:${PORTFOLIO_DATA.personal.email}`}>
+            <VengeanceGlowButton
+              href={`mailto:${PORTFOLIO_DATA.personal.email}`}
+              className="w-full sm:w-auto"
+            >
               <span>Get in Touch</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </VengeanceGlowButton>

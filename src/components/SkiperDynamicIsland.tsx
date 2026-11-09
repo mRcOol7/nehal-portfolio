@@ -166,7 +166,7 @@ export default function SkiperDynamicIsland() {
               mass: 0.8,
             }}
             className={`relative overflow-hidden rounded-full sm:rounded-3xl border border-neutral-200/80 dark:border-neutral-800/90 bg-white/90 dark:bg-[#12131A]/90 backdrop-blur-xl shadow-2xl text-[#1C1C24] dark:text-[#EDEDF2] transition-colors ${isExpanded
-              ? "!rounded-3xl w-[340px] sm:w-[420px] p-5 cursor-default"
+              ? "!rounded-3xl w-[calc(100vw-32px)] max-w-[420px] p-5 cursor-default"
               : "px-3 sm:px-4 py-2 cursor-pointer hover:border-[#E11D48]/50 hover:shadow-rose-500/10"
               }`}
             onClick={() => !isExpanded && setIsExpanded(true)}
@@ -206,10 +206,10 @@ export default function SkiperDynamicIsland() {
                       href="#badge-hero"
                       onClick={(e) => e.stopPropagation()}
                       title="View 3D Staff Pass"
-                      className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-[10px] font-mono text-neutral-600 dark:text-neutral-300 hover:text-[#E11D48] border border-neutral-200 dark:border-neutral-700 transition-colors"
+                      className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-[10px] font-mono text-neutral-600 dark:text-neutral-300 hover:text-[#E11D48] border border-neutral-200 dark:border-neutral-700 transition-colors"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                      <span className="hidden xs:inline">Pass</span>
+                      <Sparkles className="w-2.5 h-2.5 text-[#E11D48]" />
+                      <span>Pass</span>
                     </a>
                   </div>
 

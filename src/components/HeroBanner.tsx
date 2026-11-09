@@ -62,7 +62,7 @@ export default function HeroBanner() {
         </div>
 
         {/* Action Buttons Aligned on the Right (Stack neatly on narrow screens) */}
-        <div className="flex items-center gap-2.5 sm:gap-4 pb-1 w-full sm:w-auto">
+        <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-2.5 sm:gap-4 pb-1 w-full sm:w-auto">
           <BenchoMagnetic strength={0.25} className="flex-1 sm:flex-initial">
             <a
               href="#projects"
