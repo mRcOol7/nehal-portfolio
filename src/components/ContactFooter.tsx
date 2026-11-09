@@ -45,7 +45,7 @@ export default function ContactFooter() {
             </div>
 
             <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1C1C24] dark:text-white leading-[1.1] mb-4">
-              Let&apos;s build something <span className="text-[#E11D48] dark:text-[#FB7185] italic font-serif">remarkable</span> together.
+              Let&apos;s build something remarkable together.
             </h2>
 
             <p className="text-sm sm:text-base md:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
