@@ -15,12 +15,6 @@ export default function ProjectsSection() {
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div>
-          <div className="flex items-center gap-2 mb-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48] dark:bg-[#FB7185]" />
-            <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">
-              Selected works
-            </span>
-          </div>
           <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
             Featured Projects
           </h2>
@@ -42,10 +36,21 @@ export default function ProjectsSection() {
           <div
             key={project.id}
             onMouseEnter={(e) => {
+              const target = e.target as HTMLElement;
+              if (target.closest("a") || target.closest("button")) {
+                setHoveredProject(null);
+                return;
+              }
               setHoveredProject(project);
               setMousePos({ x: e.clientX, y: e.clientY });
             }}
             onMouseMove={(e) => {
+              const target = e.target as HTMLElement;
+              if (target.closest("a") || target.closest("button")) {
+                setHoveredProject(null);
+                return;
+              }
+              setHoveredProject(project);
               setMousePos({ x: e.clientX, y: e.clientY });
             }}
             onMouseLeave={() => setHoveredProject(null)}
@@ -98,7 +103,17 @@ export default function ProjectsSection() {
                 )}
               </div>
 
-              <div className="flex items-center gap-2 shrink-0">
+              <div
+                className="flex items-center gap-2 shrink-0"
+                onMouseEnter={(e) => {
+                  e.stopPropagation();
+                  setHoveredProject(null);
+                }}
+                onMouseMove={(e) => {
+                  e.stopPropagation();
+                  setHoveredProject(null);
+                }}
+              >
                 {project.links.github && (
                   <a
                     href={project.links.github}
