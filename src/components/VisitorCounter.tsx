@@ -45,7 +45,7 @@ export default function VisitorCounter() {
 
   return (
     <div
-      className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#161622] border border-neutral-300 dark:border-neutral-800 text-[11px] font-mono text-neutral-700 dark:text-neutral-300 shadow-xs select-none"
+      className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white dark:bg-[#161622] border border-neutral-300 dark:border-neutral-800 text-[11px] font-mono text-neutral-700 dark:text-neutral-300 shadow-2xs select-none"
       title="Live unique visitor count"
     >
       <span className="relative flex h-2 w-2">

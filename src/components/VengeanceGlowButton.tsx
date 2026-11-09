@@ -29,11 +29,11 @@ export default function VengeanceGlowButton({
     <motion.div
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.12, ease: "easeOut" }}
-      className={`relative inline-flex items-center justify-center p-[1px] rounded-full group cursor-pointer ${className}`}
+      className={`relative inline-flex items-center justify-center p-[1px] rounded-xl group cursor-pointer ${className}`}
     >
       {/* Button Surface */}
       <span
-      className={`relative inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-medium border transition-colors ${variant === "primary"
+      className={`relative inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium border transition-colors ${variant === "primary"
           ? "bg-[#1C1C24] dark:bg-white text-white dark:text-[#1C1C24] border-neutral-700/80 dark:border-white/20 hover:bg-black dark:hover:bg-neutral-100"
           : "bg-white dark:bg-[#14141B] text-[#1C1C24] dark:text-white border-neutral-300 dark:border-neutral-700 hover:border-[#E11D48]"
         }`}

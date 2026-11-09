@@ -601,7 +601,7 @@ export default function LanyardBadgeHero({ onScrollDown }: LanyardBadgeHeroProps
                     <h2 className="font-sans font-extrabold text-[17px] leading-tight tracking-tight text-white">
                       Nehal Chauhan
                     </h2>
-                    <div className="inline-block mt-0.5 px-2 py-0.5 rounded-full bg-[var(--accent)]/15 border border-[var(--accent)]/30">
+                    <div className="inline-block mt-0.5 px-2 py-0.5 rounded-md bg-[var(--accent)]/15 border border-[var(--accent)]/30">
                       <span className="font-sans font-bold text-[10px] text-[var(--accent)] tracking-wider uppercase">
                         Software Engineer
                       </span>

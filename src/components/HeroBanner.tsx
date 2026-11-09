@@ -67,7 +67,7 @@ export default function HeroBanner() {
             <a
               href="#projects"
               suppressHydrationWarning
-              className="w-full inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-[#1C1C24] hover:bg-black dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-[#1C1C24] text-xs sm:text-sm md:text-base font-medium transition-all shadow-sm group whitespace-nowrap"
+              className="w-full inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-[#1C1C24] hover:bg-black dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-[#1C1C24] text-xs sm:text-sm md:text-base font-medium transition-all shadow-2xs group whitespace-nowrap"
             >
               <span>View Projects</span>
               <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -82,7 +82,7 @@ export default function HeroBanner() {
               rel="noopener noreferrer"
               download="Nehal_Chauhan_Resume.pdf"
               suppressHydrationWarning
-              className="w-full inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white dark:bg-[#14141B] hover:bg-neutral-50 dark:hover:bg-[#1C1C26] border border-neutral-300 dark:border-neutral-700 text-[#1C1C24] dark:text-white text-xs sm:text-sm md:text-base font-medium transition-all shadow-sm group whitespace-nowrap"
+              className="w-full inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-white dark:bg-[#14141B] hover:bg-neutral-50 dark:hover:bg-[#1C1C26] border border-neutral-300 dark:border-neutral-700 text-[#1C1C24] dark:text-white text-xs sm:text-sm md:text-base font-medium transition-all shadow-2xs group whitespace-nowrap"
             >
               <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#E11D48]" />
               <span>Resume</span>

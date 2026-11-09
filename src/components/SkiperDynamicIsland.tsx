@@ -179,7 +179,7 @@ export default function SkiperDynamicIsland() {
                       href="#badge-hero"
                       onClick={(e) => e.stopPropagation()}
                       title="View 3D Staff Pass"
-                      className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[10px] font-mono text-neutral-600 dark:text-neutral-300 hover:text-[#E11D48] border border-neutral-200 dark:border-neutral-700 transition-colors"
+                      className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-[10px] font-mono text-neutral-600 dark:text-neutral-300 hover:text-[#E11D48] border border-neutral-200 dark:border-neutral-700 transition-colors"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                       <span className="hidden xs:inline">Pass</span>
@@ -227,8 +227,8 @@ export default function SkiperDynamicIsland() {
                     )}
                   </button>
 
-                  {/* Expand HUD Pill */}
-                    <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-[11px] font-mono text-[#1C1C24] dark:text-[#EDEDF2] border border-neutral-200 dark:border-neutral-700 shrink-0">
+                  {/* Expand HUD Control */}
+                    <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-[11px] font-mono text-[#1C1C24] dark:text-[#EDEDF2] border border-neutral-200 dark:border-neutral-700 shrink-0">
                       <span className="hidden xs:inline">HUD</span>
                       <ChevronDown className="w-2.5 h-2.5 text-[#646478] dark:text-[#8E8EA2]" />
                     </div>

@@ -53,7 +53,7 @@ export default function Navbar() {
             <a
               href="#badge-hero"
               title="View 3D Staff ID Badge"
-              className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-neutral-200/70 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-[10px] font-mono font-semibold text-neutral-600 dark:text-neutral-300 hover:border-[#E11D48] dark:hover:border-[#E11D48] transition-colors"
+              className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-neutral-200/70 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-[10px] font-mono font-semibold text-neutral-600 dark:text-neutral-300 hover:border-[#E11D48] dark:hover:border-[#E11D48] transition-colors"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span>Pass</span>

@@ -33,10 +33,6 @@ export default function TechStack() {
         {/* Section Header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 mb-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" />
-                <span>Active ecosystem</span>
-              </div>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white">
                 Technical Stack
               </h2>
@@ -64,11 +60,11 @@ export default function TechStack() {
                 {engineeringStack.map((s, idx) => (
                   <div
                     key={idx}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#14141B] border border-neutral-200/90 dark:border-neutral-800 text-xs text-[#1C1C24] dark:text-[#EDEDF2] shadow-xs whitespace-nowrap hover:border-[#E11D48] transition-colors cursor-default"
+                    className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-white dark:bg-[#12121A] border border-neutral-200 dark:border-neutral-800 text-xs text-[#1C1C24] dark:text-[#EDEDF2] shadow-2xs whitespace-nowrap hover:border-[#E11D48] transition-colors cursor-default"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" />
-                    <span className="font-medium">{s.name}</span>
-                    <span className="text-[10px] font-mono text-[#646478] dark:text-[#8E8EA2] px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800">
+                    <span className="font-medium tracking-tight">{s.name}</span>
+                    <span className="text-[11px] font-mono text-neutral-500 dark:text-neutral-400">
                       {s.badge}
                     </span>
                   </div>
@@ -80,11 +76,11 @@ export default function TechStack() {
                 {systemsAndCloudStack.map((s, idx) => (
                   <div
                     key={idx}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#14141B] border border-neutral-200/90 dark:border-neutral-800 text-xs text-[#1C1C24] dark:text-[#EDEDF2] shadow-xs whitespace-nowrap hover:border-[#E11D48] transition-colors cursor-default"
+                    className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-white dark:bg-[#12121A] border border-neutral-200 dark:border-neutral-800 text-xs text-[#1C1C24] dark:text-[#EDEDF2] shadow-2xs whitespace-nowrap hover:border-[#E11D48] transition-colors cursor-default"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" />
-                    <span className="font-medium">{s.name}</span>
-                    <span className="text-[10px] font-mono text-[#646478] dark:text-[#8E8EA2] px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800">
+                    <span className="font-medium tracking-tight">{s.name}</span>
+                    <span className="text-[11px] font-mono text-neutral-500 dark:text-neutral-400">
                       {s.badge}
                     </span>
                   </div>
