@@ -91,6 +91,8 @@ export const PORTFOLIO_DATA = {
       "TanStack Router",
       "Tailwind CSS",
       "Three.js",
+      "OpenCV",
+      "MediaPipe",
     ],
     databasesAndCloud: [
       "Redis",
@@ -195,6 +197,25 @@ export const PORTFOLIO_DATA = {
       metrics: "60% faster turnaround · Vector PDF engine",
       links: {
         github: "https://github.com/mRcOol7",
+      },
+    },
+    {
+      id: "ai-hand-tracking-steering",
+      title: "AI Visual Hand-Tracking Steering Wheel",
+      category: "Computer Vision & AI",
+      tagline: "Real-time webcam hand-tracking controller emulating an Xbox 360 gamepad for American Truck Simulator & PC racing games.",
+      description:
+        "Engineered a real-time computer vision driving controller using Python, OpenCV, and MediaPipe that turns any standard webcam or smartphone camera into an authentic 1:1 proportional virtual steering wheel. Features Enterprise 900° continuous multi-turn rotation, Adaptive One Euro (1€) filtering for jitter-free steering, analog pinch pedals (gas/brake), gesture horn honking, and Xbox 360 controller emulation via vgamepad.",
+      stack: ["Python", "OpenCV", "MediaPipe", "NumPy", "vgamepad", "DirectInput"],
+      highlights: [
+        "Emulated a native Xbox 360 controller (vgamepad) and DirectInput bindings for authentic 1:1 analog steering, progressive gas/brake pinch triggers, and turn blinkers.",
+        "Integrated an Adaptive One Euro (1€) Filter eliminating hand jitter on straightaways while maintaining zero-latency responsiveness on sharp turns.",
+        "Engineered 900° continuous multi-turn tracking supporting hand-over-hand steering and arm crossing without losing tracking or snapping angles.",
+        "Created an Always-on-Top Picture-in-Picture (PiP) neon HUD overlay with real-time angle readouts, telemetry gauges, and a standalone highway test simulator.",
+      ],
+      metrics: "900° Multi-Turn · 60 FPS Tracking · 1€ Filter",
+      links: {
+        github: "https://github.com/mRcOol7/hand-tracking-driving-simulator",
       },
     },
     {

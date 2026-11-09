@@ -24,12 +24,14 @@ const FILTER_OPTIONS = [
     ).length,
   },
   {
-    id: "webgl",
-    label: "3D & WebGL",
+    id: "creative",
+    label: "3D & AI",
     count: PORTFOLIO_DATA.projects.filter(
       (p) =>
         p.category.toLowerCase().includes("personal") ||
-        p.stack.includes("Three.js")
+        p.category.toLowerCase().includes("vision") ||
+        p.stack.includes("Three.js") ||
+        p.stack.includes("Python")
     ).length,
   },
 ];
@@ -45,10 +47,12 @@ export default function ProjectsSection() {
       return project.category.toLowerCase().includes("production");
     if (selectedFilter === "fullstack")
       return project.category.toLowerCase().includes("full-stack");
-    if (selectedFilter === "webgl")
+    if (selectedFilter === "creative")
       return (
         project.category.toLowerCase().includes("personal") ||
-        project.stack.includes("Three.js")
+        project.category.toLowerCase().includes("vision") ||
+        project.stack.includes("Three.js") ||
+        project.stack.includes("Python")
       );
     return true;
   });
