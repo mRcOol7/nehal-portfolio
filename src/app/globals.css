@@ -121,3 +121,12 @@ body {
   animation: animasterScroll var(--marquee-duration, 25s) linear infinite;
 }
 
+/* Hide scrollbar for clean carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
