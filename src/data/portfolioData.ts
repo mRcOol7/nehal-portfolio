@@ -250,15 +250,9 @@ export const PORTFOLIO_DATA = {
     },
     {
       title: "Open-Source UI Components",
-      metric: "50K+ Views",
+      metric: "50K+ Community Views",
       description:
         "Authored and open-sourced modular CSS/HTML components on UIverse.io, achieving 50K+ community views and peer developer bookmarks.",
-    },
-    {
-      title: "Open-Source Contributions",
-      metric: "3+ Core Repos",
-      description:
-        "Made helpful code and documentation improvements to popular open-source projects like Express.js, Mermaid.js, and TheAlgorithms/Python.",
     },
   ] as AchievementItem[],
 
