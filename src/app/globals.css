@@ -17,6 +17,10 @@
   --accent: #E11D48;
 }
 
+.font-signature {
+  font-family: var(--font-alex-brush), 'Alex Brush', cursive;
+}
+
 .dark {
   --bg-primary: #0C0C10;
   --bg-card: #14141B;
@@ -129,4 +133,68 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* =========================================================================
+   Scenic Chenab Rail Bridge Footer (World's Highest Railway Arch, J&K)
+   ========================================================================= */
+
+.foot-art {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 480px;
+  max-height: 95vh;
+  overflow: hidden;
+  background: #080A10;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 100%);
+}
+
+.foot-art > img,
+.foot-art canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.foot-art canvas {
+  opacity: 0;
+  transition: opacity 150ms ease;
+  pointer-events: none;
+}
+
+.foot-art canvas.on {
+  opacity: 1;
+}
+
+/* Authentic Indian Daylight Landscape (Chenab Rail Bridge, Jammu & Kashmir) */
+.foot-art .day-pic {
+  opacity: 1;
+}
+.foot-art .dusk-pic {
+  display: none;
+}
+
+.dark .foot-art .day-pic {
+  opacity: 1;
+}
+.dark .foot-art .dusk-pic {
+  display: none;
+}
+
+/* Film Scanlines, vignette, and text contrast bottom shading */
+/* Clean sunny Indian Himalayan atmosphere with text contrast bottom gradient */
+.foot-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(8, 10, 16, 0.78) 0%, rgba(8, 10, 16, 0.25) 100px, transparent 240px);
+}
+
 

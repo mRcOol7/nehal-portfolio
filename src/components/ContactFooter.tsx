@@ -5,12 +5,9 @@ import {
   Mail,
   Copy,
   Check,
-  ArrowUp,
   ArrowUpRight,
 } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
-import VisitorCounter from "./VisitorCounter";
-import BenchoMagnetic from "./BenchoMagnetic";
 import ScrolltideGlassLens from "./ScrolltideGlassLens";
 import VengeanceGlowButton from "./VengeanceGlowButton";
 
@@ -26,10 +23,6 @@ export default function ContactFooter() {
     navigator.clipboard.writeText(PORTFOLIO_DATA.personal.email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -118,35 +111,6 @@ export default function ContactFooter() {
           </div>
         </div>
       </ScrolltideGlassLens>
-
-      {/* Giant Stylized Brand Signature Watermark */}
-      <div
-        aria-hidden="true"
-        className="pt-2 sm:pt-4 pb-1 overflow-hidden pointer-events-none select-none text-center -mb-2 sm:-mb-3"
-      >
-        <span className="font-serif italic text-[11vw] font-black tracking-tight leading-none text-neutral-900/[0.08] dark:text-white/[0.06] whitespace-nowrap block">
-          Nehal Chauhan
-        </span>
-      </div>
-
-      {/* Bottom Bar: Copyright, Telemetry, Back to Top */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-700 dark:text-neutral-400 px-2 font-medium pt-2 pb-1">
-        <span>© 2026 {PORTFOLIO_DATA.personal.displayName} · Gujarat, India</span>
-
-        {/* Live Visitor Counter */}
-        <VisitorCounter />
-
-        <BenchoMagnetic strength={0.3}>
-          <button
-            onClick={scrollToTop}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 hover:text-black dark:hover:text-white border border-neutral-300 dark:border-neutral-700 transition-all shadow-2xs group font-medium"
-            title="Scroll smoothly back to the top"
-          >
-            <span>Back to top</span>
-            <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform" />
-          </button>
-        </BenchoMagnetic>
-      </div>
     </footer>
   );
 }

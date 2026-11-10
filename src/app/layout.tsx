@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter, JetBrains_Mono } from "next/font/google";
+import { Playfair_Display, Inter, JetBrains_Mono, Alex_Brush } from "next/font/google";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -7,6 +7,13 @@ const playfair = Playfair_Display({
   variable: "--font-serif",
   display: "swap",
   weight: ["400", "600", "700", "800", "900"],
+});
+
+const alexBrush = Alex_Brush({
+  subsets: ["latin"],
+  variable: "--font-alex-brush",
+  display: "swap",
+  weight: ["400"],
 });
 
 const inter = Inter({
@@ -175,7 +182,7 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className="bg-[#FAFAFC] dark:bg-[#0C0C10] text-[#1E1E28] dark:text-[#E8E8EE] min-h-screen font-sans selection:bg-[#E11D48]/20 selection:text-[#E11D48] transition-colors duration-200 antialiased"
+        className={`${playfair.variable} ${inter.variable} ${jetbrainsMono.variable} ${alexBrush.variable} bg-[#FAFAFC] dark:bg-[#0C0C10] text-[#1E1E28] dark:text-[#E8E8EE] min-h-screen font-sans selection:bg-[#E11D48]/20 selection:text-[#E11D48] transition-colors duration-200 antialiased`}
       >
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>

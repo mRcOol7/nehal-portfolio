@@ -8,6 +8,7 @@ import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import DevicePlugScrollSection from "@/components/DevicePlugScrollSection";
 import ContactFooter from "@/components/ContactFooter";
+import ScenicViaductFooter from "@/components/ScenicViaductFooter";
 import SkiperDynamicIsland from "@/components/SkiperDynamicIsland";
 import ScrolltideTracker from "@/components/ScrolltideTracker";
 
@@ -56,9 +57,12 @@ export default function Home() {
             {/* Freelancing & Collaboration Banner (High-Intent Conversion CTA) */}
             <FreelancingCard />
 
-            {/* Contact & Footer */}
+            {/* Contact & Conversion Card */}
             <ContactFooter />
           </main>
+
+          {/* Full-Width Panoramic Viaduct Footer (Edge-to-Edge) */}
+          <ScenicViaductFooter />
       </div>
     </div>
   );
