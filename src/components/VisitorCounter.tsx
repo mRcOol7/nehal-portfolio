@@ -1,22 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Users } from "lucide-react";
 
 export default function VisitorCounter() {
   const [visitorCount, setVisitorCount] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  const hasTracked = useRef(false);
 
   useEffect(() => {
     let isMounted = true;
 
     async function trackVisit() {
-      try {
-        const hasCounted = sessionStorage.getItem("has_counted_visit");
-        const method = hasCounted ? "GET" : "POST";
+      if (hasTracked.current) return;
+      hasTracked.current = true;
 
-        const res = await fetch("/api/visitors", {
-          method,
+      try {
+        const res = await fetch(`/api/visitors?_t=${Date.now()}`, {
+          method: "POST",
+          cache: "no-store",
           headers: { "Content-Type": "application/json" },
         });
 
@@ -24,9 +26,6 @@ export default function VisitorCounter() {
           const data = await res.json();
           if (isMounted && typeof data.count === "number") {
             setVisitorCount(data.count);
-            if (!hasCounted) {
-              sessionStorage.setItem("has_counted_visit", "true");
-            }
           }
         }
       } catch (err) {
@@ -46,13 +45,8 @@ export default function VisitorCounter() {
   return (
     <div
       className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white dark:bg-[#161622] border border-neutral-300 dark:border-neutral-800 text-[11px] font-mono text-neutral-700 dark:text-neutral-300 shadow-2xs select-none"
-      title="Live unique visitor count"
+      title="Visitor count"
     >
-      <span className="relative flex h-2 w-2">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-      </span>
-
       <Users className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400" />
 
       <span>

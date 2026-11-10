@@ -38,14 +38,32 @@ function saveCount(count: number): void {
   }
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   const count = getCount();
-  return NextResponse.json({ count });
+  return NextResponse.json(
+    { count },
+    {
+      headers: {
+        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+        Pragma: "no-cache",
+        Expires: "0",
+      },
+    }
+  );
 }
 
-export async function POST() {
+export async function POST(request: Request) {
   let count = getCount();
   count += 1;
   saveCount(count);
-  return NextResponse.json({ count });
+  return NextResponse.json(
+    { count },
+    {
+      headers: {
+        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+        Pragma: "no-cache",
+        Expires: "0",
+      },
+    }
+  );
 }
