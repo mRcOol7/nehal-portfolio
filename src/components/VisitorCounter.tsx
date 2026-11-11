@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { Users } from "lucide-react";
 
 export default function VisitorCounter() {
-  const [visitorCount, setVisitorCount] = useState<number | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [visitorCount, setVisitorCount] = useState<number>(1494);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -22,16 +22,10 @@ export default function VisitorCounter() {
           const data = await res.json();
           if (active && typeof data.count === "number") {
             setVisitorCount(data.count);
-            setLoading(false);
-            return;
           }
         }
       } catch (err) {
         console.error("Failed to fetch visitor count:", err);
-      }
-
-      if (active) {
-        setLoading(false);
       }
     }
 
@@ -48,18 +42,11 @@ export default function VisitorCounter() {
       title="Visitor count"
     >
       <Users className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400" />
-
       <span>
-        {loading && visitorCount === null ? (
-          <span className="inline-block w-12 h-3 bg-neutral-200 dark:bg-neutral-800 rounded animate-pulse" />
-        ) : (
-          <>
-            <span className="font-semibold text-neutral-900 dark:text-white">
-              {(visitorCount ?? 1489).toLocaleString()}
-            </span>{" "}
-            visitors
-          </>
-        )}
+        <span className="font-semibold text-neutral-900 dark:text-white">
+          {visitorCount.toLocaleString()}
+        </span>{" "}
+        visitors
       </span>
     </div>
   );
