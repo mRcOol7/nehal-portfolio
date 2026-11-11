@@ -10,6 +10,7 @@ import {
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import ScrolltideGlassLens from "./ScrolltideGlassLens";
 import VengeanceGlowButton from "./VengeanceGlowButton";
+import AwwwardsTextReveal from "./AwwwardsTextReveal";
 
 /**
  * ContactFooter
@@ -37,9 +38,12 @@ export default function ContactFooter() {
           </div>
 
           {/* Full-Width Expansive Heading */}
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1C1C24] dark:text-white leading-[1.15] mb-3">
+          <AwwwardsTextReveal
+            as="h2"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1C1C24] dark:text-white leading-[1.15] mb-3"
+          >
             Let&apos;s build something remarkable together.
-          </h2>
+          </AwwwardsTextReveal>
 
           {/* Full-Width Subtext */}
           <p className="text-sm sm:text-base md:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6 max-w-4xl">

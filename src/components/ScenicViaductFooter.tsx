@@ -18,10 +18,72 @@ import { initViaductScene } from "@/lib/viaductScene";
  * - Analog CRT scanlines, vignette, and ambient film aesthetic
  * - Live visitor telemetry and bottom navigation bar
  */
+export type ViaductTimeTheme = "day" | "dusk" | "night";
+
+export function getAutoTimeTheme(): ViaductTimeTheme {
+  const hour = new Date().getHours();
+  if (hour >= 6 && hour < 17) {
+    return "day"; // 6:00 AM - 4:59 PM: Morning & Daytime
+  } else if (hour >= 17 && hour < 20) {
+    return "dusk"; // 5:00 PM - 7:59 PM: Evening Sunset
+  } else {
+    return "night"; // 8:00 PM - 5:59 AM: Night Sky
+  }
+}
+
 export default function ScenicViaductFooter() {
   const artRef = useRef<HTMLDivElement>(null);
   const signatureRef = useRef<SVGSVGElement>(null);
   const [mounted, setMounted] = useState(false);
+  const [timeTheme, setTimeTheme] = useState<ViaductTimeTheme>("day");
+  const [timeLabel, setTimeLabel] = useState("");
+
+  // Auto-detect and sync time-of-day theme (Morning / Evening / Night)
+  useEffect(() => {
+    const updateTheme = () => {
+      const current = getAutoTimeTheme();
+      setTimeTheme(current);
+
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+      const label =
+        current === "day"
+          ? "Morning Daylight"
+          : current === "dusk"
+          ? "Evening Sunset"
+          : "Night Atmosphere";
+      setTimeLabel(`${timeStr} · ${label}`);
+
+      if (artRef.current) {
+        artRef.current.setAttribute("data-time-theme", current);
+        document.dispatchEvent(new CustomEvent("viaducttimechange"));
+      }
+    };
+
+    updateTheme();
+    const interval = setInterval(updateTheme, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const cycleTimeTheme = () => {
+    const next: ViaductTimeTheme =
+      timeTheme === "day" ? "dusk" : timeTheme === "dusk" ? "night" : "day";
+    setTimeTheme(next);
+    const label =
+      next === "day"
+        ? "Morning Daylight"
+        : next === "dusk"
+        ? "Evening Sunset"
+        : "Night Atmosphere";
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+    setTimeLabel(`${timeStr} · ${label}`);
+
+    if (artRef.current) {
+      artRef.current.setAttribute("data-time-theme", next);
+      document.dispatchEvent(new CustomEvent("viaducttimechange"));
+    }
+  };
 
   // Initialize WebGL Scenic Landscape
   useEffect(() => {
@@ -107,25 +169,37 @@ export default function ScenicViaductFooter() {
 
   return (
     <footer className="relative w-full overflow-hidden select-none">
-      {/* Preload critical WebGL train atlas and daylight plate for instantaneous rendering on reload */}
+      {/* Preload critical WebGL train atlas and time-of-day scenery plates */}
       <link rel="preload" href="/footer/train.webp" as="image" type="image/webp" />
       <link rel="preload" href="/footer/chenab-day.webp" as="image" type="image/webp" />
+      <link rel="preload" href="/footer/chenab-dusk.webp" as="image" type="image/webp" />
+      <link rel="preload" href="/footer/chenab-night.webp" as="image" type="image/webp" />
 
-      {/* Full-Width Panoramic Scenic Viaduct Display */}
-      <div ref={artRef} className="foot-art w-full">
-        {/* Day / Dusk Base High-Resolution Plates (Chenab Rail Bridge, Jammu & Kashmir) */}
+      {/* Full-Width Panoramic Scenic Viaduct Display with Dynamic Time Atmosphere */}
+      <div ref={artRef} className="foot-art w-full" data-time-theme={timeTheme}>
+        {/* Morning / Daytime Base High-Resolution Plate */}
         <img
           className="day day-pic select-none pointer-events-none"
           src="/footer/chenab-day.webp"
-          alt="Chenab Rail Bridge by Day - Jammu & Kashmir, India"
+          alt="Chenab Rail Bridge by Day - Morning Daylight, Jammu & Kashmir, India"
           width={1920}
           height={1080}
           decoding="async"
         />
+        {/* Evening Sunset / Golden Hour Plate */}
         <img
           className="dusk dusk-pic select-none pointer-events-none"
           src="/footer/chenab-dusk.webp"
-          alt="Chenab Rail Bridge at Twilight - Jammu & Kashmir, India"
+          alt="Chenab Rail Bridge at Dusk - Evening Sunset, Jammu & Kashmir, India"
+          width={1920}
+          height={1080}
+          decoding="async"
+        />
+        {/* Night / Nocturnal Starlit Sky Plate */}
+        <img
+          className="night night-pic select-none pointer-events-none"
+          src="/footer/chenab-night.webp"
+          alt="Chenab Rail Bridge at Night - Nocturnal Sky & Bridge Runway Illumination, Jammu & Kashmir, India"
           width={1920}
           height={1080}
           decoding="async"
@@ -201,8 +275,25 @@ export default function ScenicViaductFooter() {
               <span className="text-white/70">Gujarat, India</span>
             </div>
 
-            {/* Center: Live Visitor Telemetry */}
-            <div className="flex items-center">
+            {/* Center: Live Time-of-Day Atmosphere & Visitor Telemetry */}
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              <BenchoMagnetic strength={0.2}>
+                <button
+                  type="button"
+                  onClick={cycleTimeTheme}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-black/40 hover:bg-black/60 border border-white/15 text-[11px] font-mono text-white/90 hover:text-white transition-all cursor-pointer shadow-md backdrop-blur-md group"
+                  title="Auto-adjusts to your local time. Click to cycle Morning / Evening / Night atmosphere"
+                  aria-label="Cycle scenery time theme"
+                >
+                  <span className="group-hover:scale-110 transition-transform">
+                    {timeTheme === "day" ? "☀️" : timeTheme === "dusk" ? "🌅" : "🌙"}
+                  </span>
+                  <span>{timeTheme === "day" ? "Morning" : timeTheme === "dusk" ? "Evening" : "Night"}</span>
+                  <span className="text-white/35">·</span>
+                  <span className="text-[10px] text-white/70">{timeLabel}</span>
+                </button>
+              </BenchoMagnetic>
+
               <VisitorCounter />
             </div>
 

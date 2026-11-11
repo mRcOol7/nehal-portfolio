@@ -7,6 +7,7 @@ import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import InteractiveAvatar from "./InteractiveAvatar";
 import SnowfallOverlay from "./SnowfallOverlay";
 import BenchoMagnetic from "./BenchoMagnetic";
+import AwwwardsTextReveal from "./AwwwardsTextReveal";
 
 export default function HeroBanner() {
   const titles = PORTFOLIO_DATA.personal.roles;
@@ -95,9 +96,14 @@ export default function HeroBanner() {
       {/* Name, Typewriter Title & Location cleanly below banner */}
       <div className="px-2 sm:px-6 mt-1 sm:mt-3">
         <div className="flex items-center gap-2">
-          <h1 className="font-serif text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1C1C24] dark:text-white">
+          <AwwwardsTextReveal
+            as="h1"
+            triggerOnScroll={false}
+            delay={0.15}
+            className="font-serif text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1C1C24] dark:text-white"
+          >
             {PORTFOLIO_DATA.personal.displayName}
-          </h1>
+          </AwwwardsTextReveal>
         </div>
 
         {/* Dynamic Typewriter Role */}

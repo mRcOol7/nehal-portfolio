@@ -1,20 +1,16 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Users } from "lucide-react";
 
 export default function VisitorCounter() {
   const [visitorCount, setVisitorCount] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
-  const hasTracked = useRef(false);
 
   useEffect(() => {
-    let isMounted = true;
+    let active = true;
 
     async function trackVisit() {
-      if (hasTracked.current) return;
-      hasTracked.current = true;
-
       try {
         const res = await fetch(`/api/visitors?_t=${Date.now()}`, {
           method: "POST",
@@ -24,21 +20,25 @@ export default function VisitorCounter() {
 
         if (res.ok) {
           const data = await res.json();
-          if (isMounted && typeof data.count === "number") {
+          if (active && typeof data.count === "number") {
             setVisitorCount(data.count);
+            setLoading(false);
+            return;
           }
         }
       } catch (err) {
         console.error("Failed to fetch visitor count:", err);
-      } finally {
-        if (isMounted) setLoading(false);
+      }
+
+      if (active) {
+        setLoading(false);
       }
     }
 
     trackVisit();
 
     return () => {
-      isMounted = false;
+      active = false;
     };
   }, []);
 
@@ -50,12 +50,12 @@ export default function VisitorCounter() {
       <Users className="w-3.5 h-3.5 text-neutral-600 dark:text-neutral-400" />
 
       <span>
-        {loading ? (
+        {loading && visitorCount === null ? (
           <span className="inline-block w-12 h-3 bg-neutral-200 dark:bg-neutral-800 rounded animate-pulse" />
         ) : (
           <>
             <span className="font-semibold text-neutral-900 dark:text-white">
-              {visitorCount ? visitorCount.toLocaleString() : "1,421"}
+              {(visitorCount ?? 1489).toLocaleString()}
             </span>{" "}
             visitors
           </>

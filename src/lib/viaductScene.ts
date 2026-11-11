@@ -17,13 +17,21 @@ export function initViaductScene(art: HTMLElement): () => void {
   const cleanupFns: Array<() => void> = [];
 
   try {
-    const calm = matchMedia('(prefers-reduced-motion: reduce)');
+  const calm = matchMedia('(prefers-reduced-motion: reduce)');
   const system = matchMedia('(prefers-color-scheme: dark)');
-  // Authentic Indian Himalayan sunny daytime weather — crisp daylight for Chenab Rail Bridge
-  const isDark = () => false;
-  const pictureFor = (dark = false) => art.querySelector('.day') || art.querySelector('img');
+  // Dynamic time-of-day theme (Morning / Evening / Night)
+  const getTimeTheme = () => art.getAttribute('data-time-theme') || 'day';
+  const isDark = () => {
+    const t = getTimeTheme();
+    return t === 'dusk' || t === 'night';
+  };
+  const pictureFor = () => {
+    const t = getTimeTheme();
+    return art.querySelector(`.${t}-pic`) || art.querySelector(`.${t}`) || art.querySelector('.day-pic') || art.querySelector('img');
+  };
   // A picture that fails to load shouldn't leave a broken-image mark in the footer.
-  for (const image of [pictureFor(false), pictureFor(true)]) {
+  const allImages = Array.from(art.querySelectorAll('img'));
+  for (const image of allImages) {
     image.addEventListener('error', () => { image.style.visibility = 'hidden'; });
   }
   const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
@@ -201,10 +209,12 @@ export function initViaductScene(art: HTMLElement): () => void {
     void main() {
       vec4 c = texture2D(atlas, vTexel.xy / vTexel.z);
       float seen = inTheOpen();
-      // Daytime Indian Himalayan sunlight: bright vibrant Saffron Orange livery with sun sheen
       vec2 light = vLight / vTexel.z;
       vec3 lit = texture2D(atlas, light).rgb;
-      vec3 body = c.rgb * vTone + lit * 0.25 * c.a;
+      // Warm passenger window illumination glows softly at night
+      float windowGlow = dusk > 0.5 ? 0.85 : 0.25;
+      float bodyTone = dusk > 0.5 ? vTone * 0.88 : vTone;
+      vec3 body = c.rgb * bodyTone + lit * windowGlow * c.a;
       gl_FragColor = vec4(body, c.a) * seen;
     }`;
 
@@ -230,9 +240,24 @@ export function initViaductScene(art: HTMLElement): () => void {
     ${UTILS}
     ${IN_THE_OPEN}
     void main() {
-      float edge = radial > 0.5
-        ? pow(1.0 - clamp(length(vSt), 0.0, 1.0), 2.0)
-        : (1.0 - smoothstep(0.35, 1.0, abs(vSt.x))) * (1.0 - smoothstep(0.35, 1.0, abs(vSt.y)));
+      float edge;
+      if (radial > 1.5) {
+        // Authentic volumetric atmospheric light cone
+        // Normalized progress: 0.0 at tip in distance, 1.0 at headlight lens
+        float p = clamp((vSt.x + 1.0) * 0.5, 0.0, 1.0);
+        // Exponential atmospheric beam attenuation (bright near lens, gracefully vanishing into distance)
+        float haze = pow(p, 1.7) * 0.85 + pow(p, 3.8) * 1.15;
+        // Smooth parabolic beam cone cross-section (soft feather on edges)
+        float crossSection = clamp(1.0 - vSt.y * vSt.y, 0.0, 1.0);
+        crossSection = pow(crossSection, 1.4);
+        edge = haze * crossSection;
+      } else if (radial > 0.5) {
+        // Radial flare / halo / marker light
+        edge = pow(1.0 - clamp(length(vSt), 0.0, 1.0), 2.0);
+      } else {
+        // Track shadow / soft rectangular ambient
+        edge = (1.0 - smoothstep(0.35, 1.0, abs(vSt.x))) * (1.0 - smoothstep(0.35, 1.0, abs(vSt.y)));
+      }
       gl_FragColor = vTint * edge * inTheOpen();
     }`;
 
@@ -500,16 +525,51 @@ export function initViaductScene(art: HTMLElement): () => void {
       // Vande Bharat Express is a 100% all-electric EMU trainset: Zero smoke and zero steam.
       // Electric traction is completely emission-free.
 
-      // The headlamp's glow, when the front of the engine is towards us.
-      if (dark && front < TIP_IN && front > TIP_OUT) {
-        const facing = smooth(0.2, 0.6, Math.sin(front));
-        if (facing > 0) {
-          const turn = turnAt(front);
-          const [x, y] = pointAt(front + SMOKEBOX_BACK, 0.5 - 0.48 * turn, 76);
-          const r = 15 * sizeAt(front);
+      // Authentic Indian Railways Vande Bharat LED Headlight & Tail Marker System (Evening / Night)
+      if (dark && front < TIP_IN + 0.3 && front > TIP_OUT - 0.3) {
+        const x_front = 960 + front * 640;
+        const x_headlight = x_front + 6;
+        const y_headlight = TRACK_Y - 20;
+
+        // 1. Unified Atmospheric Volumetric Headlight Beam Cone (Front Cab Only)
+        // Projects forward to the left, angling down towards the rails ahead with smooth atmospheric dissipation
+        softOut.length = 0;
+        softQuad(
+          [x_headlight - 260, y_headlight - 10], // top tip in distance
+          [x_headlight, y_headlight - 3],        // top at lamp
+          [x_headlight, y_headlight + 4],        // bottom at lamp
+          [x_headlight - 260, TRACK_Y + 5],      // bottom tip on rails ahead
+          [0.92, 0.96, 1.0, 0.35]
+        );
+        drawSoft(2.0); // radial = 2.0 -> Volumetric beam cone with exponential falloff
+
+        // 2. Front Headlight Twin-LED Projector Core & Lens Bloom
+        softOut.length = 0;
+        // Intense core (pure 6500K Xenon LED)
+        const rCore = 3.5;
+        softQuad([x_headlight - rCore, y_headlight - rCore], [x_headlight + rCore, y_headlight - rCore], [x_headlight + rCore, y_headlight + rCore], [x_headlight - rCore, y_headlight + rCore], [1.0, 1.0, 1.0, 1.0]);
+        // Soft optical lens bloom
+        const rHalo = 14;
+        softQuad([x_headlight - rHalo, y_headlight - rHalo], [x_headlight + rHalo, y_headlight - rHalo], [x_headlight + rHalo, y_headlight + rHalo], [x_headlight - rHalo, y_headlight + rHalo], [0.85, 0.92, 1.0, 0.45]);
+        // Subtle horizontal anamorphic flare streak
+        softQuad([x_headlight - 24, y_headlight - 1.2], [x_headlight + 8, y_headlight - 1.2], [x_headlight + 8, y_headlight + 1.2], [x_headlight - 24, y_headlight + 1.2], [0.95, 0.98, 1.0, 0.50]);
+        drawSoft(1.0); // radial = 1.0 -> Circular lens flare
+
+        // 3. Rear DTC: Authentic Indian Railways Twin Ruby-Red Marker Lamps (Tail Car Only)
+        // Positioned precisely flush inside the rear aerodynamic nose housing
+        const rearA2 = tailA1 + LOCO_LENGTH * COACH;
+        const x_rear_marker = 960 + rearA2 * 640 - 7;
+        const y_rear_marker = TRACK_Y - 20;
+
+        if (rearA2 < TIP_IN + 0.2 && rearA2 > TIP_OUT - 0.2) {
           softOut.length = 0;
-          softQuad([x - r, y - r], [x + r, y - r], [x + r, y + r], [x - r, y + r], [0.5 * facing, 0.43 * facing, 0.3 * facing, 0.2 * facing]);
-          drawSoft(1);
+          // Precision red LED core
+          const rTail = 2.2;
+          softQuad([x_rear_marker - rTail, y_rear_marker - rTail], [x_rear_marker + rTail, y_rear_marker - rTail], [x_rear_marker + rTail, y_rear_marker + rTail], [x_rear_marker - rTail, y_rear_marker + rTail], [1.0, 0.12, 0.12, 0.95]);
+          // Soft red atmospheric glow
+          const rTailHalo = 6.0;
+          softQuad([x_rear_marker - rTailHalo, y_rear_marker - rTailHalo], [x_rear_marker + rTailHalo, y_rear_marker - rTailHalo], [x_rear_marker + rTailHalo, y_rear_marker + rTailHalo], [x_rear_marker - rTailHalo, y_rear_marker + rTailHalo], [0.85, 0.05, 0.05, 0.35]);
+          drawSoft(1.0);
         }
       }
     };
@@ -559,30 +619,33 @@ export function initViaductScene(art: HTMLElement): () => void {
     const textures = new Map();
     const uploaded = new Map();
     const showPicture = async () => {
-      const wanted = isDark();
-      const image = pictureFor(wanted);
-      if (!(await ready(image)) || wanted !== isDark()) return;
-      if (uploaded.get(image) !== image.currentSrc) {
+      const wantedTheme = getTimeTheme();
+      const image = pictureFor();
+      if (!image) return;
+      if (!(await ready(image)) || wantedTheme !== getTimeTheme()) return;
+      const srcKey = image.currentSrc || image.src;
+      if (uploaded.get(image) !== srcKey) {
         if (textures.get(image)) gl.deleteTexture(textures.get(image));
         textures.set(image, makeTexture(0, image));
-        uploaded.set(image, image.currentSrc);
+        uploaded.set(image, srcKey);
       }
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, textures.get(image));
-      dark = wanted;
+      dark = isDark();
       shownTexture = textures.get(image);
       fit();
       canvas.classList.add('on');
       update();
     };
-    for (const image of [pictureFor(false), pictureFor(true)]) {
+    for (const image of allImages) {
       image.addEventListener('load', () => {
-        if (textures.has(image) && image === pictureFor(isDark())) showPicture();
+        if (textures.has(image) && image === pictureFor()) showPicture();
       });
     }
     const themeChanged = () => {
       // If the new picture isn't here yet, nothing of the old theme should show over the gap.
-      if (!textures.has(pictureFor(isDark()))) canvas.style.transition = 'none';
+      const currentPic = pictureFor();
+      if (currentPic && !textures.has(currentPic)) canvas.style.transition = 'none';
       canvas.classList.remove('on');
       canvas.getBoundingClientRect();
       canvas.style.transition = '';
@@ -590,7 +653,17 @@ export function initViaductScene(art: HTMLElement): () => void {
       showPicture();
     };
     document.addEventListener('themechange', themeChanged);
+    document.addEventListener('viaducttimechange', themeChanged);
     system.addEventListener('change', themeChanged);
+    cleanupFns.push(() => {
+      document.removeEventListener('themechange', themeChanged);
+      document.removeEventListener('viaducttimechange', themeChanged);
+      system.removeEventListener('change', themeChanged);
+    });
+
+    const timeObserver = new MutationObserver(themeChanged);
+    timeObserver.observe(art, { attributes: true, attributeFilter: ['data-time-theme'] });
+    cleanupFns.push(() => timeObserver.disconnect());
 
     // Continuous real-time hardware-accelerated animation loop
     const startTime = performance.now();
@@ -631,7 +704,13 @@ export function initViaductScene(art: HTMLElement): () => void {
       return;
     }
     art.querySelectorAll('canvas').forEach((c) => c.remove());
-    pictureFor(true).after(canvas);
+    const imgs = art.querySelectorAll('img');
+    const lastImg = imgs.length ? imgs[imgs.length - 1] : null;
+    if (lastImg) {
+      lastImg.after(canvas);
+    } else {
+      art.appendChild(canvas);
+    }
     await showPicture();
     if (cleanedUp) {
       try { canvas.remove(); } catch (_) {}

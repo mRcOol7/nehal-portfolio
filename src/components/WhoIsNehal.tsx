@@ -6,6 +6,7 @@ import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import VengeanceCounter from "./VengeanceCounter";
+import AwwwardsTextReveal from "./AwwwardsTextReveal";
 
 export default function WhoIsNehal() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -103,9 +104,12 @@ export default function WhoIsNehal() {
 
   return (
     <section ref={sectionRef} id="about" className="w-full mb-14 sm:mb-20">
-      <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-6 sm:mb-8">
+      <AwwwardsTextReveal
+        as="h2"
+        className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-6 sm:mb-8"
+      >
         Who is Nehal?
-      </h2>
+      </AwwwardsTextReveal>
 
       {/* Professional Summary with Interactive Karaoke Scroll Scrub - Full Width & Fluid Typography */}
       <div

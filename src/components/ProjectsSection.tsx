@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { PORTFOLIO_DATA, Project } from "@/data/portfolioData";
 import { ArrowUpRight } from "lucide-react";
+import AwwwardsTextReveal from "./AwwwardsTextReveal";
 
 export default function ProjectsSection() {
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
@@ -15,9 +16,12 @@ export default function ProjectsSection() {
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div>
-          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100">
+          <AwwwardsTextReveal
+            as="h2"
+            className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100"
+          >
             Featured Projects
-          </h2>
+          </AwwwardsTextReveal>
           <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
             Production systems, computer vision controllers, and interactive web architecture.
           </p>

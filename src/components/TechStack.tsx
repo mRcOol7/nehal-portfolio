@@ -2,6 +2,7 @@
 
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 import AnimasterMarquee from "./AnimasterMarquee";
+import AwwwardsTextReveal from "./AwwwardsTextReveal";
 import { ArrowRight } from "lucide-react";
 
 const ENGINEERING_STACK = [
@@ -33,9 +34,12 @@ export default function TechStack() {
         {/* Section Header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
             <div>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white">
+              <AwwwardsTextReveal
+                as="h2"
+                className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white"
+              >
                 Technical Stack
-              </h2>
+              </AwwwardsTextReveal>
               <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-400 mt-1.5 max-w-2xl">
                 Engineered with modern mobile runtimes, reactive web frameworks, and low-latency data layers.
               </p>

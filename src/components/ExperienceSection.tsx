@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown, MapPin } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import AwwwardsTextReveal from "./AwwwardsTextReveal";
 
 export default function ExperienceSection() {
   const [expandedId, setExpandedId] = useState<string | null>("encoraa-android");
@@ -13,9 +14,12 @@ export default function ExperienceSection() {
 
   return (
     <section id="experience" className="w-full mb-14 sm:mb-18">
-      <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-6 sm:mb-8">
+      <AwwwardsTextReveal
+        as="h2"
+        className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1C1C24] dark:text-white mb-6 sm:mb-8"
+      >
         Professional Experience
-      </h2>
+      </AwwwardsTextReveal>
 
       <div className="w-full rounded-2xl dashed-container bg-white/40 dark:bg-[#14141B]/30 divide-y divide-dashed divide-neutral-200 dark:divide-neutral-800">
         {PORTFOLIO_DATA.experience.map((exp) => {
@@ -55,9 +59,8 @@ export default function ExperienceSection() {
                     {exp.period}
                   </span>
                   <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center text-neutral-700 dark:text-neutral-400 transition-transform duration-200 ${
-                      isExpanded ? "rotate-180" : ""
-                    }`}
+                    className={`w-6 h-6 rounded-full flex items-center justify-center text-neutral-700 dark:text-neutral-400 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""
+                      }`}
                   >
                     <ChevronDown className="w-4 h-4" />
                   </div>
